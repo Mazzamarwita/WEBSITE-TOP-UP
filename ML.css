@@ -224,3 +224,48 @@ border:none;
     border-radius: 20px;
     outline: none;
 }
+
+h3{    
+width:50%;
+margin:20px auto;
+color:white;
+margin-bottom:10px;
+font-size:18px;
+}
+
+.grid{
+    width:50%;
+    margin:20px auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+box-shadow: #070707 0px 0px 10px;
+background:#111;
+color:white;
+border-radius:10px;
+padding:12px;
+cursor:pointer;
+transition:.2s;
+border:2px solid transparent;
+}
+
+.card:hover{
+border-color:#00b7ff;
+}
+
+.card h4{
+font-size:18px;
+}
+
+.card p{
+font-size:13px;
+margin:5px 0;
+}
+
+.card strong{
+color:#BF00FF;
+} 
