@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Daftar Transaksi</title>
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="daftar-transaksi.css"
+    >
+
+    <!-- Boxicons -->
+    <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Poppins -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+
+<body>
+
+    <!-- ==================================
+         NAVBAR
+    =================================== -->
+
+    <nav class="navbar">
+
+        <div class="left-navbar">
+
+            <button class="menu-btn">
+                <i class="bx bx-menu"></i>
+            </button>
+
+            <img
+                src="/img/LOGO1.png"
+                class="logo"
+                alt="Infinity Shop"
+            >
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchTransaction"
+                placeholder="Cari transaksi"
+            >
+
+            <button type="button">
+                <i class="bx bx-search"></i>
+            </button>
+
+        </div>
+
+
+        <div class="nav-button">
+
+            <button class="btn-register">
+                Daftar
+            </button>
+
+            <button class="btn-login">
+                Masuk
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================
+         HALAMAN DAFTAR TRANSAKSI
+    =================================== -->
+
+    <main class="transaction-page">
+
+
+        <!-- HEADER -->
+
+        <div class="transaction-page-header">
+
+            <h1>
+                Daftar Transaksi
+            </h1>
+
+
+            <div class="transaction-filters">
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        Semua Status
+                    </option>
+
+                    <option value="finished">
+                        Berhasil
+                    </option>
+
+                    <option value="processing">
+                        Diproses
+                    </option>
+
+                </select>
+
+
+                <select id="timeFilter">
+
+                    <option value="90">
+                        90 Hari Terakhir
+                    </option>
+
+                    <option value="30">
+                        30 Hari Terakhir
+                    </option>
+
+                    <option value="7">
+                        7 Hari Terakhir
+                    </option>
+
+                    <option value="all">
+                        Semua Waktu
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             GRID TRANSAKSI
+        =================================== -->
+
+        <section
+            class="transaction-grid"
+            id="transactionGrid"
+        >
+
+            <!--
+                Card transaksi dibuat otomatis
+                oleh daftar-transaksi.js
+            -->
+
+        </section>
+
+
+
+        <!-- ==================================
+             JIKA BELUM ADA TRANSAKSI
+        =================================== -->
+
+        <div
+            class="empty-transaction"
+            id="emptyTransaction"
+        >
+
+            <i class="bx bx-receipt"></i>
+
+            <h2>
+                Belum ada transaksi
+            </h2>
+
+            <p>
+                Transaksi yang sudah selesai
+                akan muncul di sini.
+            </p>
+
+        </div>
+
+
+
+        <!-- ==================================
+             PAGINATION
+        =================================== -->
+
+        <div class="pagination">
+
+            <button
+                type="button"
+                id="prevPage"
+            >
+                <i class="bx bx-chevron-left"></i>
+            </button>
+
+
+            <span id="pageNumber">
+                1
+            </span>
+
+
+            <button
+                type="button"
+                id="nextPage"
+            >
+                <i class="bx bx-chevron-right"></i>
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- JS -->
+    <script src="daftar-transaksi.js"></script>
+
+</body>
+</html>

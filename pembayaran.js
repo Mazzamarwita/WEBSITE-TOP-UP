@@ -19,8 +19,6 @@ if (!transactionData) {
 
 } else {
 
-    // Jalankan halaman hanya jika
-    // data transaksi ditemukan
     initializePaymentPage();
 
 }
@@ -33,7 +31,7 @@ if (!transactionData) {
 function formatRupiah(number) {
 
     return "Rp" +
-        Number(number).toLocaleString("id-ID");
+        Number(number || 0).toLocaleString("id-ID");
 
 }
 
@@ -44,7 +42,19 @@ function formatRupiah(number) {
 
 function formatTransactionTime(dateString) {
 
+    // Kalau tanggal tidak ada
+    if (!dateString) {
+        return "-";
+    }
+
+
     const date = new Date(dateString);
+
+
+    // Kalau tanggal tidak valid
+    if (isNaN(date.getTime())) {
+        return "-";
+    }
 
 
     const months = [
@@ -110,6 +120,7 @@ function setText(id, value) {
     const element =
         document.getElementById(id);
 
+
     if (element) {
 
         element.textContent = value;
@@ -145,9 +156,9 @@ function initializePaymentPage() {
 
 function displayTransactionData() {
 
-    // --------------------------------------
+    // ======================================
     // SUMMARY PRODUK
-    // --------------------------------------
+    // ======================================
 
     setText(
         "summaryProduct",
@@ -155,21 +166,21 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // TOTAL PEMBAYARAN
-    // --------------------------------------
+    // ======================================
 
     setText(
         "summaryTotal",
         formatRupiah(
-            transactionData.total || 0
+            transactionData.total
         )
     );
 
 
-    // --------------------------------------
+    // ======================================
     // METODE PEMBAYARAN SUMMARY
-    // --------------------------------------
+    // ======================================
 
     setText(
         "summaryPayment",
@@ -177,9 +188,9 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // NOMOR TRANSAKSI
-    // --------------------------------------
+    // ======================================
 
     setText(
         "transactionNumber",
@@ -187,9 +198,9 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // WAKTU TRANSAKSI
-    // --------------------------------------
+    // ======================================
 
     setText(
         "transactionTime",
@@ -199,19 +210,20 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // DETAIL GAME
-    // --------------------------------------
+    // ======================================
 
     setText(
         "detailGame",
-        transactionData.game || "Mobile Legends"
+        transactionData.game ||
+        "Mobile Legends"
     );
 
 
-    // --------------------------------------
+    // ======================================
     // DETAIL PRODUK
-    // --------------------------------------
+    // ======================================
 
     setText(
         "detailProduct",
@@ -219,14 +231,14 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // DETAIL USER ID + SERVER
-    // --------------------------------------
+    // ======================================
 
     let fullUserId = "-";
 
 
-    // Jika userIdFull tersedia
+    // Kalau userIdFull tersedia
     if (transactionData.userIdFull) {
 
         fullUserId =
@@ -234,7 +246,7 @@ function displayTransactionData() {
 
     }
 
-    // Jika userId dan server terpisah
+    // Kalau ID dan Server terpisah
     else if (
         transactionData.userId &&
         transactionData.server
@@ -248,7 +260,7 @@ function displayTransactionData() {
 
     }
 
-    // Jika hanya userId
+    // Kalau hanya ID
     else if (transactionData.userId) {
 
         fullUserId =
@@ -263,9 +275,9 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // JUMLAH
-    // --------------------------------------
+    // ======================================
 
     setText(
         "detailQuantity",
@@ -273,23 +285,23 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // HARGA
-    // --------------------------------------
-    // Mengikuti desainmu:
-    // harga yang ditampilkan adalah total akhir
+    // ======================================
+    // Mengikuti desain kamu:
+    // yang ditampilkan adalah total akhir
 
     setText(
         "detailPrice",
         formatRupiah(
-            transactionData.total || 0
+            transactionData.total
         )
     );
 
 
-    // --------------------------------------
+    // ======================================
     // METODE PEMBAYARAN DETAIL
-    // --------------------------------------
+    // ======================================
 
     setText(
         "detailPayment",
@@ -297,9 +309,9 @@ function displayTransactionData() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // POINT
-    // --------------------------------------
+    // ======================================
 
     setText(
         "pointValue",
@@ -341,7 +353,7 @@ function initializeCopyButton() {
             }
 
 
-            // Coba Clipboard API
+            // Kalau Clipboard API tersedia
             if (
                 navigator.clipboard &&
                 navigator.clipboard.writeText
@@ -408,7 +420,9 @@ function showCopiedText(button) {
 function fallbackCopy(text, button) {
 
     const temporaryInput =
-        document.createElement("textarea");
+        document.createElement(
+            "textarea"
+        );
 
 
     temporaryInput.value = text;
@@ -446,28 +460,115 @@ function fallbackCopy(text, button) {
 
 
 // ==========================================
-// 11. CEK STATUS TRANSAKSI
+// 11. SIMPAN / UPDATE RIWAYAT TRANSAKSI
+// ==========================================
+
+function saveTransactionToHistory() {
+
+    // Ambil history lama
+    let transactionHistory = JSON.parse(
+        localStorage.getItem(
+            "transactionHistory"
+        )
+    ) || [];
+
+
+    // Cari apakah transaksi ini
+    // sudah pernah disimpan
+    const existingIndex =
+        transactionHistory.findIndex(
+            function(transaction) {
+
+                return (
+                    transaction.transactionNumber ===
+                    transactionData.transactionNumber
+                );
+
+            }
+        );
+
+
+    // ======================================
+    // KALAU BELUM ADA
+    // ======================================
+
+    if (existingIndex === -1) {
+
+        // Masukkan ke paling depan
+        transactionHistory.unshift(
+            {
+                ...transactionData
+            }
+        );
+
+    }
+
+
+    // ======================================
+    // KALAU SUDAH ADA
+    // ======================================
+
+    else {
+
+        // Update transaksi lama
+        transactionHistory[existingIndex] =
+            {
+                ...transactionData
+            };
+
+    }
+
+
+    // ======================================
+    // SIMPAN KEMBALI
+    // ======================================
+
+    localStorage.setItem(
+        "transactionHistory",
+        JSON.stringify(
+            transactionHistory
+        )
+    );
+
+}
+
+
+// ==========================================
+// 12. CEK STATUS TRANSAKSI
 // ==========================================
 
 function checkTransactionStatus() {
 
-    // Jika transaksi sudah selesai
+    // ======================================
+    // JIKA SUDAH SELESAI
+    // ======================================
+
     if (
-        transactionData.status === "finished"
+        transactionData.status ===
+        "finished"
     ) {
 
+        // Pastikan transaksi masuk history
+        saveTransactionToHistory();
+
+
+        // Langsung tampil selesai
         showFinishedStatus();
+
 
         return;
 
     }
 
 
-    // Jika masih diproses
+    // ======================================
+    // JIKA MASIH DIPROSES
+    // ======================================
+
     showProcessingStatus();
 
 
-    // Mulai timer 5 detik
+    // Tunggu 5 detik
     setTimeout(function() {
 
         finishTransaction();
@@ -478,14 +579,14 @@ function checkTransactionStatus() {
 
 
 // ==========================================
-// 12. STATUS SEDANG DIPROSES
+// 13. STATUS SEDANG DIPROSES
 // ==========================================
 
 function showProcessingStatus() {
 
-    // --------------------------------------
-    // STEP DIPROSES AKTIF UNGU
-    // --------------------------------------
+    // ======================================
+    // STEP DIPROSES
+    // ======================================
 
     const processStep =
         document.getElementById(
@@ -495,10 +596,13 @@ function showProcessingStatus() {
 
     if (processStep) {
 
+        // Aktif ungu
         processStep.classList.add(
             "active"
         );
 
+
+        // Hapus hijau
         processStep.classList.remove(
             "completed"
         );
@@ -506,9 +610,27 @@ function showProcessingStatus() {
     }
 
 
-    // --------------------------------------
+    // ======================================
+    // IKON DIPROSES
+    // ======================================
+
+    const processIcon =
+        document.getElementById(
+            "processIcon"
+        );
+
+
+    if (processIcon) {
+
+        processIcon.className =
+            "bx bx-time-five";
+
+    }
+
+
+    // ======================================
     // STEP SELESAI BELUM AKTIF
-    // --------------------------------------
+    // ======================================
 
     const finishStep =
         document.getElementById(
@@ -525,9 +647,9 @@ function showProcessingStatus() {
     }
 
 
-    // --------------------------------------
-    // GARIS KE SELESAI BELUM HIJAU
-    // --------------------------------------
+    // ======================================
+    // GARIS MENUJU SELESAI
+    // ======================================
 
     const lineTwo =
         document.getElementById(
@@ -544,9 +666,9 @@ function showProcessingStatus() {
     }
 
 
-    // --------------------------------------
+    // ======================================
     // PESAN PROSES
-    // --------------------------------------
+    // ======================================
 
     const processMessage =
         document.getElementById(
@@ -563,9 +685,9 @@ function showProcessingStatus() {
     }
 
 
-    // --------------------------------------
+    // ======================================
     // IKON PESAN JAM
-    // --------------------------------------
+    // ======================================
 
     const messageIcon =
         document.getElementById(
@@ -581,9 +703,9 @@ function showProcessingStatus() {
     }
 
 
-    // --------------------------------------
+    // ======================================
     // JUDUL PESAN
-    // --------------------------------------
+    // ======================================
 
     setText(
         "messageTitle",
@@ -591,9 +713,9 @@ function showProcessingStatus() {
     );
 
 
-    // --------------------------------------
+    // ======================================
     // SUBTITLE DISEMBUNYIKAN
-    // --------------------------------------
+    // ======================================
 
     const messageSubtitle =
         document.getElementById(
@@ -606,6 +728,7 @@ function showProcessingStatus() {
         messageSubtitle.textContent =
             "";
 
+
         messageSubtitle.classList.add(
             "hidden"
         );
@@ -613,9 +736,9 @@ function showProcessingStatus() {
     }
 
 
-    // --------------------------------------
+    // ======================================
     // BADGE STATUS
-    // --------------------------------------
+    // ======================================
 
     const statusBadge =
         document.getElementById(
@@ -628,9 +751,11 @@ function showProcessingStatus() {
         statusBadge.textContent =
             "SEDANG DIPROSES";
 
+
         statusBadge.classList.remove(
             "finished"
         );
+
 
         statusBadge.classList.add(
             "processing"
@@ -642,22 +767,31 @@ function showProcessingStatus() {
 
 
 // ==========================================
-// 13. SELESAIKAN TRANSAKSI
+// 14. SELESAIKAN TRANSAKSI
 // ==========================================
 
 function finishTransaction() {
 
-    // Ubah data status
+    // ======================================
+    // UBAH STATUS
+    // ======================================
+
     transactionData.status =
         "finished";
 
 
-    // Simpan waktu selesai
+    // ======================================
+    // SIMPAN WAKTU SELESAI
+    // ======================================
+
     transactionData.finishedTime =
         new Date().toISOString();
 
 
-    // Simpan kembali ke localStorage
+    // ======================================
+    // UPDATE CURRENT TRANSACTION
+    // ======================================
+
     localStorage.setItem(
         "currentTransaction",
         JSON.stringify(
@@ -666,14 +800,24 @@ function finishTransaction() {
     );
 
 
-    // Tampilkan status selesai
+    // ======================================
+    // SIMPAN KE DAFTAR TRANSAKSI
+    // ======================================
+
+    saveTransactionToHistory();
+
+
+    // ======================================
+    // TAMPILKAN STATUS SELESAI
+    // ======================================
+
     showFinishedStatus();
 
 }
 
 
 // ==========================================
-// 14. STATUS TRANSAKSI SELESAI
+// 15. STATUS TRANSAKSI SELESAI
 // ==========================================
 
 function showFinishedStatus() {
@@ -716,9 +860,8 @@ function showFinishedStatus() {
 
     if (processIcon) {
 
-        // Tetap ikon jam
-        // tetapi background menjadi hijau
-        // melalui class completed
+        // Ikon tetap jam
+        // background hijau dari CSS completed
         processIcon.className =
             "bx bx-time-five";
 
@@ -811,7 +954,7 @@ function showFinishedStatus() {
 
 
     // ======================================
-    // SUBTITLE TRANSAKSI BERHASIL
+    // SUBTITLE BERHASIL
     // ======================================
 
     const messageSubtitle =
