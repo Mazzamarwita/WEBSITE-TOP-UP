@@ -169,7 +169,7 @@ body{
 .box{
     background: #eee;
     border-radius: 10px;
-    margin: 60px auto;
+    margin: 20px auto;
     overflow: hidden;
     width: 50%;
 }
@@ -242,7 +242,7 @@ font-size:18px;
     gap:18px;
 }
 
-.card-name{
+.card{
 box-shadow: #070707 0px 0px 10px;
 background:#111;
 color:white;
@@ -274,16 +274,9 @@ color:#BF00FF;
 } 
 
 .point {
-    font-size: 14px;
+    font-size:12px;
     color: #E49E2E;
 }
-
-/* =========================================
-   TAMBAHAN CSS
-   Tempel di paling bawah ML.css
-========================================= */
-
-
 /* =========================================
    MAIN CONTENT
 ========================================= */
