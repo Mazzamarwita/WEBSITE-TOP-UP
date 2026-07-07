@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Status Pembayaran</title>
+
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="pembayaran.css"
+    >
+
+
+    <!-- Boxicons -->
+    <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+    >
+
+
+    <!-- Font Poppins -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================
+         NAVBAR
+    =================================== -->
+
+    <nav class="navbar">
+
+        <div class="left-navbar">
+
+            <button class="menu-btn">
+                <i class="bx bx-menu"></i>
+            </button>
+
+            <img
+                src="img/LOGO1.png"
+                class="logo"
+                alt="Infinity Shop"
+            >
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Cari semua di Infinity Shop"
+            >
+
+            <button>
+                <i class="bx bx-search"></i>
+            </button>
+
+        </div>
+
+
+        <div class="nav-button">
+
+            <button class="btn-register">
+                Daftar
+            </button>
+
+            <button class="btn-login">
+                Masuk
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================
+         HALAMAN PEMBAYARAN
+    =================================== -->
+
+    <main class="payment-page">
+
+
+        <!-- ==================================
+             KOLOM KIRI
+        =================================== -->
+
+        <div class="left-content">
+
+
+            <!-- ==============================
+                 STATUS UTAMA
+            =============================== -->
+
+            <section class="status-card">
+
+
+                <!-- PROGRESS -->
+                <div class="progress-wrapper">
+
+
+                    <!-- BAYAR -->
+                    <div class="progress-item active">
+
+                        <div class="progress-icon">
+                            <i class="bx bx-dollar"></i>
+                        </div>
+
+                        <span>
+                            Bayar
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="progress-line active"
+                        id="lineOne"
+                    ></div>
+
+
+                    <!-- DIPROSES -->
+                    <div
+                        class="progress-item active"
+                        id="processStep"
+                    >
+
+                        <div class="progress-icon">
+
+                            <i
+                                class="bx bx-time-five"
+                                id="processIcon"
+                            ></i>
+
+                        </div>
+
+                        <span>
+                            Diproses
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="progress-line"
+                        id="lineTwo"
+                    ></div>
+
+
+                    <!-- SELESAI -->
+                    <div
+                        class="progress-item"
+                        id="finishStep"
+                    >
+
+                        <div class="progress-icon">
+                            <i class="bx bx-check"></i>
+                        </div>
+
+                        <span>
+                            Selesai
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- PESAN STATUS -->
+                <div
+                    class="process-message"
+                    id="processMessage"
+                >
+
+                    <div class="message-icon">
+
+                        <i
+                            class="bx bx-time-five"
+                            id="messageIcon"
+                        ></i>
+
+                    </div>
+
+                    <div>
+
+                        <strong id="messageTitle">
+                            Pembelian kamu sedang diproses...
+                        </strong>
+
+                        <small
+                            id="messageSubtitle"
+                            class="hidden"
+                        >
+                            Transaksi berhasil
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRODUK -->
+                <div class="product-summary">
+
+
+                    <div class="product-left">
+
+                        <img
+                            src="img/MLicon.png"
+                            alt="Mobile Legends"
+                            class="game-icon"
+                        >
+
+                        <div>
+
+                            <span class="topup-label">
+                                TOP UP
+                            </span>
+
+                            <strong id="summaryProduct">
+                                -
+                            </strong>
+
+                            <small>
+                                Mobile Legends
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total Pembayaran
+                        </span>
+
+                        <strong id="summaryTotal">
+                            Rp0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="status-line"></div>
+
+
+
+                <!-- BAYAR DENGAN -->
+                <div class="pay-with">
+
+                    <span>
+                        Bayar dengan
+                    </span>
+
+                    <strong id="summaryPayment">
+                        -
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================
+                 INFORMASI TRANSAKSI
+            =============================== -->
+
+            <section class="transaction-status-card">
+
+
+                <div class="info-row">
+
+                    <span>
+                        Status Transaksi
+                    </span>
+
+                    <strong
+                        class="status-badge processing"
+                        id="statusBadge"
+                    >
+                        SEDANG DIPROSES
+                    </strong>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        No. Transaksi
+                    </span>
+
+                    <div class="transaction-number">
+
+                        <strong id="transactionNumber">
+                            -
+                        </strong>
+
+                        <button
+                            type="button"
+                            id="copyTransaction"
+                        >
+                            Salin
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Waktu Transaksi
+                    </span>
+
+                    <strong id="transactionTime">
+                        -
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================
+                 DETAIL TRANSAKSI
+            =============================== -->
+
+            <section class="detail-card">
+
+                <h2>
+                    Detail Transaksi
+                </h2>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Game
+                    </span>
+
+                    <strong id="detailGame">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Produk
+                    </span>
+
+                    <strong id="detailProduct">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        User ID
+                    </span>
+
+                    <strong id="detailUser">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Jumlah
+                    </span>
+
+                    <strong id="detailQuantity">
+                        1
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Harga
+                    </span>
+
+                    <strong id="detailPrice">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Metode Pembayaran
+                    </span>
+
+                    <strong id="detailPayment">
+                        -
+                    </strong>
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- ==============================
+                 POINT
+            =============================== -->
+
+            <section class="point-card">
+
+
+                <div class="point-left">
+
+                    <div class="point-icon">
+                        <i class="bx bx-diamond"></i>
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            InfinityShop Poin
+                        </span>
+
+                        <small>
+                            Kadaluarsa :
+                            01 Januari 2027
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <strong
+                    class="point-value"
+                    id="pointValue"
+                >
+                    +0 Poin
+                </strong>
+
+
+                <p>
+                    Poin bisa dipakai untuk tukar
+                    voucher potongan harga loh....
+                </p>
+
+
+            </section>
+
+
+        </div>
+
+
+
+        <!-- ==================================
+             KOLOM KANAN
+        =================================== -->
+
+        <aside class="right-content">
+
+
+            <!-- CATATAN -->
+            <section class="note-card">
+
+                <h2>
+                    Catatan
+                </h2>
+
+                <p>
+                    1. Salin no. transaksi jika
+                    transaksi tanpa login.
+                </p>
+
+                <p>
+                    2. Halaman tidak perlu kamu
+                    refresh, status transaksi akan
+                    update otomatis.
+                </p>
+
+                <p>
+                    3. Jika perlu bantuan, hubungi
+                    Customer Service Infinity Store.
+                </p>
+
+                <p>
+                    4. Selesaikan pembayaran sebelum
+                    batas waktu.
+                </p>
+
+                <p>
+                    5. Bayar sesuai nominal yang
+                    diminta.
+                </p>
+
+                <p>
+                    6. Proses konfirmasi pembayaran
+                    otomatis.
+                </p>
+
+            </section>
+
+
+
+            <!-- KEAMANAN -->
+            <section class="security-card">
+
+                <div class="security-icon">
+                    <i class="bx bxs-lock-alt"></i>
+                </div>
+
+
+                <div>
+
+                    <h3>
+                        Jaga Keamanan Datamu
+                    </h3>
+
+                    <p>
+                        Data & bukti pembayaran
+                        itu rahasia.
+                    </p>
+
+                    <p>
+                        Jangan berikan ke siapapun.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </aside>
+
+
+    </main>
+
+
+
+    <!-- JS -->
+    <script src="pembayaran.js"></script>
+
+
+</body>
+
+</html>

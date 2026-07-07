@@ -1,0 +1,815 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+
+body{
+    background:linear-gradient(
+        180deg,
+        #41025a 0%,
+        #5b137d 40%,
+        #68218a 100%
+    );
+
+    min-height:100vh;
+}
+
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar{
+    width:100%;
+    height:60px;
+
+    background:#070707;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 12px;
+
+    border-bottom:2px solid #a100ff;
+}
+
+
+.left-navbar{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+
+.menu-btn{
+    width:45px;
+    height:45px;
+
+    background:none;
+    border:none;
+
+    color:white;
+
+    font-size:35px;
+    cursor:pointer;
+}
+
+
+.logo{
+    width:180px;
+}
+
+
+/* SEARCH */
+
+.search-box{
+    width:420px;
+    height:40px;
+
+    display:flex;
+
+    background:white;
+
+    border:2px solid #a100ff;
+
+    border-radius:30px;
+
+    overflow:hidden;
+}
+
+
+.search-box input{
+    flex:1;
+
+    border:none;
+    outline:none;
+
+    padding-left:18px;
+
+    font-size:13px;
+}
+
+
+.search-box button{
+    width:50px;
+
+    border:none;
+
+    background:white;
+
+    color:#a100ff;
+
+    font-size:25px;
+
+    cursor:pointer;
+}
+
+
+/* PROFILE */
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    color:white;
+}
+
+
+.profile-circle{
+    width:38px;
+    height:38px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#46b968;
+
+    font-size:22px;
+}
+
+
+/* =========================================
+   PAYMENT PAGE
+========================================= */
+
+.payment-page{
+    width:92%;
+    max-width:1100px;
+
+    margin:25px auto 60px;
+
+    display:grid;
+
+    grid-template-columns:
+        minmax(0, 1.6fr)
+        minmax(250px, 1fr);
+
+    gap:20px;
+}
+
+
+.left-content,
+.right-content{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+
+/* =========================================
+   CARD UMUM
+========================================= */
+
+.status-card,
+.transaction-status-card,
+.detail-card,
+.point-card,
+.note-card,
+.security-card{
+    background:#eee;
+
+    border-radius:10px;
+}
+
+
+/* =========================================
+   STATUS CARD
+========================================= */
+
+.status-card{
+    padding:25px;
+}
+
+
+/* PROGRESS */
+
+.progress-wrapper{
+    display:flex;
+    align-items:flex-start;
+
+    margin-bottom:25px;
+}
+
+
+.progress-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    min-width:55px;
+
+    color:#aaa;
+
+    font-size:12px;
+
+    font-weight:600;
+}
+
+
+.progress-icon{
+    width:35px;
+    height:35px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#ccc;
+
+    color:white;
+
+    font-size:22px;
+}
+
+
+.progress-item.active{
+    color:#111;
+}
+
+
+.progress-item.active .progress-icon{
+    background:#cc00ff;
+}
+
+
+.progress-item:first-child
+.progress-icon{
+    background:#46b968;
+}
+
+
+.progress-line{
+    flex:1;
+
+    height:4px;
+
+    margin-top:16px;
+
+    background:white;
+}
+
+
+.progress-line.active{
+    background:#46b968;
+}
+
+
+/* =========================================
+   PROCESS MESSAGE
+========================================= */
+
+.process-message{
+    width:80%;
+
+    display:flex;
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px;
+
+    margin-bottom:20px;
+
+    background:#dda1ef;
+
+    border-radius:7px;
+
+    color:#111;
+}
+
+
+.message-icon{
+    width:35px;
+    height:35px;
+
+    flex-shrink:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#a100ff;
+
+    color:white;
+
+    font-size:22px;
+}
+
+
+.process-message strong{
+    display:block;
+
+    font-size:13px;
+}
+
+
+.process-message small{
+    display:block;
+
+    font-size:11px;
+}
+
+
+.hidden{
+    display:none !important;
+}
+
+
+/* =========================================
+   PRODUCT SUMMARY
+========================================= */
+
+.product-summary{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:20px;
+}
+
+
+.product-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+
+.game-icon{
+    width:55px;
+    height:55px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+}
+
+
+.product-left div{
+    display:flex;
+    flex-direction:column;
+}
+
+
+.topup-label{
+    width:max-content;
+
+    padding:1px 10px;
+
+    border-radius:8px;
+
+    background:#46b968;
+
+    color:white;
+
+    font-size:8px;
+}
+
+
+.product-left strong{
+    font-size:13px;
+}
+
+
+.product-left small{
+    font-size:11px;
+}
+
+
+.summary-total{
+    text-align:right;
+}
+
+
+.summary-total span{
+    display:block;
+
+    font-size:11px;
+}
+
+
+.summary-total strong{
+    font-size:19px;
+}
+
+
+.status-line{
+    width:100%;
+    height:1px;
+
+    background:#888;
+
+    margin:15px 0;
+}
+
+
+/* =========================================
+   BAYAR DENGAN
+========================================= */
+
+.pay-with{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:12px;
+}
+
+
+.pay-with strong{
+    padding:5px 12px;
+
+    background:white;
+
+    border-radius:12px;
+
+    font-size:16px;
+}
+
+
+/* =========================================
+   STATUS TRANSAKSI
+========================================= */
+
+.transaction-status-card{
+    padding:20px;
+}
+
+
+.info-row{
+    display:grid;
+
+    grid-template-columns:
+        130px 1fr;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:7px 0;
+
+    font-size:12px;
+}
+
+
+.info-row strong{
+    font-weight:400;
+}
+
+
+.status-badge{
+    width:max-content;
+
+    padding:3px 8px;
+
+    border:2px solid #cc00ff;
+
+    border-radius:7px;
+
+    color:#cc00ff;
+}
+
+
+.transaction-number{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+
+.transaction-number button{
+    border:none;
+
+    background:none;
+
+    color:#008cff;
+
+    cursor:pointer;
+
+    font-weight:600;
+}
+
+
+/* =========================================
+   DETAIL TRANSAKSI
+========================================= */
+
+.detail-card{
+    padding:20px;
+}
+
+
+.detail-card h2{
+    margin-bottom:10px;
+
+    font-size:20px;
+}
+
+
+.detail-row{
+    display:grid;
+
+    grid-template-columns:
+        130px 1fr;
+
+    gap:15px;
+
+    padding:7px 0;
+
+    font-size:12px;
+}
+
+
+.detail-row strong{
+    font-weight:400;
+}
+
+
+/* =========================================
+   POINT
+========================================= */
+
+.point-card{
+    position:relative;
+
+    padding:12px 15px 28px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.point-left{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+
+.point-icon{
+    width:32px;
+    height:32px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:3px solid #E49E2E;
+
+    border-radius:50%;
+
+    color:#E49E2E;
+}
+
+
+.point-left span{
+    display:block;
+
+    font-size:12px;
+}
+
+
+.point-left small{
+    display:block;
+
+    color:#E49E2E;
+
+    font-size:10px;
+}
+
+
+.point-value{
+    color:#46b968;
+
+    font-size:17px;
+}
+
+
+.point-card p{
+    position:absolute;
+
+    left:15px;
+    bottom:7px;
+
+    font-size:9px;
+}
+
+
+/* =========================================
+   CATATAN
+========================================= */
+
+.note-card{
+    padding:15px;
+}
+
+
+.note-card h2{
+    margin-bottom:10px;
+
+    font-size:20px;
+}
+
+
+.note-card p{
+    margin-bottom:10px;
+
+    font-size:11px;
+
+    line-height:1.8;
+}
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+.security-card{
+    display:flex;
+
+    gap:12px;
+
+    padding:15px;
+}
+
+
+.security-icon{
+    width:50px;
+    height:55px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#333;
+
+    color:white;
+
+    font-size:30px;
+}
+
+
+.security-card h3{
+    width:auto;
+
+    margin:0 0 5px;
+
+    color:#111;
+
+    font-size:14px;
+}
+
+
+.security-card p{
+    margin-bottom:7px;
+
+    font-size:9px;
+}
+
+
+/* =========================================
+   STATUS SELESAI
+========================================= */
+
+.process-message.finished{
+    background:#b8dfc2;
+}
+
+
+.process-message.finished
+.message-icon{
+    background:#46b968;
+}
+
+
+.status-badge.finished{
+    border-color:#46b968;
+
+    color:#46b968;
+}
+
+
+.progress-item.finished{
+    color:#111;
+}
+
+
+.progress-item.finished
+.progress-icon{
+    background:#46b968;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:800px){
+
+    .payment-page{
+        grid-template-columns:1fr;
+    }
+
+    .search-box{
+        display:none;
+    }
+
+}
+
+
+@media(max-width:500px){
+
+    .payment-page{
+        width:94%;
+    }
+
+    .status-card{
+        padding:15px;
+    }
+
+    .process-message{
+        width:100%;
+    }
+
+    .product-summary{
+        align-items:flex-start;
+    }
+
+    .info-row,
+    .detail-row{
+        grid-template-columns:
+            110px 1fr;
+    }
+
+    .logo{
+        width:130px;
+    }
+
+}
+/* =========================================
+   STEP DIPROSES SUDAH SELESAI
+========================================= */
+
+.progress-item.completed{
+    color:#111;
+}
+
+.progress-item.completed .progress-icon{
+    background:#46b968;
+    color:white;
+}
+
+
+/* memastikan step selesai hijau */
+
+.progress-item.finished{
+    color:#111;
+}
+
+.progress-item.finished .progress-icon{
+    background:#46b968;
+    color:white;
+}
+
+.nav-button{
+
+    display:flex;
+    gap:12px;
+}
+
+.nav-button button{
+
+    border:none;
+
+    padding:8px 18px;
+
+    border-radius:20px;
+
+    background:#a100ff;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+}
+
+.nav-button button:hover{
+
+    background:#c12fff;
+}

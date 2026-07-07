@@ -169,7 +169,7 @@ body{
 .box{
     background: #eee;
     border-radius: 10px;
-    margin: 20px auto;
+    margin: 60px auto;
     overflow: hidden;
     width: 50%;
 }
@@ -242,7 +242,7 @@ font-size:18px;
     gap:18px;
 }
 
-.card{
+.card-name{
 box-shadow: #070707 0px 0px 10px;
 background:#111;
 color:white;
@@ -276,4 +276,900 @@ color:#BF00FF;
 .point {
     font-size: 14px;
     color: #E49E2E;
+}
+
+/* =========================================
+   TAMBAHAN CSS
+   Tempel di paling bawah ML.css
+========================================= */
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content{
+    width:100%;
+}
+
+
+/* =========================================
+   PRODUCT SECTION
+========================================= */
+
+.product-section{
+    width:100%;
+}
+
+.section-heading{
+    width:50%;
+    margin:20px auto 10px;
+    color:white;
+    font-size:18px;
+}
+
+
+/* =========================================
+   CARD PRODUCT
+========================================= */
+
+.product-card{
+    position:relative;
+    min-height:130px;
+}
+
+
+/* bagian atas card */
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+}
+
+
+/* nama item */
+
+.card-name{
+    flex:1;
+    min-width:0;
+}
+
+.card-name h4{
+    font-size:18px;
+    line-height:1.1;
+}
+
+.card-name p{
+    font-size:13px;
+    margin:5px 0;
+    border-bottom:1px solid white;
+    padding-bottom:10px;
+    margin-bottom:10px;
+}
+
+
+/* =========================================
+   ICON DIAMOND
+========================================= */
+
+.diamond-icon{
+    width:45px;
+    height:45px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+
+/* =========================================
+   ICON SPECIAL ITEM
+========================================= */
+
+.special-icon{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.card-footer{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.card-footer strong{
+    color:#BF00FF;
+    font-size:14px;
+    font-weight:500;
+}
+
+
+/* =========================================
+   POINT
+========================================= */
+
+.point{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    font-size:12px;
+    color:#E49E2E;
+}
+
+.point i{
+    font-size:15px;
+}
+
+
+/* =========================================
+   CARD TERPILIH
+========================================= */
+
+.product-card.selected{
+    border-color:#00b7ff;
+    box-shadow:
+        0 0 0 1px #00b7ff,
+        #070707 0px 0px 10px;
+}
+
+
+/* =========================================
+   VOUCHER
+========================================= */
+
+.voucher-box{
+    width:100%;
+}
+
+
+/* =========================================
+   METODE PEMBAYARAN
+========================================= */
+
+.payment-section{
+    background:#eee;
+    border-radius:10px;
+    margin:60px auto;
+    overflow:hidden;
+    width:50%;
+}
+
+
+/* header metode pembayaran */
+
+.payment-title{
+    display:flex;
+    align-items:stretch;
+    background:#666;
+    color:white;
+    font-weight:600;
+}
+
+
+/* nomor 3 */
+
+.payment-title > span{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#cc00ff;
+    color:black;
+    padding:0 14px;
+    font-weight:bold;
+}
+
+
+/* tulisan metode pembayaran */
+
+.payment-title h2{
+    display:flex;
+    align-items:center;
+    padding:8px 15px;
+    font-size:18px;
+    font-weight:500;
+    margin:0;
+}
+
+
+/* =========================================
+   PAYMENT LIST
+========================================= */
+
+.payment-list{
+    padding:15px;
+}
+
+
+/* satu baris payment */
+
+.payment-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:15px 5px;
+    cursor:pointer;
+}
+
+
+/* sembunyikan radio asli */
+
+.payment-item input{
+    display:none;
+}
+
+
+/* =========================================
+   CUSTOM RADIO
+========================================= */
+
+.custom-radio{
+    width:28px;
+    height:28px;
+
+    border:2px solid #111;
+    border-radius:50%;
+
+    position:relative;
+
+    flex-shrink:0;
+}
+
+
+/* bulatan saat dipilih */
+
+.payment-item input:checked
++ .custom-radio::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:16px;
+    height:16px;
+
+    background:#cc00ff;
+
+    border-radius:50%;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+}
+
+
+/* =========================================
+   PAYMENT INFO
+========================================= */
+
+.payment-info{
+    display:flex;
+    align-items:center;
+    min-width:120px;
+}
+
+
+/* logo pembayaran */
+
+.payment-info img{
+    width:100px;
+    height:45px;
+    object-fit:contain;
+}
+
+
+/* =========================================
+   SALDO
+========================================= */
+
+.saldo{
+    margin-left:auto;
+    color:#111;
+    font-size:15px;
+}
+
+.saldo strong{
+    font-weight:600;
+}
+
+
+/* =========================================
+   DETAIL TRANSAKSI
+========================================= */
+
+.transaction-detail{
+    width:50%;
+    margin:60px auto;
+    padding:20px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    color:#111;
+}
+
+
+/* =========================================
+   HEADER TRANSAKSI
+========================================= */
+
+.transaction-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-bottom:20px;
+}
+
+
+/* logo transaksi */
+
+.transaction-logo{
+    width:100px;
+    height:70px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+}
+
+
+/* nama produk */
+
+.transaction-product-name{
+    flex:1;
+}
+
+
+/* mobile legends */
+
+.transaction-header h2{
+    margin:0;
+
+    font-size:23px;
+
+    line-height:1.2;
+
+    color:#111;
+}
+
+
+/* item yang dipilih */
+
+.transaction-header h3{
+    width:auto;
+
+    margin:2px 0 0;
+
+    color:#111;
+
+    font-size:18px;
+
+    line-height:1.2;
+}
+
+
+/* =========================================
+   BARIS DETAIL
+========================================= */
+
+.detail-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:9px 0;
+
+    font-size:16px;
+}
+
+
+/* nilai sebelah kanan */
+
+.detail-row strong{
+    text-align:right;
+
+    font-weight:500;
+
+    word-break:break-word;
+}
+
+
+/* =========================================
+   GARIS DETAIL
+========================================= */
+
+.detail-line{
+    width:100%;
+
+    height:1px;
+
+    background:#888;
+
+    margin:5px 0;
+}
+
+
+/* =========================================
+   TOTAL
+========================================= */
+
+.total-row{
+    font-size:18px;
+}
+
+.total-row strong{
+    font-size:20px;
+
+    font-weight:700;
+}
+
+
+/* =========================================
+   POINT TRANSAKSI
+========================================= */
+
+.point-earned{
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:5px;
+
+    margin-top:2px;
+    margin-bottom:12px;
+
+    color:#E49E2E;
+
+    font-size:13px;
+}
+
+.point-earned i{
+    font-size:18px;
+}
+
+
+/* =========================================
+   BUTTON BAYAR
+========================================= */
+
+.pay-button{
+    display:block;
+
+    width:55%;
+
+    margin:15px auto 0;
+
+    padding:10px 15px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:#cc00ff;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+
+/* hover button */
+
+.pay-button:hover{
+    opacity:.9;
+}
+
+
+/* =========================================
+   RESPONSIVE TABLET
+========================================= */
+
+@media(max-width:900px){
+
+    .payment-section,
+    .transaction-detail{
+        width:70%;
+    }
+
+    .payment-info{
+        min-width:100px;
+    }
+
+    .payment-info img{
+        width:85px;
+    }
+
+}
+
+
+/* =========================================
+   RESPONSIVE HP
+========================================= */
+
+@media(max-width:600px){
+
+    .payment-section,
+    .transaction-detail{
+        width:90%;
+    }
+
+    .payment-item{
+        gap:10px;
+    }
+
+    .payment-info{
+        min-width:70px;
+    }
+
+    .payment-info img{
+        width:70px;
+        height:40px;
+    }
+
+    .saldo{
+        font-size:12px;
+    }
+
+    .transaction-header{
+        align-items:flex-start;
+    }
+
+    .transaction-logo{
+        width:70px;
+        height:55px;
+    }
+
+    .transaction-header h2{
+        font-size:18px;
+    }
+
+    .transaction-header h3{
+        font-size:15px;
+    }
+
+    .detail-row{
+        font-size:14px;
+    }
+
+    .pay-button{
+        width:80%;
+    }
+
+}
+/* =========================================
+   MODAL KONFIRMASI PEMBAYARAN
+========================================= */
+
+.modal-overlay{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.65);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    z-index:9999;
+}
+
+
+/* muncul ketika aktif */
+
+.modal-overlay.active{
+    display:flex;
+}
+
+
+/* =========================================
+   BOX MODAL
+========================================= */
+
+.confirm-modal{
+    width:100%;
+    max-width:500px;
+
+    background:#eee;
+
+    border-radius:0 0 20px 20px;
+
+    padding:0 12px 12px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+
+    animation:modalMuncul .2s ease;
+}
+
+
+/* animasi */
+
+@keyframes modalMuncul{
+
+    from{
+        opacity:0;
+        transform:scale(.95);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* =========================================
+   HEADER MODAL
+========================================= */
+
+.confirm-modal-header{
+    background:#41444a;
+
+    color:white;
+
+    text-align:center;
+
+    font-size:18px;
+    font-weight:500;
+
+    padding:6px 15px;
+
+    margin:0 -12px;
+}
+
+
+/* =========================================
+   PERTANYAAN
+========================================= */
+
+.confirm-question{
+    text-align:center;
+
+    color:#111;
+
+    font-size:13px;
+
+    margin:12px 0 8px;
+}
+
+
+/* =========================================
+   BOX INFORMASI
+========================================= */
+
+.confirm-info-box{
+    background:white;
+
+    border-radius:20px;
+
+    padding:10px 15px;
+}
+
+
+/* =========================================
+   BARIS INFORMASI
+========================================= */
+
+.confirm-row{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    padding:4px 0;
+
+    color:#111;
+
+    font-size:14px;
+}
+
+
+/* label kiri */
+
+.confirm-row span{
+    font-weight:600;
+    flex-shrink:0;
+}
+
+
+/* isi kanan */
+
+.confirm-row strong{
+    font-weight:400;
+
+    text-align:right;
+
+    word-break:break-word;
+}
+
+
+/* =========================================
+   GARIS
+========================================= */
+
+.confirm-line{
+    width:100%;
+
+    height:1px;
+
+    background:#888;
+
+    margin:10px 0 8px;
+}
+
+
+/* =========================================
+   TOTAL HARGA
+========================================= */
+
+.confirm-total{
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 15px;
+
+    color:#111;
+
+    font-size:17px;
+
+    font-weight:600;
+}
+
+
+.confirm-total strong{
+    font-size:18px;
+    font-weight:700;
+}
+
+
+/* =========================================
+   POINT
+========================================= */
+
+.confirm-point{
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:4px;
+
+    padding-right:15px;
+
+    color:#E49E2E;
+
+    font-size:12px;
+}
+
+
+.confirm-point i{
+    font-size:15px;
+}
+
+
+/* =========================================
+   BUTTON MODAL
+========================================= */
+
+.confirm-buttons{
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:40px;
+
+    margin-top:4px;
+
+    padding:0 10px;
+}
+
+
+/* BUTTON TUTUP */
+
+.btn-close-modal{
+    flex:1;
+
+    height:30px;
+
+    border:1px solid #111;
+
+    border-radius:12px;
+
+    background:transparent;
+
+    color:#111;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+/* BUTTON LANJUTKAN */
+
+.btn-continue-payment{
+    flex:1;
+
+    height:30px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#cc00ff;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+}
+
+
+/* HOVER */
+
+.btn-close-modal:hover,
+.btn-continue-payment:hover{
+    opacity:.85;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:600px){
+
+    .confirm-modal{
+        max-width:95%;
+    }
+
+    .confirm-buttons{
+        gap:15px;
+    }
+
+    .confirm-row{
+        font-size:12px;
+    }
+
 }
