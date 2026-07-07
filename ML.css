@@ -264,8 +264,16 @@ font-size:18px;
 .card p{
 font-size:13px;
 margin:5px 0;
+border-bottom: 1px solid white;
+padding-bottom: 10px;
+margin-bottom: 20px;
 }
 
 .card strong{
 color:#BF00FF;
 } 
+
+.point {
+    font-size: 14px;
+    color: #E49E2E;
+}
