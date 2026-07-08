@@ -16,7 +16,7 @@ const GAME_CONFIG = {
 
     name:
         document.body.dataset.game ||
-        "Honkai: Star Rail",
+        "Honkai Star Rail",
 
     code:
         document.body.dataset.gameCode ||
@@ -56,7 +56,7 @@ let balances = {
 // 4. AMBIL ELEMENT HTML
 // ==========================================
 
-// Produk
+// Semua produk
 const productCards =
     document.querySelectorAll(
         ".product-card"
@@ -67,13 +67,6 @@ const productCards =
 const userId =
     document.getElementById(
         "userId"
-    );
-
-
-// Input Server
-const serverId =
-    document.getElementById(
-        "serverId"
     );
 
 
@@ -91,7 +84,7 @@ const voucherAction =
     );
 
 
-// Payment
+// Metode pembayaran
 const paymentMethods =
     document.querySelectorAll(
         'input[name="payment"]'
@@ -124,11 +117,6 @@ const detailItem =
 const detailUserId =
     document.getElementById(
         "detailUserId"
-    );
-
-const detailServer =
-    document.getElementById(
-        "detailServer"
     );
 
 const detailPayment =
@@ -246,48 +234,28 @@ function formatRupiah(number) {
 
 
 // ==========================================
-// 10. AMBIL NILAI SERVER
+// 10. AMBIL UID
 // ==========================================
 
-function getServerValue() {
+function getUserIdValue() {
 
-    if (!serverId) {
+    if (!userId) {
         return "";
     }
 
-    return serverId.value.trim();
+    return userId.value.trim();
 
 }
 
 
 // ==========================================
-// 11. BUAT UID LENGKAP
+// 11. BUAT USER ID LENGKAP
+// HSR HANYA MEMAKAI UID
 // ==========================================
 
 function getFullUserId() {
 
-    const idValue =
-        userId
-            ? userId.value.trim()
-            : "";
-
-    const serverValue =
-        getServerValue();
-
-
-    if (serverValue !== "") {
-
-        return (
-            idValue +
-            " (" +
-            serverValue +
-            ")"
-        );
-
-    }
-
-
-    return idValue;
+    return getUserIdValue();
 
 }
 
@@ -356,13 +324,16 @@ function displayGameName() {
 }
 
 
-// Jalankan awal
+// ==========================================
+// 15. JALANKAN DATA AWAL
+// ==========================================
+
 updateBalanceDisplay();
 displayGameName();
 
 
 // ==========================================
-// 15. PILIH ITEM
+// 16. PILIH ITEM
 // ==========================================
 
 productCards.forEach(
@@ -372,7 +343,7 @@ productCards.forEach(
             "click",
             function() {
 
-                // Hapus selected semua item
+                // Hapus selected dari semua card
                 productCards.forEach(
                     function(item) {
 
@@ -384,7 +355,7 @@ productCards.forEach(
                 );
 
 
-                // Tambahkan selected
+                // Tandai card yang dipilih
                 card.classList.add(
                     "selected"
                 );
@@ -416,11 +387,12 @@ productCards.forEach(
 
 
                 console.log(
-                    "Item HSR dipilih:",
+                    "Item Honkai Star Rail dipilih:",
                     selectedItem
                 );
 
 
+                // Update detail transaksi
                 updateTransactionDetail();
 
             }
@@ -431,26 +403,12 @@ productCards.forEach(
 
 
 // ==========================================
-// 16. INPUT UID
+// 17. INPUT UID
 // ==========================================
 
 if (userId) {
 
     userId.addEventListener(
-        "input",
-        updateTransactionDetail
-    );
-
-}
-
-
-// ==========================================
-// 17. INPUT SERVER
-// ==========================================
-
-if (serverId) {
-
-    serverId.addEventListener(
         "input",
         updateTransactionDetail
     );
@@ -484,29 +442,10 @@ function updateTransactionDetail() {
     // UID
     // ======================================
 
-    if (
-        detailUserId &&
-        userId
-    ) {
+    if (detailUserId) {
 
         detailUserId.textContent =
-            userId.value.trim() ||
-            "-";
-
-    }
-
-
-    // ======================================
-    // SERVER
-    // ======================================
-
-    if (detailServer) {
-
-        const serverValue =
-            getServerValue();
-
-        detailServer.textContent =
-            serverValue || "-";
+            getUserIdValue() || "-";
 
     }
 
@@ -688,15 +627,16 @@ if (payButton) {
 
             // ==================================
             // CEK UID
+            // TIDAK ADA VALIDASI SERVER
             // ==================================
 
             if (
                 !userId ||
-                userId.value.trim() === ""
+                getUserIdValue() === ""
             ) {
 
                 alert(
-                    "Silakan masukkan UID Honkai: Star Rail!"
+                    "Silakan masukkan UID Honkai Star Rail!"
                 );
 
 
@@ -901,7 +841,7 @@ if (closeModalButton) {
 
 
 // ==========================================
-// 22. KLIK AREA GELAP
+// 22. KLIK AREA GELAP MODAL
 // ==========================================
 
 if (paymentModal) {
@@ -950,42 +890,50 @@ function generateTransactionNumber() {
 
 
 // ==========================================
-// 24. SIMPAN / UPDATE RIWAYAT
+// 24. AMBIL RIWAYAT TRANSAKSI
 // ==========================================
 
-function saveTransactionToHistory(
-    transactionData
-) {
-
-    let transactionHistory = [];
-
+function getTransactionHistory() {
 
     try {
 
-        transactionHistory =
+        const history =
             JSON.parse(
                 localStorage.getItem(
                     "transactionHistory"
                 )
             ) || [];
 
+
+        return Array.isArray(history)
+            ? history
+            : [];
+
     } catch (error) {
 
-        transactionHistory = [];
+        console.error(
+            "Gagal membaca riwayat transaksi:",
+            error
+        );
+
+
+        return [];
 
     }
 
+}
 
-    // Pastikan array
-    if (
-        !Array.isArray(
-            transactionHistory
-        )
-    ) {
 
-        transactionHistory = [];
+// ==========================================
+// 25. SIMPAN / UPDATE RIWAYAT
+// ==========================================
 
-    }
+function saveTransactionToHistory(
+    transactionData
+) {
+
+    const transactionHistory =
+        getTransactionHistory();
 
 
     // Cari transaksi yang sama
@@ -1021,7 +969,7 @@ function saveTransactionToHistory(
     }
 
 
-    // Simpan history gabungan
+    // Simpan history gabungan semua game
     localStorage.setItem(
         "transactionHistory",
         JSON.stringify(
@@ -1033,7 +981,7 @@ function saveTransactionToHistory(
 
 
 // ==========================================
-// 25. LANJUTKAN PEMBAYARAN
+// 26. LANJUTKAN PEMBAYARAN
 // ==========================================
 
 if (continuePaymentButton) {
@@ -1072,22 +1020,29 @@ if (continuePaymentButton) {
 
             // ==================================
             // VALIDASI DATA
+            // HANYA UID
+            // TANPA SERVER
             // ==================================
 
             if (
                 !selectedPayment ||
                 !selectedItem ||
                 !userId ||
-                userId.value.trim() === "" ||
-                !serverId ||
-                serverId.value.trim() === ""
+                getUserIdValue() === ""
             ) {
 
                 isProcessingPayment =
                     false;
 
+
                 continuePaymentButton.disabled =
                     false;
+
+
+                alert(
+                    "Data transaksi belum lengkap!"
+                );
+
 
                 return;
 
@@ -1120,8 +1075,10 @@ if (continuePaymentButton) {
                 isProcessingPayment =
                     false;
 
+
                 continuePaymentButton.disabled =
                     false;
+
 
                 return;
 
@@ -1145,8 +1102,10 @@ if (continuePaymentButton) {
                 isProcessingPayment =
                     false;
 
+
                 continuePaymentButton.disabled =
                     false;
+
 
                 return;
 
@@ -1170,15 +1129,7 @@ if (continuePaymentButton) {
 
 
             // ==================================
-            // SERVER
-            // ==================================
-
-            const serverValue =
-                getServerValue();
-
-
-            // ==================================
-            // DATA TRANSAKSI
+            // DATA TRANSAKSI HSR
             // ==================================
 
             const transactionData = {
@@ -1207,13 +1158,14 @@ if (continuePaymentButton) {
 
                 // ------------------------------
                 // DATA USER
+                // HANYA UID
                 // ------------------------------
 
                 userId:
-                    userId.value.trim(),
+                    getUserIdValue(),
 
                 server:
-                    serverValue,
+                    "",
 
                 userIdFull:
                     getFullUserId(),
@@ -1255,6 +1207,17 @@ if (continuePaymentButton) {
 
                 point:
                     selectedItem.point,
+
+
+                // ------------------------------
+                // STATUS POIN
+                // false = belum masuk saldo poin
+                // pembayaran.js nanti mengubah
+                // menjadi true setelah selesai
+                // ------------------------------
+
+                pointClaimed:
+                    false,
 
 
                 // ------------------------------
@@ -1336,7 +1299,7 @@ if (continuePaymentButton) {
             // ==================================
 
             console.log(
-                "Transaksi HSR dibuat:",
+                "Transaksi Honkai Star Rail dibuat:",
                 transactionData
             );
 
@@ -1355,7 +1318,7 @@ if (continuePaymentButton) {
 
 
 // ==========================================
-// 26. CEK KONEKSI HTML
+// 27. CEK KONEKSI HTML
 // ==========================================
 
 console.log(
@@ -1375,11 +1338,6 @@ console.log(
 console.log(
     "Input UID:",
     userId
-);
-
-console.log(
-    "Input Server:",
-    serverId
 );
 
 console.log(
