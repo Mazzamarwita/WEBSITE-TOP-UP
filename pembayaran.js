@@ -953,6 +953,52 @@ function finishTransaction() {
     // Simpan waktu selesai
     transactionData.finishedTime =
         new Date().toISOString();
+// ======================================
+// TAMBAHKAN POIN KE SALDO POIN
+// ======================================
+
+if (!transactionData.pointClaimed) {
+
+    const currentPoint =
+        Number(
+            localStorage.getItem(
+                "infinityPoint"
+            )
+        ) || 0;
+
+
+    const earnedPoint =
+        Number(
+            transactionData.point
+        ) || 0;
+
+
+    const newPoint =
+        currentPoint +
+        earnedPoint;
+
+
+    localStorage.setItem(
+        "infinityPoint",
+        String(newPoint)
+    );
+
+
+    // Tandai agar poin tidak masuk dua kali
+    transactionData.pointClaimed = true;
+
+
+    console.log(
+        "Poin masuk:",
+        earnedPoint
+    );
+
+    console.log(
+        "Total poin:",
+        newPoint
+    );
+
+}
 
 
     // Update current transaction
