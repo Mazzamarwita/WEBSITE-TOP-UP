@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Poinku - Infinity Shop</title>
+
+    <link
+        rel="stylesheet"
+        href="poinku.css"
+    >
+
+    <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================
+         NAVBAR
+    =================================== -->
+
+    <nav class="navbar">
+
+        <div class="left-navbar">
+
+            <button class="menu-btn">
+                <i class="bx bx-menu"></i>
+            </button>
+
+            <img
+                src="../img/LOGO1.png"
+                class="logo"
+                alt="Infinity Shop"
+            >
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Cari semua di Infinity Shop"
+            >
+
+            <button>
+                <i class="bx bx-search"></i>
+            </button>
+
+        </div>
+
+
+        <div class="user-area">
+
+            <div class="user-avatar">
+                C
+            </div>
+
+            <span>
+                Christmazza
+            </span>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================
+         MAIN POINKU
+    =================================== -->
+
+    <main class="point-page">
+
+
+        <!-- TOP BAR -->
+        <div class="point-topbar">
+
+
+            <!-- SALDO POIN -->
+            <div class="point-balance">
+
+                <i class="bx bx-coin-stack"></i>
+
+                <strong id="pointBalance">
+                    0 Poin
+                </strong>
+
+            </div>
+
+
+            <!-- VOUCHER SAYA -->
+            <a
+                href="voucher-saya.html"
+                class="my-voucher-button"
+            >
+
+                <i class="bx bxs-coupon"></i>
+
+                Voucher Saya
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- TITLE -->
+        <h1>
+            Ayo Tukarkan Poinmu!
+        </h1>
+
+
+
+        <!-- ==================================
+             GRID VOUCHER
+        =================================== -->
+
+        <section class="voucher-grid">
+
+
+            <!-- ML 20K -->
+            <article
+                class="voucher-card"
+                data-id="ML20"
+                data-game="Mobile Legends"
+                data-value="20000"
+                data-point="100"
+                data-image="../img/VML20.png"
+            >
+
+                <img
+                    src="../img/VML20.png"
+                    alt="Voucher Mobile Legends 20.000"
+                >
+
+                <div class="voucher-footer">
+
+                    <span class="voucher-cost">
+                        <i class="bx bx-coin-stack"></i>
+                        100
+                    </span>
+
+                    <button class="exchange-button">
+                        Tukar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ML 40K -->
+            <article
+                class="voucher-card"
+                data-id="ML40"
+                data-game="Mobile Legends"
+                data-value="40000"
+                data-point="200"
+                data-image="../img/VML40.png"
+            >
+
+                <img
+                    src="../img/VML40.png"
+                    alt="Voucher Mobile Legends 40.000"
+                >
+
+                <div class="voucher-footer">
+
+                    <span class="voucher-cost">
+                        <i class="bx bx-coin-stack"></i>
+                        200
+                    </span>
+
+                    <button class="exchange-button">
+                        Tukar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ML 60K -->
+            <article
+                class="voucher-card"
+                data-id="ML60"
+                data-game="Mobile Legends"
+                data-value="60000"
+                data-point="300"
+                data-image="../img/VML60.png"
+            >
+
+                <img
+                    src="../img/VML60.png"
+                    alt="Voucher Mobile Legends 60.000"
+                >
+
+                <div class="voucher-footer">
+
+                    <span class="voucher-cost">
+                        <i class="bx bx-coin-stack"></i>
+                        300
+                    </span>
+
+                    <button class="exchange-button">
+                        Tukar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- GI 20K -->
+            <article
+                class="voucher-card"
+                data-id="GI20"
+                data-game="Genshin Impact"
+                data-value="20000"
+                data-point="100"
+                data-image="../img/VGI20.png"
+            >
+
+                <img
+                    src="../img/VGI20.png"
+                    alt="Voucher Genshin Impact 20.000"
+                >
+
+                <div class="voucher-footer">
+
+                    <span class="voucher-cost">
+                        <i class="bx bx-coin-stack"></i>
+                        100
+                    </span>
+
+                    <button class="exchange-button">
+                        Tukar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- GI 40K -->
+            <article
+                class="voucher-card"
+                data-id="GI40"
+                data-game="Genshin Impact"
+                data-value="40000"
+                data-point="200"
+                data-image="../img/VGI40.png"
+            >
+
+                <img
+                    src="../img/VGI40.png"
+                    alt="Voucher Genshin Impact 40.000"
+                >
+
+                <div class="voucher-footer">
+
+                    <span class="voucher-cost">
+                        <i class="bx bx-coin-stack"></i>
+                        200
+                    </span>
+
+                    <button class="exchange-button">
+                        Tukar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- GI 60K -->
+            <article
+                class="voucher-card"
+                data-id="GI60"
+                data-game="Genshin Impact"
+                data-value="60000"
+                data-point="300"
+                data-image="../img/VGI60.png"
+            >
+
+                <img
+                    src="../img/VGI60.png"
+                    alt="Voucher Genshin Impact 60.000"
+                >
+
+                <div class="voucher-footer">
+
+                    <span class="voucher-cost">
+                        <i class="bx bx-coin-stack"></i>
+                        300
+                    </span>
+
+                    <button class="exchange-button">
+                        Tukar
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==================================
+         MODAL KONFIRMASI
+    =================================== -->
+
+    <div
+        class="modal-overlay"
+        id="exchangeModal"
+    >
+
+        <div class="exchange-modal">
+
+
+            <h2>
+                Tukarkan voucher sebesar
+            </h2>
+
+
+            <div class="modal-point">
+
+                <i class="bx bx-coin-stack"></i>
+
+                <strong id="modalPoint">
+                    0 Poin
+                </strong>
+
+            </div>
+
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    class="close-modal-button"
+                    id="closeExchangeModal"
+                >
+                    Tutup
+                </button>
+
+
+                <button
+                    type="button"
+                    class="continue-exchange-button"
+                    id="continueExchange"
+                >
+                    Lanjutkan
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================
+         MODAL BERHASIL
+    =================================== -->
+
+    <div
+        class="modal-overlay"
+        id="successModal"
+    >
+
+        <div class="success-modal">
+
+
+            <button
+                type="button"
+                class="close-success"
+                id="closeSuccess"
+            >
+                <i class="bx bx-x"></i>
+            </button>
+
+
+            <h2>
+                Voucher Berhasil Ditukar
+            </h2>
+
+
+            <div class="success-check">
+
+                <i class="bx bx-check"></i>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="poinku.js"></script>
+
+</body>
+
+</html>
