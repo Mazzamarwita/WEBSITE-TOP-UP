@@ -42,7 +42,6 @@ function formatRupiah(number) {
 
 function formatTransactionTime(dateString) {
 
-    // Kalau tanggal tidak ada
     if (!dateString) {
         return "-";
     }
@@ -51,7 +50,6 @@ function formatTransactionTime(dateString) {
     const date = new Date(dateString);
 
 
-    // Kalau tanggal tidak valid
     if (isNaN(date.getTime())) {
         return "-";
     }
@@ -123,7 +121,8 @@ function setText(id, value) {
 
     if (element) {
 
-        element.textContent = value;
+        element.textContent =
+            value ?? "-";
 
     }
 
@@ -131,12 +130,113 @@ function setText(id, value) {
 
 
 // ==========================================
-// 6. INISIALISASI HALAMAN
+// 6. NORMALISASI KODE GAME
+// ==========================================
+
+function normalizeGameCode(gameCode) {
+
+    return String(
+        gameCode || ""
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+// ==========================================
+// 7. ICON GAME DINAMIS
+//    UNTUK 8 GAME
+// ==========================================
+
+function getPaymentGameIcon(transaction) {
+
+    // ======================================
+    // PRIORITAS 1
+    // Gunakan gameIcon dari transaksi
+    // ======================================
+
+    if (
+        transaction.gameIcon &&
+        String(transaction.gameIcon).trim() !== ""
+    ) {
+
+        return String(
+            transaction.gameIcon
+        ).trim();
+
+    }
+
+
+    // ======================================
+    // PRIORITAS 2
+    // Berdasarkan gameCode
+    // ======================================
+
+    const gameCode =
+        normalizeGameCode(
+            transaction.gameCode
+        );
+
+
+    switch (gameCode) {
+
+        // FREE FIRE
+        case "FF":
+            return "img/FFicon.png";
+
+
+        // MOBILE LEGENDS
+        case "ML":
+            return "img/MLicon.png";
+
+
+        // HONKAI STAR RAIL
+        case "HSR":
+            return "img/HSRicon.png";
+
+
+        // HONOR OF KINGS
+        case "HOK":
+            return "img/HOKicon.png";
+
+
+        // PUBG MOBILE
+        case "PUBG":
+            return "img/PUBGicon.png";
+
+
+        // WUTHERING WAVES
+        case "WUWA":
+            return "img/WUWAicon.png";
+
+
+        // GENSHIN IMPACT
+        case "GI":
+            return "img/GIicon.png";
+
+
+        // ZENLESS ZONE ZERO
+        case "ZZZ":
+            return "img/ZZZicon.png";
+
+
+        // FALLBACK
+        default:
+            return "img/MLicon.png";
+
+    }
+
+}
+
+
+// ==========================================
+// 8. INISIALISASI HALAMAN
 // ==========================================
 
 function initializePaymentPage() {
 
-    // Tampilkan semua data transaksi
+    // Tampilkan data transaksi
     displayTransactionData();
 
 
@@ -151,10 +251,54 @@ function initializePaymentPage() {
 
 
 // ==========================================
-// 7. TAMPILKAN DATA TRANSAKSI
+// 9. TAMPILKAN DATA TRANSAKSI
 // ==========================================
 
 function displayTransactionData() {
+// ======================================
+// NAMA GAME DINAMIS DI SUMMARY
+// ======================================
+
+setText(
+    "summaryGameName",
+    transactionData.game || "Game"
+);
+    // ======================================
+    // ICON GAME DINAMIS
+    // ======================================
+
+    const summaryGameIcon =
+        document.getElementById(
+            "summaryGameIcon"
+        );
+
+
+    if (summaryGameIcon) {
+
+        summaryGameIcon.src =
+            getPaymentGameIcon(
+                transactionData
+            );
+
+
+        summaryGameIcon.alt =
+            transactionData.game ||
+            "Game";
+
+
+        // Kalau gambar gagal dimuat
+        summaryGameIcon.onerror =
+            function() {
+
+                this.onerror = null;
+
+                this.src =
+                    "img/MLicon.png";
+
+            };
+
+    }
+
 
     // ======================================
     // SUMMARY PRODUK
@@ -216,8 +360,7 @@ function displayTransactionData() {
 
     setText(
         "detailGame",
-        transactionData.game ||
-        "Mobile Legends"
+        transactionData.game || "Game"
     );
 
 
@@ -238,7 +381,7 @@ function displayTransactionData() {
     let fullUserId = "-";
 
 
-    // Kalau userIdFull tersedia
+    // Jika sudah ada userIdFull
     if (transactionData.userIdFull) {
 
         fullUserId =
@@ -246,7 +389,7 @@ function displayTransactionData() {
 
     }
 
-    // Kalau ID dan Server terpisah
+    // Jika ada ID dan Server
     else if (
         transactionData.userId &&
         transactionData.server
@@ -260,7 +403,7 @@ function displayTransactionData() {
 
     }
 
-    // Kalau hanya ID
+    // Jika hanya ID
     else if (transactionData.userId) {
 
         fullUserId =
@@ -288,8 +431,6 @@ function displayTransactionData() {
     // ======================================
     // HARGA
     // ======================================
-    // Mengikuti desain kamu:
-    // yang ditampilkan adalah total akhir
 
     setText(
         "detailPrice",
@@ -324,7 +465,7 @@ function displayTransactionData() {
 
 
 // ==========================================
-// 8. TOMBOL COPY NOMOR TRANSAKSI
+// 10. TOMBOL COPY NOMOR TRANSAKSI
 // ==========================================
 
 function initializeCopyButton() {
@@ -353,7 +494,6 @@ function initializeCopyButton() {
             }
 
 
-            // Kalau Clipboard API tersedia
             if (
                 navigator.clipboard &&
                 navigator.clipboard.writeText
@@ -394,7 +534,7 @@ function initializeCopyButton() {
 
 
 // ==========================================
-// 9. TAMPILKAN TEXT TERSALIN
+// 11. TEXT TERSALIN
 // ==========================================
 
 function showCopiedText(button) {
@@ -414,7 +554,7 @@ function showCopiedText(button) {
 
 
 // ==========================================
-// 10. FALLBACK COPY
+// 12. FALLBACK COPY
 // ==========================================
 
 function fallbackCopy(text, button) {
@@ -460,12 +600,11 @@ function fallbackCopy(text, button) {
 
 
 // ==========================================
-// 11. SIMPAN / UPDATE RIWAYAT TRANSAKSI
+// 13. SIMPAN / UPDATE RIWAYAT TRANSAKSI
 // ==========================================
 
 function saveTransactionToHistory() {
 
-    // Ambil history lama
     let transactionHistory = JSON.parse(
         localStorage.getItem(
             "transactionHistory"
@@ -473,8 +612,6 @@ function saveTransactionToHistory() {
     ) || [];
 
 
-    // Cari apakah transaksi ini
-    // sudah pernah disimpan
     const existingIndex =
         transactionHistory.findIndex(
             function(transaction) {
@@ -488,41 +625,26 @@ function saveTransactionToHistory() {
         );
 
 
-    // ======================================
-    // KALAU BELUM ADA
-    // ======================================
-
+    // Jika belum ada
     if (existingIndex === -1) {
 
-        // Masukkan ke paling depan
-        transactionHistory.unshift(
-            {
-                ...transactionData
-            }
-        );
+        transactionHistory.unshift({
+            ...transactionData
+        });
 
     }
 
-
-    // ======================================
-    // KALAU SUDAH ADA
-    // ======================================
-
+    // Jika sudah ada
     else {
 
-        // Update transaksi lama
-        transactionHistory[existingIndex] =
-            {
-                ...transactionData
-            };
+        transactionHistory[existingIndex] = {
+            ...transactionData
+        };
 
     }
 
 
-    // ======================================
-    // SIMPAN KEMBALI
-    // ======================================
-
+    // Simpan kembali
     localStorage.setItem(
         "transactionHistory",
         JSON.stringify(
@@ -534,7 +656,7 @@ function saveTransactionToHistory() {
 
 
 // ==========================================
-// 12. CEK STATUS TRANSAKSI
+// 14. CEK STATUS TRANSAKSI
 // ==========================================
 
 function checkTransactionStatus() {
@@ -548,13 +670,9 @@ function checkTransactionStatus() {
         "finished"
     ) {
 
-        // Pastikan transaksi masuk history
         saveTransactionToHistory();
 
-
-        // Langsung tampil selesai
         showFinishedStatus();
-
 
         return;
 
@@ -568,18 +686,60 @@ function checkTransactionStatus() {
     showProcessingStatus();
 
 
-    // Tunggu 5 detik
+    // Durasi proses 5 detik
+    const processDuration = 5000;
+
+
+    const transactionStart =
+        new Date(
+            transactionData.transactionTime
+        ).getTime();
+
+
+    let remainingTime =
+        processDuration;
+
+
+    // Jika waktu transaksi valid
+    if (!isNaN(transactionStart)) {
+
+        const elapsedTime =
+            Date.now() -
+            transactionStart;
+
+
+        remainingTime =
+            Math.max(
+                0,
+                processDuration -
+                elapsedTime
+            );
+
+    }
+
+
+    // Jika sudah melewati 5 detik
+    if (remainingTime <= 0) {
+
+        finishTransaction();
+
+        return;
+
+    }
+
+
+    // Tunggu sisa waktu
     setTimeout(function() {
 
         finishTransaction();
 
-    }, 5000);
+    }, remainingTime);
 
 }
 
 
 // ==========================================
-// 13. STATUS SEDANG DIPROSES
+// 15. STATUS SEDANG DIPROSES
 // ==========================================
 
 function showProcessingStatus() {
@@ -596,13 +756,11 @@ function showProcessingStatus() {
 
     if (processStep) {
 
-        // Aktif ungu
         processStep.classList.add(
             "active"
         );
 
 
-        // Hapus hijau
         processStep.classList.remove(
             "completed"
         );
@@ -629,7 +787,7 @@ function showProcessingStatus() {
 
 
     // ======================================
-    // STEP SELESAI BELUM AKTIF
+    // STEP SELESAI
     // ======================================
 
     const finishStep =
@@ -648,7 +806,7 @@ function showProcessingStatus() {
 
 
     // ======================================
-    // GARIS MENUJU SELESAI
+    // GARIS KE SELESAI
     // ======================================
 
     const lineTwo =
@@ -686,7 +844,7 @@ function showProcessingStatus() {
 
 
     // ======================================
-    // IKON PESAN JAM
+    // IKON PESAN
     // ======================================
 
     const messageIcon =
@@ -714,7 +872,7 @@ function showProcessingStatus() {
 
 
     // ======================================
-    // SUBTITLE DISEMBUNYIKAN
+    // SUBTITLE
     // ======================================
 
     const messageSubtitle =
@@ -767,31 +925,37 @@ function showProcessingStatus() {
 
 
 // ==========================================
-// 14. SELESAIKAN TRANSAKSI
+// 16. SELESAIKAN TRANSAKSI
 // ==========================================
 
 function finishTransaction() {
 
-    // ======================================
-    // UBAH STATUS
-    // ======================================
+    // Cegah selesai dua kali
+    if (
+        transactionData.status ===
+        "finished"
+    ) {
 
+        saveTransactionToHistory();
+
+        showFinishedStatus();
+
+        return;
+
+    }
+
+
+    // Ubah status
     transactionData.status =
         "finished";
 
 
-    // ======================================
-    // SIMPAN WAKTU SELESAI
-    // ======================================
-
+    // Simpan waktu selesai
     transactionData.finishedTime =
         new Date().toISOString();
 
 
-    // ======================================
-    // UPDATE CURRENT TRANSACTION
-    // ======================================
-
+    // Update current transaction
     localStorage.setItem(
         "currentTransaction",
         JSON.stringify(
@@ -800,30 +964,24 @@ function finishTransaction() {
     );
 
 
-    // ======================================
-    // SIMPAN KE DAFTAR TRANSAKSI
-    // ======================================
-
+    // Simpan ke riwayat
     saveTransactionToHistory();
 
 
-    // ======================================
-    // TAMPILKAN STATUS SELESAI
-    // ======================================
-
+    // Tampilkan selesai
     showFinishedStatus();
 
 }
 
 
 // ==========================================
-// 15. STATUS TRANSAKSI SELESAI
+// 17. STATUS TRANSAKSI SELESAI
 // ==========================================
 
 function showFinishedStatus() {
 
     // ======================================
-    // STEP DIPROSES JADI HIJAU
+    // DIPROSES JADI HIJAU
     // ======================================
 
     const processStep =
@@ -834,13 +992,11 @@ function showFinishedStatus() {
 
     if (processStep) {
 
-        // Hapus active ungu
         processStep.classList.remove(
             "active"
         );
 
 
-        // Tambahkan completed hijau
         processStep.classList.add(
             "completed"
         );
@@ -860,8 +1016,6 @@ function showFinishedStatus() {
 
     if (processIcon) {
 
-        // Ikon tetap jam
-        // background hijau dari CSS completed
         processIcon.className =
             "bx bx-time-five";
 
@@ -869,7 +1023,7 @@ function showFinishedStatus() {
 
 
     // ======================================
-    // GARIS MENUJU SELESAI JADI HIJAU
+    // GARIS KE SELESAI HIJAU
     // ======================================
 
     const lineTwo =
@@ -888,7 +1042,7 @@ function showFinishedStatus() {
 
 
     // ======================================
-    // STEP SELESAI JADI HIJAU
+    // STEP SELESAI HIJAU
     // ======================================
 
     const finishStep =
@@ -907,7 +1061,7 @@ function showFinishedStatus() {
 
 
     // ======================================
-    // PESAN BERHASIL JADI HIJAU
+    // PESAN BERHASIL
     // ======================================
 
     const processMessage =
@@ -926,7 +1080,7 @@ function showFinishedStatus() {
 
 
     // ======================================
-    // IKON PESAN JADI CENTANG
+    // IKON CENTANG
     // ======================================
 
     const messageIcon =
@@ -977,7 +1131,7 @@ function showFinishedStatus() {
 
 
     // ======================================
-    // BADGE STATUS SELESAI
+    // BADGE STATUS
     // ======================================
 
     const statusBadge =

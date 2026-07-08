@@ -17,15 +17,15 @@ const GAME_CONFIG = {
 
     name:
         document.body.dataset.game ||
-        "Mobile Legends",
+        "Free Fire",
 
     code:
         document.body.dataset.gameCode ||
-        "ML",
+        "FF",
 
     icon:
         document.body.dataset.gameIcon ||
-        "img/MLicon.png"
+        "img/FFicon.png"
 
 };
 
@@ -72,6 +72,7 @@ const userId =
 
 
 // Input Server
+// OPTIONAL UNTUK FREE FIRE
 const serverId =
     document.getElementById(
         "serverId"
@@ -106,7 +107,7 @@ const payButton =
     );
 
 
-// Nama game pada detail transaksi
+// Nama game detail transaksi
 const transactionGameName =
     document.getElementById(
         "transactionGameName"
@@ -247,7 +248,56 @@ function formatRupiah(number) {
 
 
 // ==========================================
-// 10. UPDATE SALDO
+// 10. AMBIL NILAI SERVER
+// ==========================================
+
+function getServerValue() {
+
+    if (!serverId) {
+        return "";
+    }
+
+    return serverId.value.trim();
+
+}
+
+
+// ==========================================
+// 11. BUAT USER ID LENGKAP
+// ==========================================
+
+function getFullUserId() {
+
+    const idValue =
+        userId
+            ? userId.value.trim()
+            : "";
+
+    const serverValue =
+        getServerValue();
+
+
+    // Kalau ada server
+    if (serverValue !== "") {
+
+        return (
+            idValue +
+            " (" +
+            serverValue +
+            ")"
+        );
+
+    }
+
+
+    // Kalau tidak ada server
+    return idValue;
+
+}
+
+
+// ==========================================
+// 12. UPDATE SALDO
 // ==========================================
 
 function updateBalanceDisplay() {
@@ -275,7 +325,7 @@ function updateBalanceDisplay() {
 
 
 // ==========================================
-// 11. SIMPAN SALDO
+// 13. SIMPAN SALDO
 // ==========================================
 
 function saveBalances() {
@@ -295,7 +345,7 @@ function saveBalances() {
 
 
 // ==========================================
-// 12. TAMPILKAN NAMA GAME
+// 14. TAMPILKAN NAMA GAME
 // ==========================================
 
 function displayGameName() {
@@ -317,7 +367,7 @@ displayGameName();
 
 
 // ==========================================
-// 13. PILIH ITEM / DIAMOND
+// 15. PILIH ITEM
 // ==========================================
 
 productCards.forEach(
@@ -371,12 +421,11 @@ productCards.forEach(
 
 
                 console.log(
-                    "Item dipilih:",
+                    "Item Free Fire dipilih:",
                     selectedItem
                 );
 
 
-                // Update detail
                 updateTransactionDetail();
 
             }
@@ -387,7 +436,7 @@ productCards.forEach(
 
 
 // ==========================================
-// 14. INPUT ID
+// 16. INPUT ID
 // ==========================================
 
 if (userId) {
@@ -401,7 +450,7 @@ if (userId) {
 
 
 // ==========================================
-// 15. INPUT SERVER
+// 17. INPUT SERVER JIKA ADA
 // ==========================================
 
 if (serverId) {
@@ -415,7 +464,7 @@ if (serverId) {
 
 
 // ==========================================
-// 16. PILIH PAYMENT
+// 18. PILIH PAYMENT
 // ==========================================
 
 paymentMethods.forEach(
@@ -431,7 +480,7 @@ paymentMethods.forEach(
 
 
 // ==========================================
-// 17. UPDATE DETAIL TRANSAKSI
+// 19. UPDATE DETAIL TRANSAKSI
 // ==========================================
 
 function updateTransactionDetail() {
@@ -453,17 +502,16 @@ function updateTransactionDetail() {
 
 
     // ======================================
-    // SERVER
+    // SERVER JIKA ADA
     // ======================================
 
-    if (
-        detailServer &&
-        serverId
-    ) {
+    if (detailServer) {
+
+        const serverValue =
+            getServerValue();
 
         detailServer.textContent =
-            serverId.value.trim() ||
-            "-";
+            serverValue || "-";
 
     }
 
@@ -619,7 +667,7 @@ function updateTransactionDetail() {
 
 
 // ==========================================
-// 18. KLIK BAYAR SEKARANG
+// 20. KLIK BAYAR SEKARANG
 // ==========================================
 
 if (payButton) {
@@ -644,7 +692,7 @@ if (payButton) {
 
 
             // ==================================
-            // CEK ID
+            // CEK ID FREE FIRE
             // ==================================
 
             if (
@@ -653,41 +701,13 @@ if (payButton) {
             ) {
 
                 alert(
-                    "Silakan masukkan ID " +
-                    GAME_CONFIG.name +
-                    "!"
+                    "Silakan masukkan ID Free Fire!"
                 );
 
 
                 if (userId) {
 
                     userId.focus();
-
-                }
-
-
-                return;
-
-            }
-
-
-            // ==================================
-            // CEK SERVER
-            // ==================================
-
-            if (
-                !serverId ||
-                serverId.value.trim() === ""
-            ) {
-
-                alert(
-                    "Silakan masukkan Server!"
-                );
-
-
-                if (serverId) {
-
-                    serverId.focus();
 
                 }
 
@@ -776,10 +796,7 @@ if (payButton) {
             if (confirmUserId) {
 
                 confirmUserId.textContent =
-                    userId.value.trim() +
-                    " (" +
-                    serverId.value.trim() +
-                    ")";
+                    getFullUserId();
 
             }
 
@@ -865,7 +882,7 @@ if (payButton) {
 
 
 // ==========================================
-// 19. TUTUP MODAL
+// 21. TUTUP MODAL
 // ==========================================
 
 if (closeModalButton) {
@@ -889,7 +906,7 @@ if (closeModalButton) {
 
 
 // ==========================================
-// 20. KLIK AREA GELAP
+// 22. KLIK AREA GELAP
 // ==========================================
 
 if (paymentModal) {
@@ -916,7 +933,7 @@ if (paymentModal) {
 
 
 // ==========================================
-// 21. GENERATE NOMOR TRANSAKSI
+// 23. GENERATE NOMOR TRANSAKSI
 // ==========================================
 
 function generateTransactionNumber() {
@@ -938,21 +955,44 @@ function generateTransactionNumber() {
 
 
 // ==========================================
-// 22. SIMPAN / UPDATE RIWAYAT
+// 24. SIMPAN / UPDATE RIWAYAT
 // ==========================================
 
 function saveTransactionToHistory(
     transactionData
 ) {
 
-    let transactionHistory = JSON.parse(
-        localStorage.getItem(
-            "transactionHistory"
+    let transactionHistory = [];
+
+    try {
+
+        transactionHistory =
+            JSON.parse(
+                localStorage.getItem(
+                    "transactionHistory"
+                )
+            ) || [];
+
+    } catch (error) {
+
+        transactionHistory = [];
+
+    }
+
+
+    // Pastikan array
+    if (
+        !Array.isArray(
+            transactionHistory
         )
-    ) || [];
+    ) {
+
+        transactionHistory = [];
+
+    }
 
 
-    // Cari transaksi yang sama
+    // Cari transaksi sama
     const existingIndex =
         transactionHistory.findIndex(
             function(transaction) {
@@ -966,7 +1006,7 @@ function saveTransactionToHistory(
         );
 
 
-    // Jika belum ada
+    // Kalau belum ada
     if (existingIndex === -1) {
 
         transactionHistory.unshift({
@@ -975,7 +1015,7 @@ function saveTransactionToHistory(
 
     }
 
-    // Jika sudah ada
+    // Kalau sudah ada
     else {
 
         transactionHistory[existingIndex] = {
@@ -985,7 +1025,7 @@ function saveTransactionToHistory(
     }
 
 
-    // Simpan
+    // Simpan history gabungan
     localStorage.setItem(
         "transactionHistory",
         JSON.stringify(
@@ -997,7 +1037,7 @@ function saveTransactionToHistory(
 
 
 // ==========================================
-// 23. LANJUTKAN PEMBAYARAN
+// 25. LANJUTKAN PEMBAYARAN
 // ==========================================
 
 if (continuePaymentButton) {
@@ -1020,7 +1060,6 @@ if (continuePaymentButton) {
             isProcessingPayment = true;
 
 
-            // Nonaktifkan tombol sementara
             continuePaymentButton.disabled =
                 true;
 
@@ -1036,12 +1075,14 @@ if (continuePaymentButton) {
 
 
             // ==================================
-            // VALIDASI DATA
+            // VALIDASI
             // ==================================
 
             if (
                 !selectedPayment ||
-                !selectedItem
+                !selectedItem ||
+                !userId ||
+                userId.value.trim() === ""
             ) {
 
                 isProcessingPayment =
@@ -1115,7 +1156,7 @@ if (continuePaymentButton) {
 
 
             // ==================================
-            // SIMPAN WAKTU TRANSAKSI SEKALI
+            // WAKTU TRANSAKSI
             // ==================================
 
             const transactionTime =
@@ -1128,6 +1169,14 @@ if (continuePaymentButton) {
 
             const transactionNumber =
                 generateTransactionNumber();
+
+
+            // ==================================
+            // AMBIL SERVER OPTIONAL
+            // ==================================
+
+            const serverValue =
+                getServerValue();
 
 
             // ==================================
@@ -1166,13 +1215,10 @@ if (continuePaymentButton) {
                     userId.value.trim(),
 
                 server:
-                    serverId.value.trim(),
+                    serverValue,
 
                 userIdFull:
-                    userId.value.trim() +
-                    " (" +
-                    serverId.value.trim() +
-                    ")",
+                    getFullUserId(),
 
 
                 // ------------------------------
@@ -1279,7 +1325,7 @@ if (continuePaymentButton) {
 
 
             // ==================================
-            // SIMPAN KE RIWAYAT
+            // SIMPAN KE HISTORY GABUNGAN
             // ==================================
 
             saveTransactionToHistory(
@@ -1292,13 +1338,13 @@ if (continuePaymentButton) {
             // ==================================
 
             console.log(
-                "Transaksi dibuat:",
+                "Transaksi Free Fire dibuat:",
                 transactionData
             );
 
 
             // ==================================
-            // PINDAH HALAMAN
+            // PINDAH KE PEMBAYARAN
             // ==================================
 
             window.location.href =
@@ -1311,7 +1357,7 @@ if (continuePaymentButton) {
 
 
 // ==========================================
-// 24. CEK KONEKSI HTML
+// 26. CEK KONEKSI HTML
 // ==========================================
 
 console.log(
@@ -1324,7 +1370,7 @@ console.log(
 );
 
 console.log(
-    "Jumlah produk ditemukan:",
+    "Jumlah produk FF ditemukan:",
     productCards.length
 );
 

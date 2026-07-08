@@ -17,8 +17,7 @@ const currentTransaction = JSON.parse(
 
 
 // ==========================================
-// 3. SINKRONKAN CURRENT TRANSACTION
-//    KE TRANSACTION HISTORY
+// 3. SINKRONKAN CURRENT KE HISTORY
 // ==========================================
 
 if (
@@ -39,17 +38,13 @@ if (
         );
 
 
-    // Kalau transaksi belum ada di history
     if (existingIndex === -1) {
 
         transactionHistory.unshift({
             ...currentTransaction
         });
 
-    }
-
-    // Kalau sudah ada, update datanya
-    else {
+    } else {
 
         transactionHistory[existingIndex] = {
             ...currentTransaction
@@ -58,10 +53,11 @@ if (
     }
 
 
-    // Simpan kembali ke localStorage
     localStorage.setItem(
         "transactionHistory",
-        JSON.stringify(transactionHistory)
+        JSON.stringify(
+            transactionHistory
+        )
     );
 
 }
@@ -76,42 +72,35 @@ const transactionGrid =
         "transactionGrid"
     );
 
-
 const emptyTransaction =
     document.getElementById(
         "emptyTransaction"
     );
-
 
 const statusFilter =
     document.getElementById(
         "statusFilter"
     );
 
-
 const timeFilter =
     document.getElementById(
         "timeFilter"
     );
-
 
 const searchTransaction =
     document.getElementById(
         "searchTransaction"
     );
 
-
 const prevPage =
     document.getElementById(
         "prevPage"
     );
 
-
 const nextPage =
     document.getElementById(
         "nextPage"
     );
-
 
 const pageNumber =
     document.getElementById(
@@ -120,7 +109,7 @@ const pageNumber =
 
 
 // ==========================================
-// 5. PENGATURAN PAGINATION
+// 5. PAGINATION
 // ==========================================
 
 let currentPage = 1;
@@ -148,11 +137,8 @@ function formatRupiah(number) {
 
 function formatDate(dateString) {
 
-    // Kalau tanggal tidak tersedia
     if (!dateString) {
-
         return "-";
-
     }
 
 
@@ -160,11 +146,8 @@ function formatDate(dateString) {
         new Date(dateString);
 
 
-    // Kalau format tanggal tidak valid
     if (isNaN(date.getTime())) {
-
         return "-";
-
     }
 
 
@@ -226,27 +209,134 @@ function formatDate(dateString) {
 
 
 // ==========================================
-// 8. AMBIL ICON GAME
+// 8. NORMALISASI KODE GAME
 // ==========================================
 
-function getGameIcon(game) {
+function normalizeGameCode(gameCode) {
 
-    // Karena daftar-transaksi.js
-    // berada di folder TRANSAKSI,
-    // maka harus naik satu folder.
-
-    return "../img/MLicon.png";
+    return String(
+        gameCode || ""
+    )
+    .trim()
+    .toUpperCase();
 
 }
 
 
 // ==========================================
-// 9. FILTER DATA TRANSAKSI
+// 9. ICON GAME DINAMIS
+//    UNTUK 8 GAME
+// ==========================================
+
+function getGameIcon(transaction) {
+
+    // ======================================
+    // PRIORITAS 1
+    // Gunakan gameIcon dari transaksi
+    // ======================================
+
+    if (
+        transaction.gameIcon &&
+        String(transaction.gameIcon).trim() !== ""
+    ) {
+
+        let iconPath =
+            String(
+                transaction.gameIcon
+            ).trim();
+
+
+        // Kalau sudah relatif naik folder
+        if (iconPath.startsWith("../")) {
+
+            return iconPath;
+
+        }
+
+
+        // Kalau absolute path
+        if (iconPath.startsWith("/")) {
+
+            return iconPath;
+
+        }
+
+
+        // Karena file ini ada di:
+        // TRANSAKSI/daftar-transaksi.js
+        return "../" + iconPath;
+
+    }
+
+
+    // ======================================
+    // PRIORITAS 2
+    // Berdasarkan gameCode
+    // ======================================
+
+    const gameCode =
+        normalizeGameCode(
+            transaction.gameCode
+        );
+
+
+    switch (gameCode) {
+
+        // FREE FIRE
+        case "FF":
+            return "../img/FFicon.png";
+
+
+        // MOBILE LEGENDS
+        case "ML":
+            return "../img/MLicon.png";
+
+
+        // HONKAI STAR RAIL
+        case "HSR":
+            return "../img/HSRicon.png";
+
+
+        // HONOR OF KINGS
+        case "HOK":
+            return "../img/HOKicon.png";
+
+
+        // PUBG MOBILE
+        case "PUBG":
+            return "../img/PUBGicon.png";
+
+
+        // WUTHERING WAVES
+        case "WUWA":
+            return "../img/WUWAicon.png";
+
+
+        // GENSHIN IMPACT
+        case "GI":
+            return "../img/GIicon.png";
+
+
+        // ZENLESS ZONE ZERO
+        case "ZZZ":
+            return "../img/ZZZicon.png";
+
+
+        // FALLBACK
+        default:
+            return "../img/MLicon.png";
+
+    }
+
+}
+
+
+// ==========================================
+// 10. FILTER DATA TRANSAKSI
 // ==========================================
 
 function getFilteredTransactions() {
 
-    // Salin data history
     let filtered = [
         ...transactionHistory
     ];
@@ -309,7 +399,6 @@ function getFilteredTransactions() {
                         );
 
 
-                    // Tanggal tidak valid
                     if (
                         isNaN(
                             transactionDate.getTime()
@@ -322,7 +411,8 @@ function getFilteredTransactions() {
 
 
                     const difference =
-                        now - transactionDate;
+                        now -
+                        transactionDate;
 
 
                     const differenceDays =
@@ -336,7 +426,8 @@ function getFilteredTransactions() {
 
 
                     return (
-                        differenceDays <= days
+                        differenceDays <=
+                        days
                     );
 
                 }
@@ -348,7 +439,7 @@ function getFilteredTransactions() {
 
 
     // ======================================
-    // SEARCH TRANSAKSI
+    // SEARCH
     // ======================================
 
     if (searchTransaction) {
@@ -376,6 +467,12 @@ function getFilteredTransactions() {
                         ).toLowerCase();
 
 
+                    const gameCode =
+                        String(
+                            transaction.gameCode || ""
+                        ).toLowerCase();
+
+
                     const number =
                         String(
                             transaction.transactionNumber || ""
@@ -388,11 +485,19 @@ function getFilteredTransactions() {
                         ).toLowerCase();
 
 
+                    const server =
+                        String(
+                            transaction.server || ""
+                        ).toLowerCase();
+
+
                     return (
                         product.includes(keyword) ||
                         game.includes(keyword) ||
+                        gameCode.includes(keyword) ||
                         number.includes(keyword) ||
-                        userId.includes(keyword)
+                        userId.includes(keyword) ||
+                        server.includes(keyword)
                     );
 
                 }
@@ -409,12 +514,11 @@ function getFilteredTransactions() {
 
 
 // ==========================================
-// 10. TAMPILKAN SEMUA TRANSAKSI
+// 11. TAMPILKAN TRANSAKSI
 // ==========================================
 
 function displayTransactions() {
 
-    // Pastikan grid ditemukan
     if (!transactionGrid) {
 
         console.error(
@@ -426,17 +530,15 @@ function displayTransactions() {
     }
 
 
-    // Ambil data hasil filter
     const filtered =
         getFilteredTransactions();
 
 
-    // Kosongkan isi grid
     transactionGrid.innerHTML = "";
 
 
     // ======================================
-    // JIKA TIDAK ADA TRANSAKSI
+    // JIKA KOSONG
     // ======================================
 
     if (filtered.length === 0) {
@@ -458,7 +560,7 @@ function displayTransactions() {
 
 
     // ======================================
-    // SEMBUNYIKAN EMPTY MESSAGE
+    // SEMBUNYIKAN PESAN KOSONG
     // ======================================
 
     if (emptyTransaction) {
@@ -481,7 +583,6 @@ function displayTransactions() {
         );
 
 
-    // Kalau current page terlalu besar
     if (currentPage > totalPages) {
 
         currentPage =
@@ -490,7 +591,6 @@ function displayTransactions() {
     }
 
 
-    // Kalau current page kurang dari 1
     if (currentPage < 1) {
 
         currentPage = 1;
@@ -499,7 +599,7 @@ function displayTransactions() {
 
 
     // ======================================
-    // HITUNG INDEX DATA
+    // POTONG DATA
     // ======================================
 
     const startIndex =
@@ -512,7 +612,6 @@ function displayTransactions() {
         itemsPerPage;
 
 
-    // Ambil data sesuai halaman
     const pageData =
         filtered.slice(
             startIndex,
@@ -521,26 +620,24 @@ function displayTransactions() {
 
 
     // ======================================
-    // BUAT CARD TRANSAKSI
+    // BUAT CARD
     // ======================================
 
     pageData.forEach(
         function(transaction) {
 
-            // Buat article
             const card =
                 document.createElement(
                     "article"
                 );
 
 
-            // Tambahkan class
             card.className =
                 "transaction-card";
 
 
             // ==================================
-            // STATUS TRANSAKSI
+            // STATUS
             // ==================================
 
             const isFinished =
@@ -561,12 +658,12 @@ function displayTransactions() {
 
 
             // ==================================
-            // DATA AMAN
+            // DATA
             // ==================================
 
             const game =
                 transaction.game ||
-                "Mobile Legends";
+                "Game";
 
 
             const product =
@@ -583,8 +680,14 @@ function displayTransactions() {
                 transaction.total || 0;
 
 
+            const gameIcon =
+                getGameIcon(
+                    transaction
+                );
+
+
             // ==================================
-            // ISI HTML CARD
+            // ISI CARD
             // ==================================
 
             card.innerHTML = `
@@ -592,9 +695,11 @@ function displayTransactions() {
                 <div class="transaction-card-header">
 
                     <span class="transaction-date">
+
                         ${formatDate(
                             transaction.transactionTime
                         )}
+
                     </span>
 
 
@@ -604,7 +709,9 @@ function displayTransactions() {
                             ${statusClass}
                         "
                     >
+
                         ${statusText}
+
                     </span>
 
                 </div>
@@ -613,7 +720,7 @@ function displayTransactions() {
                 <div class="transaction-product">
 
                     <img
-                        src="${getGameIcon(game)}"
+                        src="${gameIcon}"
                         class="transaction-game-icon"
                         alt="${game}"
                     >
@@ -622,12 +729,16 @@ function displayTransactions() {
                     <div class="transaction-product-info">
 
                         <span class="transaction-game">
+
                             ${game}
+
                         </span>
 
 
                         <strong class="transaction-product-name">
+
                             ${product}
+
                         </strong>
 
                     </div>
@@ -638,12 +749,16 @@ function displayTransactions() {
                 <div class="transaction-card-footer">
 
                     <span class="transaction-number">
+
                         ${transactionNumber}
+
                     </span>
 
 
                     <strong class="transaction-price">
+
                         ${formatRupiah(total)}
+
                     </strong>
 
                 </div>
@@ -652,7 +767,35 @@ function displayTransactions() {
 
 
             // ==================================
-            // KETIKA CARD DIKLIK
+            // FALLBACK JIKA ICON ERROR
+            // ==================================
+
+            const imageElement =
+                card.querySelector(
+                    ".transaction-game-icon"
+                );
+
+
+            if (imageElement) {
+
+                imageElement.addEventListener(
+                    "error",
+                    function() {
+
+                        this.src =
+                            "../img/MLicon.png";
+
+                    },
+                    {
+                        once: true
+                    }
+                );
+
+            }
+
+
+            // ==================================
+            // KLIK CARD
             // ==================================
 
             card.addEventListener(
@@ -667,7 +810,6 @@ function displayTransactions() {
             );
 
 
-            // Masukkan card ke grid
             transactionGrid.appendChild(
                 card
             );
@@ -676,7 +818,6 @@ function displayTransactions() {
     );
 
 
-    // Update pagination
     updatePagination(
         totalPages
     );
@@ -685,15 +826,13 @@ function displayTransactions() {
 
 
 // ==========================================
-// 11. BUKA DETAIL TRANSAKSI
+// 12. BUKA DETAIL TRANSAKSI
 // ==========================================
 
 function openTransactionDetail(
     transactionNumber
 ) {
 
-    // Cari transaksi berdasarkan
-    // nomor transaksi
     const selectedTransaction =
         transactionHistory.find(
             function(transaction) {
@@ -707,7 +846,6 @@ function openTransactionDetail(
         );
 
 
-    // Kalau tidak ditemukan
     if (!selectedTransaction) {
 
         alert(
@@ -719,10 +857,7 @@ function openTransactionDetail(
     }
 
 
-    // ======================================
-    // SIMPAN TRANSAKSI YANG DIPILIH
-    // ======================================
-
+    // Simpan transaksi yang diklik
     localStorage.setItem(
         "currentTransaction",
         JSON.stringify(
@@ -731,20 +866,8 @@ function openTransactionDetail(
     );
 
 
-    // ======================================
-    // BUKA PEMBAYARAN.HTML
-    // ======================================
-    //
-    // daftar-transaksi.html berada:
-    // TRANSAKSI/daftar-transaksi.html
-    //
-    // pembayaran.html berada:
-    // PROJECT/pembayaran.html
-    //
-    // Jadi harus naik satu folder
-    // menggunakan ../
-    // ======================================
-
+    // Karena halaman daftar transaksi
+    // ada di folder TRANSAKSI
     window.location.href =
         "../pembayaran.html";
 
@@ -752,12 +875,11 @@ function openTransactionDetail(
 
 
 // ==========================================
-// 12. UPDATE PAGINATION
+// 13. UPDATE PAGINATION
 // ==========================================
 
 function updatePagination(totalPages) {
 
-    // Update nomor halaman
     if (pageNumber) {
 
         pageNumber.textContent =
@@ -768,7 +890,6 @@ function updatePagination(totalPages) {
     }
 
 
-    // Tombol previous
     if (prevPage) {
 
         prevPage.disabled =
@@ -777,7 +898,6 @@ function updatePagination(totalPages) {
     }
 
 
-    // Tombol next
     if (nextPage) {
 
         nextPage.disabled =
@@ -790,7 +910,7 @@ function updatePagination(totalPages) {
 
 
 // ==========================================
-// 13. TOMBOL PREVIOUS
+// 14. PREVIOUS PAGE
 // ==========================================
 
 if (prevPage) {
@@ -814,7 +934,7 @@ if (prevPage) {
 
 
 // ==========================================
-// 14. TOMBOL NEXT
+// 15. NEXT PAGE
 // ==========================================
 
 if (nextPage) {
@@ -852,7 +972,7 @@ if (nextPage) {
 
 
 // ==========================================
-// 15. FILTER STATUS
+// 16. FILTER STATUS
 // ==========================================
 
 if (statusFilter) {
@@ -872,7 +992,7 @@ if (statusFilter) {
 
 
 // ==========================================
-// 16. FILTER WAKTU
+// 17. FILTER WAKTU
 // ==========================================
 
 if (timeFilter) {
@@ -892,7 +1012,7 @@ if (timeFilter) {
 
 
 // ==========================================
-// 17. SEARCH TRANSAKSI
+// 18. SEARCH
 // ==========================================
 
 if (searchTransaction) {
@@ -912,7 +1032,7 @@ if (searchTransaction) {
 
 
 // ==========================================
-// 18. DEBUG
+// 19. DEBUG
 // ==========================================
 
 console.log(
@@ -928,7 +1048,7 @@ console.log(
 
 
 // ==========================================
-// 19. JALANKAN HALAMAN
+// 20. JALANKAN
 // ==========================================
 
 displayTransactions();

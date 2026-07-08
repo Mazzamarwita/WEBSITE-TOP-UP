@@ -218,17 +218,48 @@
 
 
 
-                <!-- PRODUK -->
+                <!-- ==================================
+                     PRODUK DINAMIS UNTUK 8 GAME
+
+                     FF   = Free Fire
+                     ML   = Mobile Legends
+                     HSR  = Honkai: Star Rail
+                     HOK  = Honor of Kings
+                     PUBG = PUBG Mobile
+                     WUWA = Wuthering Waves
+                     GI   = Genshin Impact
+                     ZZZ  = Zenless Zone Zero
+                =================================== -->
+
                 <div class="product-summary">
 
 
                     <div class="product-left">
 
+
+                        <!--
+                            SATU GAMBAR DINAMIS
+
+                            pembayaran.js akan mengubah
+                            src berdasarkan gameCode:
+
+                            FF
+                            ML
+                            HSR
+                            HOK
+                            PUBG
+                            WUWA
+                            GI
+                            ZZZ
+                        -->
+
                         <img
-                            src="/img/ML.jpg"
-                            alt="Mobile Legends"
+                            id="summaryGameIcon"
+                            src="img/MLicon.png"
+                            alt="Game"
                             class="game-icon"
                         >
+
 
                         <div>
 
@@ -236,12 +267,16 @@
                                 TOP UP
                             </span>
 
+
+                            <!-- PRODUK DINAMIS -->
                             <strong id="summaryProduct">
                                 -
                             </strong>
 
-                            <small>
-                                Mobile Legends
+
+                            <!-- NAMA GAME DINAMIS -->
+                            <small id="summaryGameName">
+                                -
                             </small>
 
                         </div>
