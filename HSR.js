@@ -713,32 +713,6 @@ if (payButton) {
 
 
             // ==================================
-            // CEK SERVER
-            // ==================================
-
-            if (
-                !serverId ||
-                serverId.value.trim() === ""
-            ) {
-
-                alert(
-                    "Silakan masukkan Server!"
-                );
-
-
-                if (serverId) {
-
-                    serverId.focus();
-
-                }
-
-
-                return;
-
-            }
-
-
-            // ==================================
             // AMBIL PAYMENT
             // ==================================
 
