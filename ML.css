@@ -417,10 +417,25 @@ color:#BF00FF;
    VOUCHER
 ========================================= */
 
-.voucher-box{
-    width:100%;
+.voucher-row{
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
+.voucher-row input{
+    flex: 1;
+}
+
+.voucher-action{
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: #ffffff;
+    background: #cc00ff;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
 
 /* =========================================
    METODE PEMBAYARAN
@@ -1165,4 +1180,162 @@ color:#BF00FF;
         font-size:12px;
     }
 
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:-300px;
+
+    width:280px;
+    height:100vh;
+
+    background:#070707;
+
+    padding:15px;
+
+    z-index:1001;
+
+    transition:0.3s ease;
+}
+
+/* SIDEBAR SAAT AKTIF */
+
+.sidebar.active{
+    left:0;
+}
+
+
+/* HEADER SIDEBAR */
+
+.sidebar-header{
+    height:90px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    position:relative;
+}
+
+
+/* LOGO SIDEBAR */
+
+.sidebar-logo{
+    width:170px;
+}
+
+
+/* TOMBOL CLOSE */
+
+.close-sidebar{
+    position:absolute;
+
+    top:5px;
+    left:5px;
+
+    width:40px;
+    height:40px;
+
+    background:none;
+    border:none;
+
+    color:white;
+
+    font-size:32px;
+
+    cursor:pointer;
+}
+
+
+/* MENU SIDEBAR */
+
+.sidebar-menu{
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-top:15px;
+}
+
+
+/* LINK MENU */
+
+.sidebar-link{
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    padding:13px 15px;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:16px;
+    font-weight:600;
+
+    transition:0.3s;
+}
+
+
+/* ICON */
+
+.sidebar-link i{
+    font-size:25px;
+}
+
+
+/* HOVER */
+
+.sidebar-link:hover{
+    background:#5b137d;
+}
+
+
+/* MENU ACTIVE */
+
+.sidebar-link.active{
+    background:#7d00a8;
+}
+
+
+/* =========================
+   OVERLAY
+========================= */
+
+.sidebar-overlay{
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0.55);
+
+    z-index:1000;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:0.3s;
+}
+
+
+/* OVERLAY AKTIF */
+
+.sidebar-overlay.active{
+    opacity:1;
+    visibility:visible;
 }

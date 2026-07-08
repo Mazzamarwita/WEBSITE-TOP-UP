@@ -30,6 +30,70 @@
 
 <body>
 
+      <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-header">
+
+            <button class="close-sidebar">
+                <i class='bx bx-x'></i>
+            </button>
+
+            <img src="/IMG/LOGO1.png" class="sidebar-logo" alt="Infinity Shop">
+
+        </div>
+
+
+        <!-- menu sidebar -->
+        <div class="sidebar-menu">
+
+            <a href="/HOME.HTML" class="sidebar-link">
+
+                <i class='bx bx-home-alt-2'></i>
+
+                <span>HOME</span>
+
+            </a>
+
+
+            <a href="/TRANSAKSI/daftar-transaksi.html" class="sidebar-link">
+
+                <i class='bx bx-receipt'></i>
+
+                <span>TRANSAKSI</span>
+
+            </a>
+
+
+            <a href="PROMO.html" class="sidebar-link">
+
+                <i class='bx bx-badge-check'></i>
+
+                <span>PROMO</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class='bx bx-map'></i>
+
+                <span>POINKU</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div class="sidebar-overlay"></div>
+
 
     <!-- ==================================
          NAVBAR
@@ -877,38 +941,36 @@
              2. KODE VOUCHER
         =================================== -->
 
-        <section class="box">
+<section class="box">
 
-            <div class="title">
+    <div class="title">
+        <span>2)</span>
+        Masukkan Kode Voucher
+    </div>
 
-                <span>2)</span>
+    <div class="input-group">
 
-                Masukkan Kode Voucher
+        <div class="input-box voucher-box">
 
+            <label for="voucherCode">
+                KODE VOUCHER
+            </label>
+
+            <div class="voucher-row">
+                <input
+                    type="text"
+                    id="voucherCode"
+                    placeholder="MASUKAN KODE VOUCHER"
+                >
+
+                <button class="voucher-action">Gunakan</button>
             </div>
 
+        </div>
 
-            <div class="input-group">
+    </div>
 
-                <div class="input-box voucher-box">
-
-                    <label for="voucherCode">
-                        KODE VOUCHER
-                    </label>
-
-                    <input
-                        type="text"
-                        id="voucherCode"
-                        placeholder="MASUKAN KODE VOUCHER"
-                    >
-
-                </div>
-
-            </div>
-
-        </section>
-
-
+</section>
 
         <!-- ==================================
              3. METODE PEMBAYARAN
@@ -1284,6 +1346,7 @@
     =================================== -->
 
     <script src="ML.js"></script>
+    <script src="script.js"></script>
 
 
 </body>
