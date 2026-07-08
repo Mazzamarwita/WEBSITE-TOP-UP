@@ -1,11 +1,945 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>TOP UP HONKAI STAR RAIL</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="ML.css">
+
+    <!-- Boxicons -->
+    <link
+        href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Google Font Poppins -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 </head>
-<body>
-    
+
+
+<body 
+    data-game="HONKAI STAR RAIL"
+    data-game-code="HSR"
+    data-game-icon="img/HSRicon.png"
+>
+
+      <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-header">
+
+            <button class="close-sidebar">
+                <i class='bx bx-x'></i>
+            </button>
+
+            <img src="/IMG/LOGO1.png" class="sidebar-logo" alt="Infinity Shop">
+
+        </div>
+
+
+        <!-- menu sidebar -->
+        <div class="sidebar-menu">
+
+            <a href="/HOME.HTML" class="sidebar-link">
+
+                <i class='bx bx-home-alt-2'></i>
+
+                <span>HOME</span>
+
+            </a>
+
+
+            <a href="/TRANSAKSI/daftar-transaksi.html" class="sidebar-link">
+
+                <i class='bx bx-receipt'></i>
+
+                <span>TRANSAKSI</span>
+
+            </a>
+
+
+            <a href="/PROMO/PROMO.html" class="sidebar-link">
+
+                <i class='bx bx-badge-check'></i>
+
+                <span>PROMO</span>
+
+            </a>
+
+
+            <a href="#" class="sidebar-link">
+
+                <i class='bx bx-map'></i>
+
+                <span>POINKU</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div class="sidebar-overlay"></div>
+
+
+    <!-- ==================================
+         NAVBAR
+    =================================== -->
+
+    <nav class="navbar">
+
+        <div class="left-navbar">
+
+            <button class="menu-btn">
+                <i class="bx bx-menu"></i>
+            </button>
+
+            <img
+                src="img/LOGO1.png"
+                class="logo"
+                alt="Infinity Shop"
+            >
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Cari semua di Infinity Shop"
+            >
+
+            <button>
+                <i class="bx bx-search"></i>
+            </button>
+
+        </div>
+
+
+        <div class="nav-button">
+
+            <button class="btn-register">
+                Daftar
+            </button>
+
+            <button class="btn-login">
+                Masuk
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================
+         BANNER
+    =================================== -->
+
+    <section class="banner">
+
+        <div class="banner-img">
+
+            <img
+                src="img/HSRbanner.png"
+                alt="Honkai Star Rail Banner"
+            >
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         MAIN CONTENT
+    =================================== -->
+
+    <main class="main-content">
+
+
+
+        <!-- ==================================
+             1. DATA PENGGUNA
+        =================================== -->
+
+        <section class="box">
+
+            <div class="title">
+
+                <span>1)</span>
+
+                Masukkan Data Pengguna
+
+            </div>
+
+
+            <div class="input-group">
+
+                <!-- ID -->
+                <div class="input-box">
+
+                    <label for="userId">
+                        ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userId"
+                        placeholder="MASUKAN ID"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             DIAMONDS
+        =================================== -->
+
+        <section class="product-section">
+
+            <h3 class="section-heading">
+                ONEIRIC SHARD
+            </h3>
+
+
+            <div class="grid">
+
+
+                <!-- 3 DIAMONDS -->
+
+                <div
+                    class="card product-card"
+                    data-item="60 Oneiric Shards"
+                    data-price="12000"
+                    data-point="40"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>60</h4>
+                            <p>Oneiric Shards</p>
+                        </div>
+
+                        <img
+                            src="img/OS.png"
+                            alt="Diamond"
+                            class="diamond-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp12.000
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+40 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 15 DIAMONDS -->
+
+                <div
+                    class="card product-card"
+                    data-item="300 + 30 Oneiric Shards"
+                    data-price="62200"
+                    data-point="75"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>330</h4>
+                            <p>Oneiric Shards</p>
+                        </div>
+
+                        <img
+                            src="img/OS.png"
+                            alt="Diamond"
+                            class="diamond-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp62.200
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+75 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 28 DIAMONDS -->
+
+                <div
+                    class="card product-card"
+                    data-item="980 + 110 Oneiric Shards"
+                    data-price="187300"
+                    data-point="95"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>1090</h4>
+                            <p>Oneiric Shards</p>
+                        </div>
+
+                        <img
+                            src="img/OS.png"
+                            alt="Diamond"
+                            class="diamond-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp187.300
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+95 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 50 + 8 DIAMONDS -->
+
+                <div
+                    class="card product-card"
+                    data-item="1980 + 260 Oneiric Shard"
+                    data-price="479000"
+                    data-point="110"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>1980 + 260</h4>
+                            <p>Oneiric Shard</p>
+                        </div>
+
+                        <img
+                            src="img/OS.png"
+                            alt="Diamond"
+                            class="diamond-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp479.000
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+110 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 92 + 8 DIAMONDS -->
+
+                <div
+                    class="card product-card"
+                    data-item="3280 + 600 Oneiric Shard"
+                    data-price="737600"
+                    data-point="170"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>3280 + 600</h4>
+                            <p>Oneiric Shard</p>
+                        </div>
+
+                        <img
+                            src="img/OS.png"
+                            alt="Diamond"
+                            class="diamond-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp737.600
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+170 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 149 + 17 DIAMONDS -->
+
+                <div
+                    class="card product-card"
+                    data-item="6480 + 1600 Oneiric Shard"
+                    data-price="1599000"
+                    data-point="250"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>6480 + 1600</h4>
+                            <p>Oneiric Shard</p>
+                        </div>
+
+                        <img
+                            src="img/OS.png"
+                            alt="Diamond"
+                            class="diamond-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp1599.000    
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+250 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             SPECIAL ITEMS
+        =================================== -->
+
+        <section class="product-section">
+
+            <h3 class="section-heading">
+                SPECIAL ITEMS
+            </h3>
+
+
+            <div class="grid">
+
+
+                <!-- LEVEL UP -->
+
+                <div
+                    class="card product-card"
+                    data-item="EXPRESS SUPPLY PASS"
+                    data-price="58977"
+                    data-point="70"
+                >
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>EXPRESS</h4>
+                            <p>SUPPLY PASS</p>
+                        </div>
+
+                        <img
+                            src="img/ESP.png"
+                            alt="EXPRESS SUPPLY PASS"
+                            class="special-icon"
+                        >
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp58.977
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+70 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+            
+        </section>
+
+
+
+        <!-- ==================================
+             2. KODE VOUCHER
+        =================================== -->
+
+<section class="box">
+
+    <div class="title">
+        <span>2)</span>
+        Masukkan Kode Voucher
+    </div>
+
+    <div class="input-group">
+
+        <div class="input-box voucher-box">
+
+            <label for="voucherCode">
+                KODE VOUCHER
+            </label>
+
+            <div class="voucher-row">
+                <input
+                    type="text"
+                    id="voucherCode"
+                    placeholder="MASUKAN KODE VOUCHER"
+                >
+
+                <button class="voucher-action">Gunakan</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- ==================================
+             3. METODE PEMBAYARAN
+        =================================== -->
+
+        <section class="payment-section">
+
+            <div class="payment-title">
+
+                <span>3)</span>
+
+                <h2>
+                    Metode Pembayaran
+                </h2>
+
+            </div>
+
+
+            <div class="payment-list">
+
+
+                <!-- GOPAY -->
+
+                <label class="payment-item">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="GoPay"
+                    >
+
+                    <span class="custom-radio"></span>
+
+
+                    <div class="payment-info">
+
+                        <img
+                            src="img/gopay.png"
+                            alt="GoPay"
+                        >
+
+                    </div>
+
+
+                    <span class="saldo">
+
+                        Saldo:
+
+                        <strong id="saldoGopay">
+                            Rp500.000
+                        </strong>
+
+                    </span>
+
+                </label>
+
+
+
+                <!-- DANA -->
+
+                <label class="payment-item">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="DANA"
+                    >
+
+                    <span class="custom-radio"></span>
+
+
+                    <div class="payment-info">
+
+                        <img
+                            src="img/dana.png"
+                            alt="DANA"
+                        >
+
+                    </div>
+
+
+                    <span class="saldo">
+
+                        Saldo:
+
+                        <strong id="saldoDana">
+                            Rp500.000
+                        </strong>
+
+                    </span>
+
+                </label>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             DETAIL TRANSAKSI
+        =================================== -->
+
+        <section class="transaction-detail">
+
+
+            <!-- HEADER DETAIL -->
+
+            <div class="transaction-header">
+
+                <img
+                    src="img/infinity.png"
+                    class="transaction-logo"
+                    alt="Infinity Shop"
+                >
+
+
+                <div class="transaction-product-name">
+
+                    <h2>
+                        HONKAI STAR RAIL
+                    </h2>
+
+                    <h3 id="detailItem">
+                        Belum memilih item
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ID USER -->
+
+            <div class="detail-row">
+
+                <span>
+                    ID
+                </span>
+
+                <strong id="detailUserId">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <!-- METODE PEMBAYARAN -->
+
+            <div class="detail-row">
+
+                <span>
+                    Metode Pembayaran
+                </span>
+
+                <strong id="detailPayment">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <!-- HARGA -->
+
+            <div class="detail-row">
+
+                <span>
+                    Harga
+                </span>
+
+                <strong id="detailPrice">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- BIAYA ADMIN -->
+
+            <div class="detail-row">
+
+                <span>
+                    Biaya
+                </span>
+
+                <strong id="detailFee">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- GARIS -->
+
+            <div class="detail-line"></div>
+
+
+
+            <!-- TOTAL -->
+
+            <div class="detail-row total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="detailTotal">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- POIN -->
+
+            <div class="point-earned">
+
+                <i class="bx bx-coin-stack"></i>
+
+                <span id="detailPoint">
+                    +0 Poin
+                </span>
+
+            </div>
+
+
+
+            <!-- BUTTON BAYAR -->
+
+            <button
+                type="button"
+                class="pay-button"
+                id="payButton"
+            >
+                Bayar Sekarang
+            </button>
+
+
+        </section>
+
+
+    </main>
+
+    <!-- ==================================
+     MODAL KONFIRMASI PEMBAYARAN
+=================================== -->
+
+<div class="modal-overlay" id="paymentModal">
+
+    <div class="confirm-modal">
+
+        <!-- HEADER -->
+        <div class="confirm-modal-header">
+            Rincian Transaksi
+        </div>
+
+
+        <!-- PERTANYAAN -->
+        <p class="confirm-question">
+            Cek terlebih dahulu apakah ini memang akun kamu?
+        </p>
+
+
+        <!-- BOX RINCIAN -->
+        <div class="confirm-info-box">
+
+            <div class="confirm-row">
+                <span>User ID</span>
+                <strong id="confirmUserId">-</strong>
+            </div>
+
+            <div class="confirm-row">
+                <span>Produk</span>
+                <strong id="confirmProduct">-</strong>
+            </div>
+
+            <div class="confirm-row">
+                <span>Harga</span>
+                <strong id="confirmPrice">Rp0</strong>
+            </div>
+
+            <div class="confirm-row">
+                <span>Biaya Transaksi</span>
+                <strong id="confirmFee">Rp0</strong>
+            </div>
+
+            <div class="confirm-row">
+                <span>Metode Pembayaran</span>
+                <strong id="confirmPayment">-</strong>
+            </div>
+
+        </div>
+
+
+        <!-- GARIS -->
+        <div class="confirm-line"></div>
+
+
+        <!-- TOTAL -->
+        <div class="confirm-total">
+
+            <span>Total Harga</span>
+
+            <strong id="confirmTotal">
+                Rp0
+            </strong>
+
+        </div>
+
+
+        <!-- POINT -->
+        <div class="confirm-point">
+
+            <i class="bx bx-coin-stack"></i>
+
+            <span id="confirmPoint">
+                +0 Poin
+            </span>
+
+        </div>
+
+
+        <!-- BUTTON -->
+        <div class="confirm-buttons">
+
+            <button
+                type="button"
+                class="btn-close-modal"
+                id="closeModalButton"
+            >
+                Tutup
+            </button>
+
+            <button
+                type="button"
+                class="btn-continue-payment"
+                id="continuePaymentButton"
+            >
+                Lanjutkan
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ==================================
+         JAVASCRIPT
+    =================================== -->
+
+    <script src="HSR.js"></script>
+    <script src="script.js"></script>
+
+
 </body>
+
 </html>
