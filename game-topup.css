@@ -254,7 +254,7 @@ border:2px solid transparent;
 }
 
 .card:hover{
-border-color:#00b7ff;
+border-color:#cc00ff;
 }
 
 .card h4{
@@ -406,9 +406,9 @@ color:#BF00FF;
 ========================================= */
 
 .product-card.selected{
-    border-color:#00b7ff;
+    border-color:#cc00ff;
     box-shadow:
-        0 0 0 1px #00b7ff,
+        0 0 0 1px #cc00ff,
         #070707 0px 0px 10px;
 }
 
