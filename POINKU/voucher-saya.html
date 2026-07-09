@@ -16,6 +16,8 @@
         rel="stylesheet"
         href="voucher-saya.css"
     >
+    
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link
         href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -31,6 +33,77 @@
 
 
 <body>
+
+      <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <!-- bagian atas sidebar -->
+        <div class="sidebar-header">
+
+            <button class="close-sidebar">
+                <i class='bx bx-x'></i>
+            </button>
+
+            <img href="HOME.html" src="/img/LOGO1.png"
+                 class="sidebar-logo"
+                 alt="Infinity Shop">
+
+        </div>
+
+
+        <!-- menu sidebar -->
+        <div class="sidebar-menu">
+
+            <a href="/HOME.HTML"
+               class="sidebar-link active">
+
+                <i class='bx bx-home-alt-2'></i>
+
+                <span>HOME</span>
+
+            </a>
+
+
+            <a href="/TRANSAKSI/daftar-transaksi.html"
+               class="sidebar-link">
+
+                <i class='bx bx-receipt'></i>
+
+                <span>TRANSAKSI</span>
+
+            </a>
+
+
+            <a href="/PROMO/PROMO.html"
+               class="sidebar-link">
+
+                <i class='bx bx-badge-check'></i>
+
+                <span>PROMO</span>
+
+            </a>
+
+
+            <a href="/POINKU/poinku.html"
+               class="sidebar-link">
+
+                <i class='bx bx-map'></i>
+
+                <span>POINKU</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div class="sidebar-overlay"></div>
+
 
 
     <nav class="navbar">
@@ -78,9 +151,17 @@
 
     </nav>
 
+    
 
 
     <main class="voucher-page">
+
+         <div class="nav-back-container">
+            <a href="poinku.html" class="back-icon" aria-label="Kembali ke Beranda">
+                <i class="fa-solid fa-arrow-left"></i> Kembali
+            </a>
+        </div>
+
 
         <h1>
             VOUCHER SAYA
@@ -106,6 +187,7 @@
 
 
     <script src="voucher-saya.js"></script>
+    <script src="/script.js"></script>
 
 </body>
 
