@@ -1,11 +1,12 @@
 // ==========================================
 // GAME-TOPUP.JS
 // SATU JS UNTUK 8 GAME
+// ML, FF, PUBG, HSR, HOK, GI, WUWA, ZZZ
 // ==========================================
 
 
 // ==========================================
-// 1. KONFIGURASI GAME DARI <body>
+// 1. KONFIGURASI GAME DARI BODY
 // ==========================================
 
 const GAME_CONFIG = {
@@ -41,7 +42,9 @@ let selectedItem = null;
 
 let appliedVoucher = null;
 
-const adminFee = 193;
+let paymentProcessing = false;
+
+const adminFee = 1500;
 
 
 // ==========================================
@@ -68,17 +71,19 @@ let balances = {
 
 
 // ==========================================
-// 4. AMBIL ELEMENT HTML
+// 4. AMBIL ELEMENT PRODUK
 // ==========================================
 
-// Produk
 const productCards =
     document.querySelectorAll(
         ".product-card"
     );
 
 
-// Input user
+// ==========================================
+// 5. AMBIL INPUT USER
+// ==========================================
+
 const userId =
     document.getElementById(
         "userId"
@@ -90,7 +95,10 @@ const serverId =
     );
 
 
-// Voucher
+// ==========================================
+// 6. AMBIL ELEMENT VOUCHER
+// ==========================================
+
 const voucherCode =
     document.getElementById(
         "voucherCode"
@@ -110,14 +118,20 @@ const voucherMessage =
     );
 
 
-// Payment
+// ==========================================
+// 7. AMBIL PAYMENT
+// ==========================================
+
 const paymentMethods =
     document.querySelectorAll(
         'input[name="payment"]'
     );
 
 
-// Tombol bayar
+// ==========================================
+// 8. TOMBOL BAYAR
+// ==========================================
+
 const payButton =
     document.getElementById(
         "payButton"
@@ -125,7 +139,7 @@ const payButton =
 
 
 // ==========================================
-// 5. DETAIL TRANSAKSI
+// 9. DETAIL TRANSAKSI
 // ==========================================
 
 const detailItem =
@@ -183,7 +197,7 @@ const detailPoint =
 
 
 // ==========================================
-// 6. SALDO
+// 10. SALDO
 // ==========================================
 
 const saldoGopay =
@@ -198,7 +212,7 @@ const saldoDana =
 
 
 // ==========================================
-// 7. MODAL
+// 11. MODAL
 // ==========================================
 
 const paymentModal =
@@ -218,7 +232,7 @@ const continuePaymentButton =
 
 
 // ==========================================
-// 8. ISI MODAL
+// 12. ISI MODAL
 // ==========================================
 
 const confirmUserId =
@@ -274,33 +288,41 @@ const confirmDiscountRow =
 
 
 // ==========================================
-// 9. FORMAT RUPIAH
+// 13. FORMAT RUPIAH
 // ==========================================
 
 function formatRupiah(number) {
 
+    const value =
+        Number(number || 0);
+
     return "Rp" +
-        Number(number || 0)
-            .toLocaleString("id-ID");
+        value.toLocaleString(
+            "id-ID"
+        );
 
 }
 
 
 // ==========================================
-// 10. FORMAT POTONGAN
+// 14. FORMAT DISKON
 // ==========================================
 
 function formatDiscount(number) {
 
+    const value =
+        Number(number || 0);
+
     return "-Rp" +
-        Number(number || 0)
-            .toLocaleString("id-ID");
+        value.toLocaleString(
+            "id-ID"
+        );
 
 }
 
 
 // ==========================================
-// 11. AMBIL PAYMENT TERPILIH
+// 15. AMBIL PAYMENT TERPILIH
 // ==========================================
 
 function getSelectedPayment() {
@@ -313,7 +335,7 @@ function getSelectedPayment() {
 
 
 // ==========================================
-// 12. AMBIL SERVER
+// 16. AMBIL NILAI SERVER
 // ==========================================
 
 function getServerValue() {
@@ -328,7 +350,7 @@ function getServerValue() {
 
 
 // ==========================================
-// 13. BUAT USER ID FULL
+// 17. BUAT USER ID FULL
 // ==========================================
 
 function getUserIdFull() {
@@ -356,13 +378,14 @@ function getUserIdFull() {
 
     }
 
+
     return id;
 
 }
 
 
 // ==========================================
-// 14. UPDATE SALDO
+// 18. UPDATE SALDO
 // ==========================================
 
 function updateBalanceDisplay() {
@@ -389,23 +412,25 @@ function updateBalanceDisplay() {
 }
 
 
-// Jalankan awal
-updateBalanceDisplay();
-
-
 // ==========================================
-// 15. AMBIL DATA VOUCHER USER
+// 19. AMBIL VOUCHER USER
 // ==========================================
 
 function getMyVouchers() {
 
     try {
 
-        return JSON.parse(
-            localStorage.getItem(
-                "myVouchers"
-            )
-        ) || [];
+        const data =
+            JSON.parse(
+                localStorage.getItem(
+                    "myVouchers"
+                )
+            );
+
+
+        return Array.isArray(data)
+            ? data
+            : [];
 
     } catch (error) {
 
@@ -422,21 +447,23 @@ function getMyVouchers() {
 
 
 // ==========================================
-// 16. SIMPAN DATA VOUCHER USER
+// 20. SIMPAN VOUCHER USER
 // ==========================================
 
 function saveMyVouchers(vouchers) {
 
     localStorage.setItem(
         "myVouchers",
-        JSON.stringify(vouchers)
+        JSON.stringify(
+            vouchers
+        )
     );
 
 }
 
 
 // ==========================================
-// 17. NORMALISASI KODE GAME
+// 21. NORMALISASI KODE GAME
 // ==========================================
 
 function normalizeGameCode(value) {
@@ -449,13 +476,42 @@ function normalizeGameCode(value) {
 
     const aliases = {
 
+        // Mobile Legends
+        "ML": "ML",
+        "MLBB": "ML",
         "MOBILE LEGENDS": "ML",
         "MOBILE LEGENDS BANG BANG": "ML",
         "MOBILE LEGENDS: BANG BANG": "ML",
-        "MLBB": "ML",
 
+        // Free Fire
+        "FF": "FF",
+        "FREE FIRE": "FF",
+
+        // PUBG
+        "PUBG": "PUBG",
+        "PUBG MOBILE": "PUBG",
+
+        // Honkai Star Rail
+        "HSR": "HSR",
+        "HONKAI STAR RAIL": "HSR",
+        "HONKAI: STAR RAIL": "HSR",
+
+        // Honor of Kings
+        "HOK": "HOK",
+        "HONOR OF KINGS": "HOK",
+
+        // Genshin
+        "GI": "GI",
         "GENSHIN": "GI",
-        "GENSHIN IMPACT": "GI"
+        "GENSHIN IMPACT": "GI",
+
+        // Wuthering Waves
+        "WUWA": "WUWA",
+        "WUTHERING WAVES": "WUWA",
+
+        // Zenless Zone Zero
+        "ZZZ": "ZZZ",
+        "ZENLESS ZONE ZERO": "ZZZ"
 
     };
 
@@ -466,35 +522,22 @@ function normalizeGameCode(value) {
 
 
 // ==========================================
-// 18. AMBIL GAME VOUCHER
-// ==========================================
-
-function getVoucherGame(voucher) {
-
-    return normalizeGameCode(
-
-        voucher.gameCode ||
-        voucher.game ||
-        voucher.voucherGame ||
-        voucher.targetGame ||
-        ""
-
-    );
-
-}
-
-
-// ==========================================
-// 19. AMBIL KODE VOUCHER
+// 22. AMBIL KODE VOUCHER
 // ==========================================
 
 function getVoucherCode(voucher) {
+
+    if (!voucher) {
+        return "";
+    }
+
 
     return String(
 
         voucher.code ||
         voucher.voucherCode ||
         voucher.kode ||
+        voucher.kodeVoucher ||
         ""
 
     )
@@ -505,43 +548,164 @@ function getVoucherCode(voucher) {
 
 
 // ==========================================
-// 20. AMBIL NILAI DISKON VOUCHER
+// 23. AMBIL GAME VOUCHER
+// ==========================================
+
+function getVoucherGame(voucher) {
+
+    if (!voucher) {
+        return "";
+    }
+
+
+    return normalizeGameCode(
+
+        voucher.gameCode ||
+        voucher.game ||
+        voucher.voucherGame ||
+        voucher.targetGame ||
+        voucher.gameTarget ||
+        ""
+
+    );
+
+}
+
+
+// ==========================================
+// 24. AMBIL NILAI DISKON VOUCHER
 // ==========================================
 
 function getVoucherDiscount(voucher) {
 
+    if (!voucher) {
+        return 0;
+    }
+
+
+    const rawValue =
+
+        voucher.discount ??
+        voucher.discountValue ??
+        voucher.potongan ??
+        voucher.value ??
+        voucher.nominal ??
+        voucher.discountAmount ??
+        0;
+
+
+    // Kalau number langsung pakai
+    if (
+        typeof rawValue ===
+        "number"
+    ) {
+
+        return rawValue;
+
+    }
+
+
+    // Kalau string seperti:
+    // "10000"
+    // "Rp10.000"
+    // "10.000"
+    const cleanedValue =
+        String(rawValue)
+            .replace(/[^\d]/g, "");
+
+
     return Number(
-
-        voucher.discount ||
-        voucher.discountValue ||
-        voucher.potongan ||
-        voucher.value ||
-        voucher.nominal ||
-        0
-
+        cleanedValue || 0
     );
 
 }
 
 
 // ==========================================
-// 21. CEK STATUS VOUCHER
+// 25. CEK VOUCHER SUDAH DIPAKAI
 // ==========================================
 
 function isVoucherUsed(voucher) {
 
+    if (!voucher) {
+        return false;
+    }
+
+
+    const status =
+        String(
+            voucher.status || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
     return (
+
         voucher.used === true ||
+
         voucher.isUsed === true ||
-        voucher.status === "used" ||
-        voucher.status === "USED"
+
+        status === "used" ||
+
+        status === "dipakai" ||
+
+        status === "used-up"
+
     );
 
 }
 
 
 // ==========================================
-// 22. TAMPILKAN PESAN VOUCHER
+// 26. CEK VOUCHER AKTIF
+// ==========================================
+
+function isVoucherActive(voucher) {
+
+    if (!voucher) {
+        return false;
+    }
+
+
+    // Kalau sudah dipakai
+    if (isVoucherUsed(voucher)) {
+        return false;
+    }
+
+
+    const status =
+        String(
+            voucher.status || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    // Status kosong dianggap aktif
+    // agar kompatibel dengan voucher lama
+    if (status === "") {
+        return true;
+    }
+
+
+    return (
+
+        status === "active" ||
+
+        status === "aktif" ||
+
+        status === "available" ||
+
+        status === "tersedia"
+
+    );
+
+}
+
+
+// ==========================================
+// 27. TAMPILKAN PESAN VOUCHER
 // ==========================================
 
 function showVoucherMessage(
@@ -576,7 +740,7 @@ function showVoucherMessage(
 
 
 // ==========================================
-// 23. RESET VOUCHER
+// 28. RESET VOUCHER
 // ==========================================
 
 function resetVoucher() {
@@ -596,42 +760,49 @@ function resetVoucher() {
 
 
 // ==========================================
-// 24. HITUNG DISKON
+// 29. HITUNG DISKON
 // ==========================================
 
 function calculateDiscount() {
 
-    if (
-        !selectedItem ||
-        !appliedVoucher
-    ) {
-
+    // Belum pilih item
+    if (!selectedItem) {
         return 0;
+    }
 
+
+    // Belum ada voucher aktif
+    if (!appliedVoucher) {
+        return 0;
     }
 
 
     let discount =
-        getVoucherDiscount(
-            appliedVoucher
+        Number(
+            appliedVoucher.discount ||
+            0
         );
 
 
-    // Jangan sampai diskon negatif
-    if (discount < 0) {
+    // Nilai tidak valid
+    if (
+        isNaN(discount) ||
+        discount < 0
+    ) {
 
         discount = 0;
 
     }
 
 
-    // Diskon maksimal sebesar
-    // harga item + admin
+    // Harga + admin
     const subtotal =
         selectedItem.price +
         adminFee;
 
 
+    // Diskon tidak boleh
+    // lebih besar dari subtotal
     if (discount > subtotal) {
 
         discount = subtotal;
@@ -645,7 +816,7 @@ function calculateDiscount() {
 
 
 // ==========================================
-// 25. HITUNG TOTAL
+// 30. HITUNG TOTAL
 // ==========================================
 
 function calculateTotal() {
@@ -673,7 +844,7 @@ function calculateTotal() {
 
 
 // ==========================================
-// 26. PILIH ITEM
+// 31. PILIH ITEM
 // ==========================================
 
 productCards.forEach(
@@ -683,7 +854,7 @@ productCards.forEach(
             "click",
             function() {
 
-                // Hapus selected
+                // Hapus selected semua
                 productCards.forEach(
                     function(item) {
 
@@ -695,39 +866,50 @@ productCards.forEach(
                 );
 
 
-                // Pilih card
+                // Pilih card ini
                 card.classList.add(
                     "selected"
                 );
 
 
-                // Ambil data
+                // Ambil data item
                 selectedItem = {
 
                     name:
                         card.getAttribute(
                             "data-item"
-                        ) || "Produk",
+                        ) ||
+                        "Produk",
 
                     price:
                         Number(
                             card.getAttribute(
                                 "data-price"
-                            ) || 0
+                            ) ||
+                            0
                         ),
 
                     point:
                         Number(
                             card.getAttribute(
                                 "data-point"
-                            ) || 0
+                            ) ||
+                            0
                         )
 
                 };
 
 
-                // Update detail
+                // Langsung update
+                // Jika voucher sudah aktif,
+                // diskon otomatis dihitung ulang
                 updateTransactionDetail();
+
+
+                console.log(
+                    "Item dipilih:",
+                    selectedItem
+                );
 
             }
         );
@@ -737,7 +919,7 @@ productCards.forEach(
 
 
 // ==========================================
-// 27. INPUT USER ID
+// 32. INPUT USER ID
 // ==========================================
 
 if (userId) {
@@ -751,7 +933,7 @@ if (userId) {
 
 
 // ==========================================
-// 28. INPUT SERVER
+// 33. INPUT SERVER
 // ==========================================
 
 if (serverId) {
@@ -765,7 +947,7 @@ if (serverId) {
 
 
 // ==========================================
-// 29. PILIH PAYMENT
+// 34. PILIH PAYMENT
 // ==========================================
 
 paymentMethods.forEach(
@@ -781,7 +963,7 @@ paymentMethods.forEach(
 
 
 // ==========================================
-// 30. UPDATE DETAIL TRANSAKSI
+// 35. UPDATE DETAIL TRANSAKSI
 // ==========================================
 
 function updateTransactionDetail() {
@@ -810,7 +992,8 @@ function updateTransactionDetail() {
         if (GAME_CONFIG.needServer) {
 
             detailServer.textContent =
-                getServerValue() || "-";
+                getServerValue() ||
+                "-";
 
         } else {
 
@@ -908,11 +1091,12 @@ function updateTransactionDetail() {
 
 
     // ======================================
-    // HITUNG
+    // HITUNG DISKON DAN TOTAL
     // ======================================
 
     const discount =
         calculateDiscount();
+
 
     const total =
         calculateTotal();
@@ -959,7 +1143,7 @@ function updateTransactionDetail() {
 
 
     // ======================================
-    // DISKON
+    // DISKON VOUCHER
     // ======================================
 
     if (detailDiscount) {
@@ -972,6 +1156,8 @@ function updateTransactionDetail() {
     }
 
 
+    // Tampilkan baris diskon
+    // hanya jika voucher aktif
     if (detailDiscountRow) {
 
         detailDiscountRow.style.display =
@@ -983,7 +1169,7 @@ function updateTransactionDetail() {
 
 
     // ======================================
-    // TOTAL
+    // TOTAL SETELAH DISKON
     // ======================================
 
     if (detailTotal) {
@@ -1013,7 +1199,8 @@ function updateTransactionDetail() {
 
 
 // ==========================================
-// 31. GUNAKAN VOUCHER
+// 36. GUNAKAN VOUCHER
+// LANGSUNG AKTIF DAN POTONG TOTAL
 // ==========================================
 
 if (useVoucherButton) {
@@ -1022,19 +1209,32 @@ if (useVoucherButton) {
         "click",
         function() {
 
-            // Game tidak mendukung voucher
+            // ==================================
+            // CEK GAME DUKUNG VOUCHER
+            // ==================================
+
             if (!GAME_CONFIG.voucherGame) {
+
+                appliedVoucher = null;
+
 
                 showVoucherMessage(
                     "Voucher tidak tersedia untuk game ini.",
                     "error"
                 );
 
+
+                updateTransactionDetail();
+
                 return;
+
             }
 
 
-            // Input tidak ada
+            // ==================================
+            // CEK INPUT VOUCHER
+            // ==================================
+
             if (!voucherCode) {
 
                 showVoucherMessage(
@@ -1043,8 +1243,13 @@ if (useVoucherButton) {
                 );
 
                 return;
+
             }
 
+
+            // ==================================
+            // AMBIL KODE INPUT
+            // ==================================
 
             const inputCode =
                 voucherCode.value
@@ -1055,23 +1260,37 @@ if (useVoucherButton) {
             // Kode kosong
             if (!inputCode) {
 
+                appliedVoucher = null;
+
+
                 showVoucherMessage(
                     "Masukkan kode voucher terlebih dahulu.",
                     "error"
                 );
 
+
                 voucherCode.focus();
 
+
+                updateTransactionDetail();
+
                 return;
+
             }
 
 
-            // Ambil voucher
+            // ==================================
+            // AMBIL SEMUA VOUCHER USER
+            // ==================================
+
             const vouchers =
                 getMyVouchers();
 
 
-            // Cari voucher
+            // ==================================
+            // CARI VOUCHER SESUAI KODE
+            // ==================================
+
             const voucher =
                 vouchers.find(
                     function(item) {
@@ -1085,43 +1304,83 @@ if (useVoucherButton) {
                 );
 
 
-            // Tidak ditemukan
+            // ==================================
+            // VOUCHER TIDAK DITEMUKAN
+            // ==================================
+
             if (!voucher) {
 
                 appliedVoucher = null;
+
 
                 showVoucherMessage(
                     "Kode voucher tidak ditemukan.",
                     "error"
                 );
 
+
                 updateTransactionDetail();
 
                 return;
+
             }
 
 
-            // Sudah digunakan
+            // ==================================
+            // VOUCHER SUDAH DIPAKAI
+            // ==================================
+
             if (isVoucherUsed(voucher)) {
 
                 appliedVoucher = null;
+
 
                 showVoucherMessage(
                     "Voucher sudah pernah digunakan.",
                     "error"
                 );
 
+
                 updateTransactionDetail();
 
                 return;
+
             }
 
 
-            // Cek game voucher
-            const voucherGame =
-                getVoucherGame(voucher);
+            // ==================================
+            // CEK STATUS AKTIF
+            // ==================================
 
-            const currentVoucherGame =
+            if (!isVoucherActive(voucher)) {
+
+                appliedVoucher = null;
+
+
+                showVoucherMessage(
+                    "Voucher tidak aktif.",
+                    "error"
+                );
+
+
+                updateTransactionDetail();
+
+                return;
+
+            }
+
+
+            // ==================================
+            // CEK GAME VOUCHER
+            // ==================================
+
+            const voucherGame =
+                getVoucherGame(
+                    voucher
+                );
+
+
+            const currentGame =
                 normalizeGameCode(
                     GAME_CONFIG.voucherGame
                 );
@@ -1129,10 +1388,11 @@ if (useVoucherButton) {
 
             if (
                 voucherGame !==
-                currentVoucherGame
+                currentGame
             ) {
 
                 appliedVoucher = null;
+
 
                 showVoucherMessage(
                     "Voucher ini tidak berlaku untuk " +
@@ -1141,51 +1401,111 @@ if (useVoucherButton) {
                     "error"
                 );
 
+
                 updateTransactionDetail();
 
                 return;
+
             }
 
 
-            // Cek nilai diskon
+            // ==================================
+            // AMBIL NILAI DISKON
+            // ==================================
+
             const discount =
                 getVoucherDiscount(
                     voucher
                 );
 
 
-            if (discount <= 0) {
+            // Diskon tidak valid
+            if (
+                isNaN(discount) ||
+                discount <= 0
+            ) {
 
                 appliedVoucher = null;
+
 
                 showVoucherMessage(
                     "Nilai voucher tidak valid.",
                     "error"
                 );
 
+
                 updateTransactionDetail();
 
                 return;
+
             }
 
 
-            // Terapkan voucher
+            // ==================================
+            // AKTIFKAN VOUCHER
+            // ==================================
+
             appliedVoucher = {
+
                 ...voucher,
-                code: getVoucherCode(voucher),
-                discount: discount
+
+                code:
+                    getVoucherCode(
+                        voucher
+                    ),
+
+                game:
+                    voucherGame,
+
+                discount:
+                    Number(
+                        discount
+                    )
+
             };
 
 
+            // ==================================
+            // PESAN BERHASIL
+            // ==================================
+
             showVoucherMessage(
-                "Voucher berhasil digunakan. Potongan " +
-                formatRupiah(discount) +
-                ".",
+                "Voucher aktif! Potongan " +
+                formatRupiah(
+                    discount
+                ),
                 "success"
             );
 
 
+            // ==================================
+            // LANGSUNG HITUNG ULANG
+            // TOTAL LANGSUNG TERPOTONG
+            // ==================================
+
             updateTransactionDetail();
+
+
+            // ==================================
+            // DEBUG
+            // ==================================
+
+            console.log(
+                "Voucher aktif:",
+                appliedVoucher
+            );
+
+
+            console.log(
+                "Diskon aktif:",
+                calculateDiscount()
+            );
+
+
+            console.log(
+                "Total setelah diskon:",
+                calculateTotal()
+            );
 
         }
     );
@@ -1194,8 +1514,8 @@ if (useVoucherButton) {
 
 
 // ==========================================
-// 32. JIKA KODE VOUCHER DIUBAH
-// RESET VOUCHER YANG SUDAH DITERAPKAN
+// 37. JIKA INPUT KODE VOUCHER DIUBAH
+// RESET VOUCHER AKTIF
 // ==========================================
 
 if (voucherCode) {
@@ -1204,6 +1524,7 @@ if (voucherCode) {
         "input",
         function() {
 
+            // Tidak ada voucher aktif
             if (!appliedVoucher) {
                 return;
             }
@@ -1215,20 +1536,29 @@ if (voucherCode) {
                     .toUpperCase();
 
 
-            if (
-                currentCode !==
+            const activeCode =
                 getVoucherCode(
                     appliedVoucher
-                )
+                );
+
+
+            // Kalau kode berubah,
+            // voucher dibatalkan
+            if (
+                currentCode !==
+                activeCode
             ) {
 
                 appliedVoucher = null;
+
 
                 showVoucherMessage(
                     "",
                     ""
                 );
 
+
+                // Total kembali normal
                 updateTransactionDetail();
 
             }
@@ -1240,12 +1570,15 @@ if (voucherCode) {
 
 
 // ==========================================
-// 33. VALIDASI DATA
+// 38. VALIDASI TRANSAKSI
 // ==========================================
 
 function validateTransaction() {
 
-    // Item
+    // ======================================
+    // CEK ITEM
+    // ======================================
+
     if (!selectedItem) {
 
         alert(
@@ -1257,7 +1590,10 @@ function validateTransaction() {
     }
 
 
-    // User ID
+    // ======================================
+    // CEK USER ID
+    // ======================================
+
     if (
         !userId ||
         userId.value.trim() === ""
@@ -1271,7 +1607,9 @@ function validateTransaction() {
 
 
         if (userId) {
+
             userId.focus();
+
         }
 
 
@@ -1280,7 +1618,10 @@ function validateTransaction() {
     }
 
 
-    // Server hanya game tertentu
+    // ======================================
+    // CEK SERVER DINAMIS
+    // ======================================
+
     if (GAME_CONFIG.needServer) {
 
         if (
@@ -1294,7 +1635,9 @@ function validateTransaction() {
 
 
             if (serverId) {
+
                 serverId.focus();
+
             }
 
 
@@ -1305,7 +1648,10 @@ function validateTransaction() {
     }
 
 
-    // Payment
+    // ======================================
+    // CEK PAYMENT
+    // ======================================
+
     const selectedPayment =
         getSelectedPayment();
 
@@ -1321,14 +1667,16 @@ function validateTransaction() {
     }
 
 
-    // Total
-    const total =
-        calculateTotal();
+    // ======================================
+    // CEK PAYMENT ADA DI SALDO
+    // ======================================
+
+    const paymentName =
+        selectedPayment.value;
 
 
-    // Saldo
     if (
-        balances[selectedPayment.value] ===
+        balances[paymentName] ===
         undefined
     ) {
 
@@ -1341,14 +1689,22 @@ function validateTransaction() {
     }
 
 
+    // ======================================
+    // CEK SALDO
+    // ======================================
+
+    const total =
+        calculateTotal();
+
+
     if (
-        balances[selectedPayment.value] <
+        balances[paymentName] <
         total
     ) {
 
         alert(
             "Saldo " +
-            selectedPayment.value +
+            paymentName +
             " tidak mencukupi!"
         );
 
@@ -1363,7 +1719,7 @@ function validateTransaction() {
 
 
 // ==========================================
-// 34. KLIK BAYAR SEKARANG
+// 39. KLIK BAYAR SEKARANG
 // ==========================================
 
 if (payButton) {
@@ -1445,7 +1801,7 @@ if (payButton) {
 
 
             // ==================================
-            // DISKON
+            // DISKON MODAL
             // ==================================
 
             if (confirmDiscount) {
@@ -1533,7 +1889,7 @@ if (payButton) {
 
 
 // ==========================================
-// 35. TUTUP MODAL
+// 40. TUTUP MODAL
 // ==========================================
 
 if (closeModalButton) {
@@ -1557,7 +1913,7 @@ if (closeModalButton) {
 
 
 // ==========================================
-// 36. KLIK AREA GELAP
+// 41. KLIK AREA GELAP MODAL
 // ==========================================
 
 if (paymentModal) {
@@ -1584,7 +1940,7 @@ if (paymentModal) {
 
 
 // ==========================================
-// 37. TANDAI VOUCHER SUDAH DIGUNAKAN
+// 42. TANDAI VOUCHER SUDAH DIGUNAKAN
 // ==========================================
 
 function markVoucherAsUsed() {
@@ -1617,12 +1973,22 @@ function markVoucherAsUsed() {
         );
 
 
+    // Voucher tidak ditemukan
     if (voucherIndex === -1) {
+
+        console.warn(
+            "Voucher tidak ditemukan saat akan ditandai used."
+        );
+
         return;
+
     }
 
 
-    // Tandai used
+    // ======================================
+    // TANDAI SUDAH DIPAKAI
+    // ======================================
+
     vouchers[voucherIndex].used =
         true;
 
@@ -1636,7 +2002,10 @@ function markVoucherAsUsed() {
         new Date().toISOString();
 
 
-    // Simpan
+    // ======================================
+    // SIMPAN
+    // ======================================
+
     saveMyVouchers(
         vouchers
     );
@@ -1645,7 +2014,7 @@ function markVoucherAsUsed() {
 
 
 // ==========================================
-// 38. LANJUTKAN PEMBAYARAN
+// 43. LANJUTKAN PEMBAYARAN
 // ==========================================
 
 if (continuePaymentButton) {
@@ -1654,7 +2023,21 @@ if (continuePaymentButton) {
         "click",
         function() {
 
-            // Validasi ulang
+            // ==================================
+            // CEGAH DOUBLE CLICK
+            // ==================================
+
+            if (paymentProcessing) {
+
+                return;
+
+            }
+
+
+            // ==================================
+            // VALIDASI ULANG
+            // ==================================
+
             if (!validateTransaction()) {
 
                 return;
@@ -1664,6 +2047,13 @@ if (continuePaymentButton) {
 
             const selectedPayment =
                 getSelectedPayment();
+
+
+            if (!selectedPayment) {
+
+                return;
+
+            }
 
 
             const paymentName =
@@ -1699,9 +2089,11 @@ if (continuePaymentButton) {
 
 
             // ==================================
-            // NONAKTIFKAN TOMBOL
-            // CEGAH DOUBLE CLICK
+            // MULAI PROSES
             // ==================================
+
+            paymentProcessing = true;
+
 
             continuePaymentButton.disabled =
                 true;
@@ -1709,6 +2101,7 @@ if (continuePaymentButton) {
 
             // ==================================
             // POTONG SALDO
+            // TOTAL SUDAH SETELAH VOUCHER
             // ==================================
 
             balances[paymentName] -=
@@ -1759,6 +2152,7 @@ if (continuePaymentButton) {
             const voucherData =
                 appliedVoucher
                     ? {
+
                         code:
                             getVoucherCode(
                                 appliedVoucher
@@ -1770,7 +2164,13 @@ if (continuePaymentButton) {
                         game:
                             getVoucherGame(
                                 appliedVoucher
-                            )
+                            ),
+
+                        name:
+                            appliedVoucher.name ||
+                            appliedVoucher.title ||
+                            "Voucher"
+
                     }
                     : null;
 
@@ -1781,7 +2181,10 @@ if (continuePaymentButton) {
 
             const transactionData = {
 
-                // Game
+                // ------------------------------
+                // GAME
+                // ------------------------------
+
                 game:
                     GAME_CONFIG.name,
 
@@ -1792,12 +2195,18 @@ if (continuePaymentButton) {
                     GAME_CONFIG.icon,
 
 
-                // Produk
+                // ------------------------------
+                // PRODUK
+                // ------------------------------
+
                 product:
                     selectedItem.name,
 
 
-                // User
+                // ------------------------------
+                // USER
+                // ------------------------------
+
                 userId:
                     userId.value.trim(),
 
@@ -1810,12 +2219,18 @@ if (continuePaymentButton) {
                     getUserIdFull(),
 
 
-                // Jumlah
+                // ------------------------------
+                // JUMLAH
+                // ------------------------------
+
                 jumlah:
                     1,
 
 
-                // Harga
+                // ------------------------------
+                // HARGA
+                // ------------------------------
+
                 harga:
                     selectedItem.price,
 
@@ -1828,21 +2243,34 @@ if (continuePaymentButton) {
                 potongan:
                     discount,
 
+                subtotal:
+                    selectedItem.price +
+                    adminFee,
+
                 total:
                     total,
 
 
-                // Pembayaran
+                // ------------------------------
+                // PAYMENT
+                // ------------------------------
+
                 payment:
                     paymentName,
 
 
-                // Poin
+                // ------------------------------
+                // POINT
+                // ------------------------------
+
                 point:
                     selectedItem.point,
 
 
-                // Voucher
+                // ------------------------------
+                // VOUCHER
+                // ------------------------------
+
                 voucher:
                     voucherData,
 
@@ -1852,7 +2280,10 @@ if (continuePaymentButton) {
                         : "",
 
 
-                // Transaksi
+                // ------------------------------
+                // TRANSAKSI
+                // ------------------------------
+
                 transactionNumber:
                     transactionNumber,
 
@@ -1867,7 +2298,8 @@ if (continuePaymentButton) {
 
 
             // ==================================
-            // TANDAI VOUCHER DIGUNAKAN
+            // TANDAI VOUCHER SUDAH DIPAKAI
+            // HANYA SETELAH PEMBAYARAN
             // ==================================
 
             if (appliedVoucher) {
@@ -1890,6 +2322,28 @@ if (continuePaymentButton) {
 
 
             // ==================================
+            // DEBUG
+            // ==================================
+
+            console.log(
+                "Transaksi dibuat:",
+                transactionData
+            );
+
+
+            console.log(
+                "Total dibayar:",
+                total
+            );
+
+
+            console.log(
+                "Diskon voucher:",
+                discount
+            );
+
+
+            // ==================================
             // PINDAH KE PEMBAYARAN
             // ==================================
 
@@ -1903,14 +2357,16 @@ if (continuePaymentButton) {
 
 
 // ==========================================
-// 39. INISIALISASI TAMPILAN
+// 44. INISIALISASI HALAMAN
 // ==========================================
+
+updateBalanceDisplay();
 
 updateTransactionDetail();
 
 
 // ==========================================
-// 40. DEBUG
+// 45. DEBUG SISTEM
 // ==========================================
 
 console.log(
@@ -1927,7 +2383,7 @@ console.log(
 );
 
 console.log(
-    "Kode:",
+    "Kode Game:",
     GAME_CONFIG.code
 );
 
@@ -1943,12 +2399,18 @@ console.log(
 
 console.log(
     "Voucher Game:",
-    GAME_CONFIG.voucherGame || "Tidak ada"
+    GAME_CONFIG.voucherGame ||
+    "Tidak tersedia"
 );
 
 console.log(
     "Jumlah Produk:",
     productCards.length
+);
+
+console.log(
+    "Voucher Tersimpan:",
+    getMyVouchers()
 );
 
 console.log(
