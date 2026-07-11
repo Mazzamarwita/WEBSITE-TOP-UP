@@ -1,11 +1,732 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP UP HONOR OF KINGS</title>
+    <title>Top Up Honor of Kings - Infinity Shop</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0e0e0e;
+            color: #ddd;
+        }
+
+        .navbar-hok {
+            background: #070707;
+            border-bottom: 2px solid #A416BD;
+            padding: 10px 20px;
+        }
+
+        .navbar-hok .logo {
+            width: 160px;
+        }
+
+        .search-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            width: 400px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            background: none;
+            color: #fff;
+            padding: 8px 16px;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .search-box button {
+            border: none;
+            background: none;
+            color: #A416BD;
+            padding: 0 14px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .btn-masuk {
+            background: linear-gradient(135deg, #002FA4, #A416BD);
+            color: #fff;
+            border: none;
+            padding: 7px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .btn-daftar {
+            background: none;
+            color: #A416BD;
+            border: 1px solid #A416BD;
+            padding: 7px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .banner {
+            position: relative;
+            overflow: hidden;
+            max-height: 300px;
+        }
+
+        .banner img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .banner-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 25px 40px;
+            background: linear-gradient(transparent, #0e0e0e);
+        }
+
+        .banner-overlay h1 {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .banner-overlay .meta {
+            color: #aaa;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .banner-overlay .meta i {
+            color: #A416BD;
+        }
+
+        .game-logo {
+            width: 65px;
+            height: 65px;
+            border-radius: 14px;
+            border: 2px solid #A416BD44;
+            object-fit: cover;
+        }
+
+        .section-box {
+            background: #161616;
+            border: 1px solid #222;
+            border-radius: 12px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: #1a1a1a;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #222;
+        }
+
+        .section-header .num {
+            background: linear-gradient(135deg, #002FA4, #A416BD);
+            color: #fff;
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .section-header h5 {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 600;
+            color: #eee;
+        }
+
+        .section-header h5 i {
+            color: #A416BD;
+            margin-right: 4px;
+        }
+
+        .section-body {
+            padding: 14px;
+        }
+
+        .form-input {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: #fff;
+            width: 100%;
+            outline: none;
+            font-size: 13px;
+        }
+
+        .form-input:focus {
+            border-color: #A416BD;
+        }
+
+        .form-label-sm {
+            font-size: 11px;
+            color: #888;
+            margin-bottom: 4px;
+        }
+
+        .item-card {
+            background: #1a1a1a;
+            border: 1.5px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .item-card:hover {
+            border-color: #A416BD55;
+        }
+
+        .item-card.active {
+            border-color: #A416BD;
+            background: #0f1224;
+        }
+
+        .item-card .icon {
+            font-size: 22px;
+            color: #A416BD;
+        }
+
+        .item-card .amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin: 3px 0 1px;
+        }
+
+        .item-card .label {
+            font-size: 10px;
+            color: #777;
+        }
+
+        .item-card .price {
+            font-size: 11px;
+            color: #A416BD;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .badge-populer {
+            background: linear-gradient(135deg, #002FA4, #A416BD);
+            color: #fff;
+            font-size: 9px;
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            z-index: 1;
+        }
+
+        .sp-card {
+            background: #1a1a1a;
+            border: 1.5px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 14px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .sp-card:hover {
+            border-color: #A416BD55;
+        }
+
+        .sp-card.active {
+            border-color: #A416BD;
+            background: #0f1224;
+        }
+
+        .sp-card .sp-icon {
+            width: 36px;
+            height: 36px;
+            background: #222;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            color: #A416BD;
+            margin-bottom: 8px;
+        }
+
+        .sp-card h6 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #eee;
+            margin-bottom: 2px;
+        }
+
+        .sp-card .desc {
+            font-size: 10px;
+            color: #777;
+            margin-bottom: 6px;
+        }
+
+        .sp-card .sp-price {
+            font-size: 12px;
+            font-weight: 700;
+            color: #A416BD;
+        }
+
+        .sp-card .old-price {
+            font-size: 10px;
+            color: #555;
+            text-decoration: line-through;
+            margin-left: 4px;
+        }
+
+        .badge-limited {
+            background: linear-gradient(135deg, #A416BD, #002FA4);
+            color: #fff;
+            font-size: 9px;
+            line-height: 1;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            white-space: nowrap;
+            margin-bottom: 4px;
+            align-self: flex-start;
+            height: fit-content;
+        }
+
+        .pass-card {
+            background: #1a1a1a;
+            border: 1.5px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 18px;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .pass-card:hover {
+            border-color: #A416BD55;
+        }
+
+        .pass-card.active {
+            border-color: #A416BD;
+            background: #0f1224;
+        }
+
+        .pass-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #002FA4, #A416BD);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .pass-card h6 {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .pass-card .durasi {
+            font-size: 10px;
+            color: #777;
+        }
+
+        .pass-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .pass-card ul li {
+            font-size: 11px;
+            color: #999;
+            padding: 2px 0;
+        }
+
+        .pass-card ul li i {
+            color: #A416BD;
+            margin-right: 4px;
+        }
+
+        .pass-card .pass-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #A416BD;
+        }
+
+        .pass-card .pass-price small {
+            font-size: 10px;
+            color: #777;
+            font-weight: 400;
+        }
+
+        .badge-best {
+            background: linear-gradient(135deg, #002FA4, #A416BD);
+            color: #fff;
+            font-size: 9px;
+            line-height: 1;
+            padding: 5px 10px;
+            border-radius: 0 0 8px 8px;
+            font-weight: 700;
+            position: absolute;
+            top: 0;
+            right: 16px;
+        }
+
+        .pay-card {
+            background: #1a1a1a;
+            border: 1.5px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 10px 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s;
+            height: 100%;
+        }
+
+        .pay-card:hover {
+            border-color: #A416BD55;
+        }
+
+        .pay-card.active {
+            border-color: #A416BD;
+            background: #0f1224;
+        }
+
+        .pay-card img {
+            width: 60px;
+            height: 25px;
+            object-fit: contain;
+            margin-bottom: 5px;
+        }
+
+        .pay-card .pay-name {
+            font-size: 10px;
+            font-weight: 600;
+            color: #ddd;
+            margin-top: 3px;
+        }
+
+        .footer-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #070707;
+            border-top: 1px solid #2a2a2a;
+            padding: 10px 0;
+            z-index: 100;
+        }
+
+        .footer-bar .total {
+            font-size: 10px;
+            color: #888;
+        }
+
+        .footer-bar .harga {
+            font-size: 18px;
+            font-weight: 700;
+            color: #A416BD;
+        }
+
+        .btn-beli {
+            background: linear-gradient(135deg, #002FA4, #A416BD);
+            color: #fff;
+            border: none;
+            padding: 10px 35px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-beli:hover {
+            background: linear-gradient(135deg, #0036C2, #BE1AE0);
+        }
+
+        @media(max-width: 768px) {
+            .search-box {
+                display: none !important;
+            }
+
+            .banner img {
+                height: 200px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
+
+    <!-- NAVBAR -->
+    <nav class="navbar-hok d-flex align-items-center justify-content-between">
+        <a href="HOME.HTML"><img src="img/LOGO1.png" class="logo"></a>
+        <div class="search-box">
+            <input type="text" placeholder="Cari di Infinity Shop">
+            <button><i class='bx bx-search'></i></button>
+        </div>
+        <div class="d-flex gap-2">
+            <a href="REGISTER.html"><button class="btn-daftar">Daftar</button></a>
+            <a href="LOGIN.html"><button class="btn-masuk">Masuk</button></a>
+        </div>
+    </nav>
+
+    <!-- BANNER -->
+    <section class="banner">
+        <img src="img/HOK.jpg" alt="Honor of Kings">
+        <div class="banner-overlay d-flex align-items-end gap-3">
+            <div>
+                <h1>Honor of Kings</h1>
+                <div class="meta">
+                    <i class='bx bxs-star'></i> 4.8 &nbsp;
+                    <i class='bx bxs-user'></i> 50jt+ Player &nbsp;
+                    <i class='bx bxs-zap'></i> Instan
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" style="max-width:820px;padding:20px 14px 85px;">
+
+        <!-- 1. Data Pengguna -->
+        <div class="section-box">
+            <div class="section-header">
+                <div class="num">1</div>
+                <h5><i class='bx bxs-user-detail'></i> Masukkan Data Pengguna</h5>
+            </div>
+            <div class="section-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-label-sm">Player ID</div>
+                        <input type="text" class="form-input" placeholder="Masukkan Player ID">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-label-sm">Server</div>
+                        <input type="text" class="form-input" placeholder="Masukkan Server">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Pilih Token -->
+        <div class="section-box">
+            <div class="section-header">
+                <div class="num">2</div>
+                <h5><i class='bx bxs-diamond'></i> Pilih Nominal Token</h5>
+            </div>
+            <div class="section-body">
+                <div class="row g-2" id="tokenGroup">
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">60</div><div class="label">Tokens</div><div class="price">Rp 15.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">120</div><div class="label">Tokens</div><div class="price">Rp 30.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">300</div><div class="label">Tokens</div><div class="price">Rp 75.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card position-relative" onclick="pilih(this,'tokenGroup')">
+                        <span class="badge-populer">Populer</span>
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">600</div><div class="label">Tokens</div><div class="price">Rp 150.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">1.200</div><div class="label">Tokens</div><div class="price">Rp 300.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">2.500</div><div class="label">Tokens</div><div class="price">Rp 625.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">5.000</div><div class="label">Tokens</div><div class="price">Rp 1.250.000</div>
+                    </div></div>
+                    <div class="col-4 col-md-3"><div class="item-card" onclick="pilih(this,'tokenGroup')">
+                        <i class='bx bxs-diamond icon'></i>
+                        <div class="amount">10.000</div><div class="label">Tokens</div><div class="price">Rp 2.500.000</div>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Special Item -->
+        <div class="section-box">
+            <div class="section-header">
+                <div class="num">3</div>
+                <h5><i class='bx bxs-gift'></i> Special Item</h5>
+            </div>
+            <div class="section-body">
+                <div class="row g-2" id="specialGroup">
+                    <div class="col-md-6"><div class="sp-card" onclick="pilih(this,'specialGroup')">
+                        <div class="d-flex justify-content-between"><div class="sp-icon"><i class='bx bxs-crown'></i></div><span class="badge-limited"><i class='bx bxs-time-five'></i> Limited</span></div>
+                        <h6>Skin Bundle Eksklusif</h6>
+                        <div class="desc">Bundle skin hero limited edition</div>
+                        <span class="sp-price">Rp 89.000</span><span class="old-price">Rp 129.000</span>
+                    </div></div>
+                    <div class="col-md-6"><div class="sp-card" onclick="pilih(this,'specialGroup')">
+                        <div class="sp-icon"><i class='bx bxs-magic-wand'></i></div>
+                        <h6>Recall Effect</h6>
+                        <div class="desc">Efek recall premium eksklusif</div>
+                        <span class="sp-price">Rp 45.000</span>
+                    </div></div>
+                    <div class="col-md-6"><div class="sp-card" onclick="pilih(this,'specialGroup')">
+                        <div class="sp-icon"><i class='bx bxs-palette'></i></div>
+                        <h6>Avatar Frame</h6>
+                        <div class="desc">Frame avatar gold royal</div>
+                        <span class="sp-price">Rp 35.000</span>
+                    </div></div>
+                    <div class="col-md-6"><div class="sp-card" onclick="pilih(this,'specialGroup')">
+                        <div class="d-flex justify-content-between"><div class="sp-icon"><i class='bx bxs-joystick'></i></div><span class="badge-limited"><i class='bx bxs-hot'></i> Hot</span></div>
+                        <h6>Emote Pack</h6>
+                        <div class="desc">Set 5 emote eksklusif</div>
+                        <span class="sp-price">Rp 55.000</span><span class="old-price">Rp 75.000</span>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Weekly & Monthly Pass -->
+        <div class="section-box">
+            <div class="section-header">
+                <div class="num">4</div>
+                <h5><i class='bx bxs-calendar-star'></i> Weekly & Monthly Pass</h5>
+            </div>
+            <div class="section-body">
+                <div class="row g-3" id="passGroup">
+                    <div class="col-md-6"><div class="pass-card" onclick="pilih(this,'passGroup')">
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <div class="pass-icon"><i class='bx bxs-calendar-week'></i></div>
+                            <div><h6>Weekly Pass</h6><div class="durasi">7 hari</div></div>
+                        </div>
+                        <ul>
+                            <li><i class='bx bxs-check-circle'></i> 100 Tokens langsung</li>
+                            <li><i class='bx bxs-check-circle'></i> 20 Tokens/hari x 7 hari</li>
+                            <li><i class='bx bxs-check-circle'></i> Total 240 Tokens</li>
+                        </ul>
+                        <div class="pass-price">Rp 29.000 <small>/ minggu</small></div>
+                    </div></div>
+                    <div class="col-md-6"><div class="pass-card position-relative" onclick="pilih(this,'passGroup')">
+                        <span class="badge-best">Best Value</span>
+                        <div class="d-flex align-items-center gap-3 mb-2">
+                            <div class="pass-icon"><i class='bx bxs-calendar-heart'></i></div>
+                            <div><h6>Monthly Pass</h6><div class="durasi">30 hari</div></div>
+                        </div>
+                        <ul>
+                            <li><i class='bx bxs-check-circle'></i> 300 Tokens langsung</li>
+                            <li><i class='bx bxs-check-circle'></i> 50 Tokens/hari x 30 hari</li>
+                            <li><i class='bx bxs-check-circle'></i> Total 1.800 Tokens</li>
+                        </ul>
+                        <div class="pass-price">Rp 89.000 <small>/ bulan</small></div>
+                    </div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Pembayaran -->
+        <div class="section-box">
+            <div class="section-header">
+                <div class="num">5</div>
+                <h5><i class='bx bxs-wallet'></i> Metode Pembayaran</h5>
+            </div>
+            <div class="section-body">
+                <div class="row g-2" id="payGroup">
+                    <div class="col-4 col-md-3">
+                        <div class="pay-card" onclick="pilih(this,'payGroup')">
+                            <img src="IMG/logo-qris.png" alt="QRIS">
+                            <div class="pay-name">QRIS</div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <div class="pay-card" onclick="pilih(this,'payGroup')">
+                            <img src="IMG/logo-dana.png" alt="DANA">
+                            <div class="pay-name">DANA</div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <div class="pay-card" onclick="pilih(this,'payGroup')">
+                            <img src="IMG/logo-gopay.png" alt="GoPay">
+                            <div class="pay-name">GoPay</div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <div class="pay-card" onclick="pilih(this,'payGroup')">
+                            <img src="IMG/logo-ovo.png" alt="OVO">
+                            <div class="pay-name">OVO</div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <div class="pay-card" onclick="pilih(this,'payGroup')">
+                            <img src="IMG/logo-shopeepay.png" alt="ShopeePay">
+                            <div class="pay-name">ShopeePay</div>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md-3">
+                        <div class="pay-card" onclick="pilih(this,'payGroup')">
+                            <img src="IMG/logo-transefer bank.png" alt="Transfer Bank">
+                            <div class="pay-name">Transfer Bank</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-bar">
+        <div class="container d-flex justify-content-between align-items-center" style="max-width:820px;">
+            <div>
+                <div class="total">Total Pembayaran</div>
+                <div class="harga">Rp 0</div>
+            </div>
+            <button class="btn-beli"><i class='bx bxs-cart-alt'></i> Beli Sekarang</button>
+        </div>
+    </div>
+
+    <script>
+        function pilih(el, groupId) {
+            var cards = document.getElementById(groupId).querySelectorAll('.item-card, .sp-card, .pass-card, .pay-card');
+            cards.forEach(function(c) { c.classList.remove('active'); });
+            el.classList.add('active');
+        }
+    </script>
+
 </body>
+
 </html>
