@@ -32,25 +32,69 @@
         <a href="HOME.HTML"><img src="img/LOGO1.png" class="auth-logo" alt="Logo"></a>
         <div class="section-box">
             <div class="auth-title">Buat Akun Baru</div>
-            <form>
+            <form id="registerForm">
                 <label class="form-label-sm">Nama Lengkap</label>
-                <input type="text" class="form-input" placeholder="Masukkan nama">
+                <input type="text" id="nama" class="form-input" placeholder="Masukkan nama" required>
 
                 <label class="form-label-sm">Email Address</label>
-                <input type="email" class="form-input" placeholder="Masukkan email">
+                <input type="email" id="email" class="form-input" placeholder="Masukkan email" required>
                 
                 <label class="form-label-sm">Password</label>
-                <input type="password" class="form-input" placeholder="Masukkan password">
+                <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
                 
                 <label class="form-label-sm">Konfirmasi Password</label>
-                <input type="password" class="form-input" placeholder="Ulangi password">
+                <input type="password" id="confirmPassword" class="form-input" placeholder="Ulangi password" required>
                 
-                <button type="button" class="btn-submit">Daftar</button>
+                <button type="submit" class="btn-submit">Daftar</button>
             </form>
             <div class="auth-link">
                 Sudah punya akun? <a href="LOGIN.html">Login di sini</a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            // Mencegah reload halaman otomatis saat form di-submit
+            event.preventDefault();
+
+            // Mengambil data dari inputan
+            const nama = document.getElementById('nama').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // 1. Validasi: Apakah password dan konfirmasi password cocok?
+            if (password !== confirmPassword) {
+                alert('Konfirmasi password tidak cocok!');
+                return;
+            }
+
+            // 2. Cek apakah email sudah pernah terdaftar sebelumnya
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            const isEmailExist = users.some(user => user.email === email);
+
+            if (isEmailExist) {
+                alert('Email ini sudah terdaftar! Silakan gunakan email lain atau langsung Login.');
+                return;
+            }
+
+            // 3. Simpan data user baru ke dalam array
+            const newUser = {
+                nama: nama,
+                email: email,
+                password: password // Catatan: Untuk kebutuhan riil, password sebaiknya di-hash demi keamanan.
+            };
+
+            users.push(newUser);
+
+            // 4. Masukkan kembali array users ke Local Storage
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // 5. Beri feedback sukses dan alihkan ke halaman login
+            alert('Pendaftaran berhasil! Silakan login.');
+            window.location.href = 'LOGIN.html'; 
+        });
+    </script>
 </body>
 </html>

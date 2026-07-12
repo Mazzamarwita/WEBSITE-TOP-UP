@@ -32,19 +32,49 @@
         <a href="HOME.HTML"><img src="img/LOGO1.png" class="auth-logo" alt="Logo"></a>
         <div class="section-box">
             <div class="auth-title">Welcome Back!</div>
-            <form>
+            <form id="loginForm">
                 <label class="form-label-sm">Email Address</label>
-                <input type="email" class="form-input" placeholder="Masukkan email">
+                <input type="email" id="email" class="form-input" placeholder="Masukkan email" required>
                 
                 <label class="form-label-sm">Password</label>
-                <input type="password" class="form-input" placeholder="Masukkan password">
+                <input type="password" id="password" class="form-input" placeholder="Masukkan password" required>
                 
-                <button type="button" class="btn-submit">Login</button>
+                <button type="submit" class="btn-submit">Login</button>
             </form>
             <div class="auth-link">
                 Belum punya akun? <a href="REGISTER.html">Daftar sekarang</a>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            // Mencegah reload halaman otomatis saat form dikirim
+            event.preventDefault();
+
+            // Mengambil input dari user
+            const emailInput = document.getElementById('email').value.trim();
+            const passwordInput = document.getElementById('password').value;
+
+            // 1. Mengambil data users yang terdaftar di Local Storage
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            // 2. Mencari user yang email dan password-nya cocok
+            const userFound = users.find(user => user.email === emailInput && user.password === passwordInput);
+
+            if (userFound) {
+                // 3. Jika cocok, simpan status login (opsional, berguna untuk cek session di halaman Home)
+                localStorage.setItem('currentUser', JSON.stringify(userFound));
+
+                alert(`Selamat datang kembali, ${userFound.nama}!`);
+                
+                // 4. Alihkan ke halaman utama (HOME.HTML)
+                window.location.href = 'HOME.HTML';
+            } else {
+                // 5. Jika tidak cocok/tidak ditemukan
+                alert('Email atau Password salah! Silakan periksa kembali.');
+            }
+        });
+    </script>
 </body>
 </html>
