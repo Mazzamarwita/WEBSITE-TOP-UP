@@ -1,0 +1,50 @@
+/* ==============================
+PROFILE
+============================== */
+
+.profile-menu{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+.profile-avatar{
+
+    width:42px;
+    height:42px;
+
+    border-radius:50%;
+
+    background:#A416BD;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.profile-name{
+
+    font-size:14px;
+
+}
+
+.profile-menu i{
+
+    font-size:22px;
+
+}
