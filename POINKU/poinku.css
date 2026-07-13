@@ -59,46 +59,6 @@ body{
     width:180px;
 }
 
-.search-box{
-    width:520px;
-    height:40px;
-
-    display:flex;
-
-    background:white;
-
-    border:2px solid #a100ff;
-
-    border-radius:30px;
-
-    overflow:hidden;
-}
-
-.search-box input{
-    flex:1;
-
-    border:none;
-    outline:none;
-
-    padding-left:18px;
-
-    font-size:15px;
-}
-
-.search-box button{
-    width:55px;
-
-    border:none;
-
-    background:white;
-
-    color:#a100ff;
-
-    font-size:28px;
-
-    cursor:pointer;
-}
-
 .user-area{
     display:flex;
     align-items:center;
