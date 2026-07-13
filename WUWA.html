@@ -10,6 +10,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="game-topup.css">
+    <link rel="stylesheet" href="auth.css">
 
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -19,7 +20,7 @@
 </head>
 
 
-<body data-game="Wuthering waves" data-game-code="WUWA" data-game-icon="img/WUWA.png" data-need-server="true" data-voucher-game="true">
+<body data-game="Wuthering waves" data-game-code="WUWA" data-game-icon="img/WUWA.png" data-need-server="true" data-voucher-game="false">
 
     <!-- ================= SIDEBAR ================= -->
 
@@ -102,17 +103,22 @@
 
         </div>
 
-        <div class="nav-button">
+     <div class="nav-button" id="navbarUser">
 
+            <a href="REGISTER.html">
             <button class="btn-register">
                 Daftar
             </button>
+            </a>
 
+            <a href="LOGIN.html">
             <button class="btn-login">
                 Masuk
             </button>
+            </a>
 
         </div>
+
 
     </nav>
 
@@ -606,6 +612,7 @@
 
     <script src="game-topup.js"></script>
     <script src="script.js"></script>
+    <script src="auth.js"></script>
 </body>
 
 </html>
