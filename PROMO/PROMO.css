@@ -56,31 +56,6 @@ body {
     margin: 0 20px;
 }
 
-.search-container {
-    display: flex;
-    background: #fff;
-    border: 2px solid #a100ff;
-    border-radius: 30px;
-    overflow: hidden;
-}
-
-.search-container input {
-    flex: 1;
-    border: none;
-    outline: none;
-    padding: 12px 18px;
-    font-size: 15px;
-}
-
-.search-btn {
-    width: 55px;
-    border: none;
-    background: #fff;
-    color: #a100ff;
-    cursor: pointer;
-    font-size: 22px;
-}
-
 .nav-right {
     display: flex;
     gap: 10px;
