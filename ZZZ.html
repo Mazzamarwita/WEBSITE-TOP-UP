@@ -1,11 +1,619 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>TOP UP ZENLESS ZONE ZERO</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="game-topup.css">
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    
+
+
+<body data-game="Wuthering waves" data-game-code="WUWA" data-game-icon="img/WUWA.png" data-need-server="true" data-voucher-game="WUWA">
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-header">
+
+            <button class="close-sidebar">
+                <i class='bx bx-x'></i>
+            </button>
+
+            <img src="/IMG/LOGO1.png" class="sidebar-logo" alt="Infinity Shop">
+
+        </div>
+
+
+        <!-- menu sidebar -->
+        <div class="sidebar-menu">
+
+            <a href="/HOME.HTML" class="sidebar-link">
+
+                <i class='bx bx-home-alt-2'></i>
+
+                <span>HOME</span>
+
+            </a>
+
+
+            <a href="/TRANSAKSI/daftar-transaksi.html" class="sidebar-link">
+
+                <i class='bx bx-receipt'></i>
+
+                <span>TRANSAKSI</span>
+
+            </a>
+
+
+            <a href="/PROMO/PROMO.html" class="sidebar-link">
+
+                <i class='bx bx-badge-check'></i>
+
+                <span>PROMO</span>
+
+            </a>
+
+
+            <a href="POINKU/poinku.html" class="sidebar-link">
+
+                <i class='bx bx-map'></i>
+
+                <span>POINKU</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================= OVERLAY ================= -->
+
+    <div class="sidebar-overlay"></div>
+
+
+    <!-- ==================================
+         NAVBAR
+    =================================== -->
+
+    <nav class="navbar">
+
+        <div class="left-navbar">
+
+            <button class="menu-btn">
+                <i class="bx bx-menu"></i>
+            </button>
+
+            <img src="img/LOGO1.png" class="logo" alt="Infinity Shop">
+
+        </div>
+
+
+        <div class="search-box">
+
+            <input type="text" placeholder="Cari semua di Infinity Shop">
+
+            <button>
+                <i class="bx bx-search"></i>
+            </button>
+
+        </div>
+
+
+        <div class="nav-button">
+
+            <button class="btn-register">
+                Daftar
+            </button>
+
+            <button class="btn-login">
+                Masuk
+            </button>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ==================================
+         BANNER
+    =================================== -->
+
+    <section class="banner">
+
+        <div class="banner-img">
+
+            <img src="img/ZZZbanner.png" alt="Wuthering Waves Banner">
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         MAIN CONTENT
+    =================================== -->
+
+    <main class="main-content">
+
+
+
+        <!-- ==================================
+             1. DATA PENGGUNA
+        =================================== -->
+
+        <section class="box">
+
+            <div class="title">
+
+                <span>1)</span> Masukkan Data Pengguna
+
+            </div>
+
+
+            <div class="input-group">
+
+                <!-- ID -->
+                <div class="input-box">
+
+                    <label for="userId">
+                        ID
+                    </label>
+
+                    <input type="text" id="userId" placeholder="MASUKAN ID">
+
+                </div>
+
+
+                <!-- SERVER -->
+                <div class="input-box">
+
+                    <label for="serverId">
+                        Server
+                    </label>
+
+                    <input type="text" id="serverId" placeholder="MASUKAN SERVER">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             DIAMONDS
+        =================================== -->
+
+        <section class="product-section">
+
+            <h3 class="section-heading">
+                MONOCROME
+            </h3>
+
+
+            <div class="grid">
+
+
+
+                <div class="card product-card" data-item="300 Lunites" data-price="73945" data-point="70">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>300</h4>
+                            <p>Monocrome</p>
+                        </div>
+
+                        <img src="img/Monocrome.png" alt="Diamond" class="diamond-icon">
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp73.945
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+70 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card product-card" data-item="998 Lunites" data-price="245705" data-point="55">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>998</h4>
+                            <p>Monocrome</p>
+                        </div>
+
+                        <img src="img/Monocrome.png" alt="Diamond" class="diamond-icon">
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp245.705
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+55 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 28 DIAMONDS -->
+
+                <div class="card product-card" data-item="1834 Lunites" data-price="437490" data-point="67">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>1.834</h4>
+                            <p>Monocrome</p>
+                        </div>
+
+                        <img src="img/Monocrome.png" alt="Diamond" class="diamond-icon">
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp437.490
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+67 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="card product-card" data-item="3597 Lunites" data-price="753500" data-point="78">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>3.597</h4>
+                            <p>Monocrome</p>
+                        </div>
+
+                        <img src="img/Monocrome.png" alt="Diamond" class="diamond-icon">
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp753.500
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+78 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div class="card product-card" data-item="6.786 Lunites" data-price="1525075" data-point="89">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>6.786</h4>
+                            <p>Monocrome</p>
+                        </div>
+
+                        <img src="img/Monocrome.png" alt="Diamond" class="diamond-icon">
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp1.525.075
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+89 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+        </section>
+
+
+
+        <!-- ==================================
+             SPECIAL ITEMS
+        =================================== -->
+
+        <section class="product-section">
+
+            <h3 class="section-heading">
+                SPECIAL ITEMS
+            </h3>
+
+
+            <div class="grid">
+
+
+                <!-- 1 WDP -->
+
+                <div class="card product-card" data-item="Interknot" data-price="74000" data-point="55">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+                            <h4>1</h4>
+                            <p>Interknot</p>
+                        </div>
+
+                        <img src="img/Interknot.png" alt="Interknot" class="special-icon">
+
+                    </div>
+
+
+                    <div class="card-footer">
+
+                        <strong>
+                            Rp74.000
+                        </strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+55 Poin</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 3 WDP -->
+
+                <div class="card product-card" data-item="Growht Plan" data-price="154000" data-point="67">
+
+                    <div class="card-top">
+                        <div class="card-name">
+                            <h4>3</h4>
+                            <p>Growht Plan</p>
+                        </div>
+
+                        <img src="img/Growht_plan.png" alt="Growht Plan" class="special-icon">
+                    </div>
+
+                    <div class="card-footer">
+                        <strong>Rp154.000</strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+67 Poin</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card product-card" data-item=" Premium Plan" data-price="354000" data-point="78">
+
+                    <div class="card-top">
+                        <div class="card-name">
+                            <h4>3</h4>
+                            <p>Premium Plan</p>
+                        </div>
+
+                        <img src="img/Premium_plan.png" alt="Premium Plan" class="special-icon">
+                    </div>
+
+                    <div class="card-footer">
+                        <strong>Rp354.000</strong>
+
+                        <div class="point">
+                            <i class="bx bx-coin-stack"></i>
+                            <span>+78 Poin</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================
+             2. KODE VOUCHER
+        =================================== -->
+
+        </section>
+        <section class="box">
+            <div class="title">
+                <span>2)</span> Masukkan Kode Voucher
+            </div>
+            <div class="input-group">
+                <div class="input-box voucher-box">
+                    <label for="voucherCode">KODE VOUCHER</label>
+                    <div class="voucher-row">
+                        <input type="text" id="voucherCode" placeholder="MASUKAN KODE VOUCHER">
+                        <button class="voucher-action">Gunakan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="payment-section">
+            <div class="payment-title">
+                <span>3)</span>
+                <h2>Metode Pembayaran</h2>
+            </div>
+            <div class="payment-list">
+                <label class="payment-item">
+                        <input type="radio" name="payment" value="GoPay">
+                        <span class="custom-radio"></span>
+                        <div class="payment-info">
+                            <img src="img/gopay.png" alt="GoPay">
+                        </div>
+                        <span class="saldo">
+                            Saldo: <strong id="saldoGopay">Rp500.000</strong>
+                        </span>
+                    </label>
+
+                <label class="payment-item">
+                        <input type="radio" name="payment" value="DANA">
+                        <span class="custom-radio"></span>
+                        <div class="payment-info">
+                            <img src="img/dana.png" alt="DANA">
+                        </div>
+                        <span class="saldo">
+                            Saldo: <strong id="saldoDana">Rp500.000</strong>
+                        </span>
+                    </label>
+            </div>
+        </section>
+        </div>
+
+        <aside class="right-content">
+            <section class="transaction-detail">
+                <div class="transaction-header">
+                    <img src="img/infinity.png" class="transaction-logo" alt="Infinity Shop">
+                    <div class="transaction-product-name">
+                        <h2>WUTHERING WAVES</h2>
+                        <h3 id="detailItem">Belum memilih item</h3>
+                    </div>
+                </div>
+
+                <div class="detail-row">
+                    <span>ID</span>
+                    <strong id="detailUserId">-</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Server</span>
+                    <strong id="detailServer">-</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Metode Pembayaran</span>
+                    <strong id="detailPayment">-</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Harga</span>
+                    <strong id="detailPrice">Rp0</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Biaya</span>
+                    <strong id="detailFee">Rp0</strong>
+                </div>
+
+                <div class="detail-line"></div>
+
+                <div class="detail-row total-row">
+                    <span>Total</span>
+                    <strong id="detailTotal">Rp0</strong>
+                </div>
+
+                <div class="point-earned">
+                    <i class="bx bx-coin-stack"></i>
+                    <span id="detailPoint">+0 Poin</span>
+                </div>
+
+                <button type="button" class="pay-button" id="payButton">Bayar Sekarang</button>
+            </section>
+        </aside>
+
+    </main>
+
+    <div class="modal-overlay" id="paymentModal">
+        <div class="confirm-modal">
+            <div class="confirm-modal-header">Rincian Transaksi</div>
+            <p class="confirm-question">Cek terlebih dahulu apakah ini memang akun kamu?</p>
+            <div class="confirm-info-box">
+                <div class="confirm-row">
+                    <span>User ID</span>
+                    <strong id="confirmUserId">-</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Produk</span>
+                    <strong id="confirmProduct">-</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Harga</span>
+                    <strong id="confirmPrice">Rp0</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Biaya Transaksi</span>
+                    <strong id="confirmFee">Rp0</strong>
+                </div>
+                <div class="confirm-row">
+                    <span>Metode Pembayaran</span>
+                    <strong id="confirmPayment">-</strong>
+                </div>
+            </div>
+            <div class="confirm-line"></div>
+            <div class="confirm-total">
+                <span>Total Harga</span>
+                <strong id="confirmTotal">Rp0</strong>
+            </div>
+            <div class="confirm-point">
+                <i class="bx bx-coin-stack"></i>
+                <span id="confirmPoint">+0 Poin</span>
+            </div>
+            <div class="confirm-buttons">
+                <button type="button" class="btn-close-modal" id="closeModalButton">Tutup</button>
+                <button type="button" class="btn-continue-payment" id="continuePaymentButton">Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game-topup.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>
