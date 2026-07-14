@@ -52,8 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             </span>
 
-            <i class='bx bx-chevron-down'></i>
-
         </div>
 
     `;
