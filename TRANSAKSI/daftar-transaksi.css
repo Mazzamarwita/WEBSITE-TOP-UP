@@ -18,9 +18,7 @@ body{
 }
 
 
-/* =========================================
-   NAVBAR
-========================================= */
+/* NAVBAR */
 
 .navbar{
     width:100%;
@@ -64,41 +62,8 @@ body{
     width:180px;
 }
 
-/* =========================================
-   PROFILE
-========================================= */
 
-.profile{
-    display:flex;
-    align-items:center;
-
-    gap:8px;
-
-    color:white;
-}
-
-
-.profile-circle{
-    width:38px;
-    height:38px;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    border-radius:50%;
-
-    background:#46b968;
-
-    color:white;
-
-    font-size:22px;
-}
-
-
-/* =========================================
-   HALAMAN TRANSAKSI
-========================================= */
+/* HALAMAN TRANSAKSI */
 
 .transaction-page{
     width:92%;
@@ -108,9 +73,7 @@ body{
 }
 
 
-/* =========================================
-   HEADER
-========================================= */
+/* HEADER */
 
 .transaction-page-header{
     display:flex;
@@ -131,9 +94,7 @@ body{
 }
 
 
-/* =========================================
-   FILTER
-========================================= */
+/* FILTER */
 
 .transaction-filters{
     display:flex;
@@ -166,9 +127,7 @@ body{
 }
 
 
-/* =========================================
-   GRID TRANSAKSI
-========================================= */
+/* GRID TRANSAKSI */
 
 .transaction-grid{
     display:grid;
@@ -180,9 +139,7 @@ body{
 }
 
 
-/* =========================================
-   CARD TRANSAKSI
-========================================= */
+/* CARD UTAMA */
 
 .transaction-card{
     min-height:180px;
@@ -215,9 +172,7 @@ body{
 }
 
 
-/* =========================================
-   HEADER CARD
-========================================= */
+/* HEADER CARD */
 
 .transaction-card-header{
     display:flex;
@@ -238,9 +193,7 @@ body{
 }
 
 
-/* =========================================
-   STATUS
-========================================= */
+/* STATUS */
 
 .transaction-status{
     padding:2px 10px;
@@ -271,9 +224,7 @@ body{
 }
 
 
-/* =========================================
-   PRODUK
-========================================= */
+/* PRODUK */
 
 .transaction-product{
     display:flex;
@@ -319,9 +270,7 @@ body{
 }
 
 
-/* =========================================
-   FOOTER CARD
-========================================= */
+/* FOOTER CARD */
 
 .transaction-card-footer{
     display:flex;
@@ -355,9 +304,7 @@ body{
 }
 
 
-/* =========================================
-   EMPTY TRANSACTION
-========================================= */
+/* BELUM ADA TRANSAKSI */
 
 .empty-transaction{
     display:none;
@@ -394,9 +341,7 @@ body{
 }
 
 
-/* =========================================
-   PAGINATION
-========================================= */
+/* PAGINATION */
 
 .pagination{
     display:flex;

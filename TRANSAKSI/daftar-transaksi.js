@@ -1,24 +1,17 @@
-// ==========================================
 // 1. AMBIL RIWAYAT TRANSAKSI
-// ==========================================
 
 let transactionHistory = JSON.parse(
     localStorage.getItem("transactionHistory")
 ) || [];
 
 
-// ==========================================
 // 2. AMBIL TRANSAKSI TERAKHIR
-// ==========================================
 
 const currentTransaction = JSON.parse(
     localStorage.getItem("currentTransaction")
 );
 
-
-// ==========================================
 // 3. SINKRONKAN CURRENT KE HISTORY
-// ==========================================
 
 if (
     currentTransaction &&
@@ -62,10 +55,7 @@ if (
 
 }
 
-
-// ==========================================
 // 4. AMBIL ELEMENT HTML
-// ==========================================
 
 const transactionGrid =
     document.getElementById(
@@ -107,19 +97,14 @@ const pageNumber =
         "pageNumber"
     );
 
-
-// ==========================================
 // 5. PAGINATION
-// ==========================================
 
 let currentPage = 1;
 
 const itemsPerPage = 4;
 
 
-// ==========================================
 // 6. FORMAT RUPIAH
-// ==========================================
 
 function formatRupiah(number) {
 
@@ -130,10 +115,7 @@ function formatRupiah(number) {
 
 }
 
-
-// ==========================================
 // 7. FORMAT TANGGAL
-// ==========================================
 
 function formatDate(dateString) {
 
@@ -207,10 +189,7 @@ function formatDate(dateString) {
 
 }
 
-
-// ==========================================
 // 8. NORMALISASI KODE GAME
-// ==========================================
 
 function normalizeGameCode(gameCode) {
 
@@ -223,17 +202,12 @@ function normalizeGameCode(gameCode) {
 }
 
 
-// ==========================================
-// 9. ICON GAME DINAMIS
-//    UNTUK 8 GAME
-// ==========================================
+
+// 9. ICON GAME DINAMIS UNTUK 8 GAME
 
 function getGameIcon(transaction) {
 
-    // ======================================
-    // PRIORITAS 1
-    // Gunakan gameIcon dari transaksi
-    // ======================================
+    // PRIORITAS 1 Gunakan gameIcon dari transaksi
 
     if (
         transaction.gameIcon &&
@@ -269,10 +243,7 @@ function getGameIcon(transaction) {
     }
 
 
-    // ======================================
-    // PRIORITAS 2
-    // Berdasarkan gameCode
-    // ======================================
+    // PRIORITAS 2 Berdasarkan gameCode
 
     const gameCode =
         normalizeGameCode(
@@ -330,10 +301,7 @@ function getGameIcon(transaction) {
 
 }
 
-
-// ==========================================
 // 10. FILTER DATA TRANSAKSI
-// ==========================================
 
 function getFilteredTransactions() {
 
@@ -341,10 +309,7 @@ function getFilteredTransactions() {
         ...transactionHistory
     ];
 
-
-    // ======================================
     // FILTER STATUS
-    // ======================================
 
     if (statusFilter) {
 
@@ -369,10 +334,7 @@ function getFilteredTransactions() {
 
     }
 
-
-    // ======================================
     // FILTER WAKTU
-    // ======================================
 
     if (timeFilter) {
 
@@ -437,10 +399,7 @@ function getFilteredTransactions() {
 
     }
 
-
-    // ======================================
     // SEARCH
-    // ======================================
 
     if (searchTransaction) {
 
@@ -512,10 +471,7 @@ function getFilteredTransactions() {
 
 }
 
-
-// ==========================================
 // 11. TAMPILKAN TRANSAKSI
-// ==========================================
 
 function displayTransactions() {
 
@@ -536,10 +492,7 @@ function displayTransactions() {
 
     transactionGrid.innerHTML = "";
 
-
-    // ======================================
     // JIKA KOSONG
-    // ======================================
 
     if (filtered.length === 0) {
 
@@ -559,9 +512,7 @@ function displayTransactions() {
     }
 
 
-    // ======================================
     // SEMBUNYIKAN PESAN KOSONG
-    // ======================================
 
     if (emptyTransaction) {
 
@@ -571,10 +522,7 @@ function displayTransactions() {
 
     }
 
-
-    // ======================================
     // HITUNG TOTAL HALAMAN
-    // ======================================
 
     const totalPages =
         Math.ceil(
@@ -597,10 +545,7 @@ function displayTransactions() {
 
     }
 
-
-    // ======================================
     // POTONG DATA
-    // ======================================
 
     const startIndex =
         (currentPage - 1) *
@@ -618,10 +563,7 @@ function displayTransactions() {
             endIndex
         );
 
-
-    // ======================================
     // BUAT CARD
-    // ======================================
 
     pageData.forEach(
         function(transaction) {
@@ -636,9 +578,7 @@ function displayTransactions() {
                 "transaction-card";
 
 
-            // ==================================
             // STATUS
-            // ==================================
 
             const isFinished =
                 transaction.status ===
@@ -657,9 +597,7 @@ function displayTransactions() {
                     : "processing";
 
 
-            // ==================================
             // DATA
-            // ==================================
 
             const game =
                 transaction.game ||
@@ -685,10 +623,7 @@ function displayTransactions() {
                     transaction
                 );
 
-
-            // ==================================
             // ISI CARD
-            // ==================================
 
             card.innerHTML = `
 
@@ -765,38 +700,7 @@ function displayTransactions() {
 
             `;
 
-
-            // ==================================
-            // FALLBACK JIKA ICON ERROR
-            // ==================================
-
-            const imageElement =
-                card.querySelector(
-                    ".transaction-game-icon"
-                );
-
-
-            if (imageElement) {
-
-                imageElement.addEventListener(
-                    "error",
-                    function() {
-
-                        this.src =
-                            "../img/MLicon.png";
-
-                    },
-                    {
-                        once: true
-                    }
-                );
-
-            }
-
-
-            // ==================================
             // KLIK CARD
-            // ==================================
 
             card.addEventListener(
                 "click",
@@ -824,10 +728,7 @@ function displayTransactions() {
 
 }
 
-
-// ==========================================
 // 12. BUKA DETAIL TRANSAKSI
-// ==========================================
 
 function openTransactionDetail(
     transactionNumber
@@ -866,17 +767,13 @@ function openTransactionDetail(
     );
 
 
-    // Karena halaman daftar transaksi
-    // ada di folder TRANSAKSI
+    // mengarahkan ke pembayaran.html
     window.location.href =
         "../pembayaran.html";
 
 }
 
-
-// ==========================================
 // 13. UPDATE PAGINATION
-// ==========================================
 
 function updatePagination(totalPages) {
 
@@ -908,10 +805,7 @@ function updatePagination(totalPages) {
 
 }
 
-
-// ==========================================
-// 14. PREVIOUS PAGE
-// ==========================================
+// 14. KE PREVIOUS PAGE
 
 if (prevPage) {
 
@@ -932,10 +826,7 @@ if (prevPage) {
 
 }
 
-
-// ==========================================
-// 15. NEXT PAGE
-// ==========================================
+// 15. KE NEXT PAGE
 
 if (nextPage) {
 
@@ -970,10 +861,7 @@ if (nextPage) {
 
 }
 
-
-// ==========================================
 // 16. FILTER STATUS
-// ==========================================
 
 if (statusFilter) {
 
@@ -990,10 +878,7 @@ if (statusFilter) {
 
 }
 
-
-// ==========================================
 // 17. FILTER WAKTU
-// ==========================================
 
 if (timeFilter) {
 
@@ -1010,45 +895,6 @@ if (timeFilter) {
 
 }
 
-
-// ==========================================
-// 18. SEARCH
-// ==========================================
-
-if (searchTransaction) {
-
-    searchTransaction.addEventListener(
-        "input",
-        function() {
-
-            currentPage = 1;
-
-            displayTransactions();
-
-        }
-    );
-
-}
-
-
-// ==========================================
-// 19. DEBUG
-// ==========================================
-
-console.log(
-    "Current Transaction:",
-    currentTransaction
-);
-
-
-console.log(
-    "Transaction History:",
-    transactionHistory
-);
-
-
-// ==========================================
-// 20. JALANKAN
-// ==========================================
+// 18. JALANKAN
 
 displayTransactions();

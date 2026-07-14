@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =========================
     // SIDEBAR
-    // =========================
-
     const menuBtn = document.querySelector(".menu-btn");
     const sidebar = document.querySelector(".sidebar");
     const closeSidebar = document.querySelector(".close-sidebar");
@@ -27,10 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         sidebarOverlay.classList.remove("active");
     });
 
-
-    // =========================
     // BANNER SLIDER
-    // =========================
 
     const slides = document.querySelectorAll(".slider img");
     const dots = document.querySelectorAll(".dot");

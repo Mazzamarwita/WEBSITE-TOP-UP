@@ -360,9 +360,7 @@ font-size:18px;
 
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+/* SIDEBAR */
 
 .sidebar{
     position:fixed;
@@ -486,9 +484,7 @@ font-size:18px;
 }
 
 
-/* =========================
-   OVERLAY
-========================= */
+/* OVERLAY */
 
 .sidebar-overlay{
     position:fixed;
