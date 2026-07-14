@@ -10,6 +10,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="game-topup.css">
+    <link rel="stylesheet" href="auth.css">
 
     <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
@@ -19,7 +20,7 @@
 </head>
 
 
-<body data-game="Wuthering waves" data-game-code="WUWA" data-game-icon="img/WUWA.png" data-need-server="true" data-voucher-game="WUWA">
+<body data-game="Genshin Impact" data-game-code="GI" data-game-icon="img/GIicon.png" data-need-server="true" data-voucher-game="GI">
 
     <aside class="sidebar">
 
@@ -65,7 +66,7 @@
             </a>
 
 
-            <a href="POINKU/poinku.html" class="sidebar-link">
+            <a href="/POINKU/poinku.html" class="sidebar-link">
 
                 <i class='bx bx-map'></i>
 
@@ -100,27 +101,19 @@
 
         </div>
 
+        <div class="nav-button" id="navbarUser">
 
-        <div class="search-box">
-
-            <input type="text" placeholder="Cari semua di Infinity Shop">
-
-            <button>
-                <i class="bx bx-search"></i>
-            </button>
-
-        </div>
-
-
-        <div class="nav-button">
-
+            <a href="REGISTER.html">
             <button class="btn-register">
                 Daftar
             </button>
+            </a>
 
+            <a href="LOGIN.html">
             <button class="btn-login">
                 Masuk
             </button>
+            </a>
 
         </div>
 
@@ -174,7 +167,7 @@
                         ID
                     </label>
 
-                    <input type="text" id="userId" placeholder="MASUKAN ID">
+                    <input type="text" id="userId" placeholder="MASUKAN ID" autocomplete="off">
 
                 </div>
 
@@ -186,7 +179,7 @@
                         Server
                     </label>
 
-                    <input type="text" id="serverId" placeholder="MASUKAN SERVER">
+                    <input type="text" id="serverId" placeholder="MASUKAN SERVER" autocomplete="off">
 
                 </div>
 
@@ -208,16 +201,16 @@
 
 
 
-                <div class="card product-card" data-item="300 Gennesis" data-price="73945" data-point="70">
+                <div class="card product-card" data-item="300 Genesis" data-price="73945" data-point="70">
 
                     <div class="card-top">
 
                         <div class="card-name">
                             <h4>300</h4>
-                            <p>Gennesis</p>
+                            <p>Genesis</p>
                         </div>
 
-                        <img src="img/Gennesis.png" alt="Diamond" class="diamond-icon">
+                        <img src="img/Genesis.png" alt="Diamond" class="diamond-icon">
 
                     </div>
 
@@ -238,16 +231,16 @@
                 </div>
 
 
-                <div class="card product-card" data-item="998 Gennesis" data-price="245705" data-point="55">
+                <div class="card product-card" data-item="998 Genesis" data-price="245705" data-point="55">
 
                     <div class="card-top">
 
                         <div class="card-name">
                             <h4>998</h4>
-                            <p>Gennesis</p>
+                            <p>Genesis</p>
                         </div>
 
-                        <img src="img/Gennesis.png" alt="Diamond" class="diamond-icon">
+                        <img src="img/Genesis.png" alt="Diamond" class="diamond-icon">
 
                     </div>
 
@@ -271,16 +264,16 @@
 
                 <!-- 28 DIAMONDS -->
 
-                <div class="card product-card" data-item="1834 Gennesis" data-price="437490" data-point="67">
+                <div class="card product-card" data-item="1834 Genesis" data-price="437490" data-point="67">
 
                     <div class="card-top">
 
                         <div class="card-name">
                             <h4>1.834</h4>
-                            <p>Gennesis</p>
+                            <p>Genesis</p>
                         </div>
 
-                        <img src="img/Gennesis.png" alt="Diamond" class="diamond-icon">
+                        <img src="img/Genesis.png" alt="Diamond" class="diamond-icon">
 
                     </div>
 
@@ -303,16 +296,16 @@
 
 
 
-                <div class="card product-card" data-item="3597 Gennesis" data-price="753500" data-point="78">
+                <div class="card product-card" data-item="3597 Genesis" data-price="753500" data-point="78">
 
                     <div class="card-top">
 
                         <div class="card-name">
                             <h4>3.597</h4>
-                            <p>Gennesis</p>
+                            <p>Genesis</p>
                         </div>
 
-                        <img src="img/Gennesis.png" alt="Diamond" class="diamond-icon">
+                        <img src="img/Genesis.png" alt="Diamond" class="diamond-icon">
 
                     </div>
 
@@ -335,16 +328,16 @@
 
 
 
-                <div class="card product-card" data-item="6786 Gennesis" data-price="1525075" data-point="89">
+                <div class="card product-card" data-item="6786 Genesis" data-price="1525075" data-point="89">
 
                     <div class="card-top">
 
                         <div class="card-name">
                             <h4>6.786</h4>
-                            <p>Gennesis</p>
+                            <p>Genesis</p>
                         </div>
 
-                        <img src="img/Gennesis.png" alt="Diamond" class="diamond-icon">
+                        <img src="img/Genesis.png" alt="Diamond" class="diamond-icon">
 
                     </div>
 
@@ -364,8 +357,9 @@
 
                 </div>
 
-        </section>
+                    </div>
 
+        </section>
 
 
         <!-- ==================================
@@ -417,15 +411,15 @@
 
                 <!-- 3 WDP -->
 
-                <div class="card product-card" data-item="Gnostic hynm" data-price="154000" data-point="67">
+                <div class="card product-card" data-item="Gnostic Hymn" data-price="154000" data-point="67">
 
                     <div class="card-top">
                         <div class="card-name">
                             <h4>3</h4>
-                            <p>Gnostic hynm</p>
+                            <p>Gnostic Hymn</p>
                         </div>
 
-                        <img src="img/Gnostic_hynm.png" alt="Gnostic hynm" class="special-icon">
+                        <img src="img/Gnostic_hynm.png" alt="Gnostic Hymn" class="special-icon">
                     </div>
 
                     <div class="card-footer">
@@ -439,15 +433,15 @@
 
                 </div>
 
-                <div class="card product-card" data-item=" Gnostic chorus" data-price="354000" data-point="78">
+                <div class="card product-card" data-item=" Gnostic Chorus" data-price="354000" data-point="78">
 
                     <div class="card-top">
                         <div class="card-name">
                             <h4>3</h4>
-                            <p>Gnostic chorus</p>
+                            <p>Gnostic Chorus</p>
                         </div>
 
-                        <img src="img/Gnostic_chorus.png" alt="Gnostic chorus" class="special-icon">
+                        <img src="img/Gnostic_chorus.png" alt="Gnostic Chorus" class="special-icon">
                     </div>
 
                     <div class="card-footer">
@@ -463,25 +457,67 @@
 
 
 
-                <!-- ==================================
+                           </div>
+
+        </section>
+
+
+        <!-- ==================================
              2. KODE VOUCHER
         =================================== -->
 
-        </section>
         <section class="box">
+
             <div class="title">
-                <span>2)</span> Masukkan Kode Voucher
+                <span>2)</span>
+                Masukkan Kode Voucher
             </div>
+
+
             <div class="input-group">
+
                 <div class="input-box voucher-box">
-                    <label for="voucherCode">KODE VOUCHER</label>
+
+                    <label for="voucherCode">
+                        KODE VOUCHER
+                    </label>
+
+
                     <div class="voucher-row">
-                        <input type="text" id="voucherCode" placeholder="MASUKAN KODE VOUCHER">
-                        <button class="voucher-action">Gunakan</button>
+
+                        <input
+                            type="text"
+                            id="voucherCode"
+                            placeholder="MASUKAN KODE VOUCHER"
+                            autocomplete="off"
+                        >
+
+
+                        <!-- PENTING:
+                             ID INI DIPAKAI GAME-TOPUP.JS
+                        -->
+                        <button
+                            type="button"
+                            class="voucher-action"
+                            id="useVoucherButton"
+                        >
+                            Gunakan
+                        </button>
+
                     </div>
+
+
+                    <!-- PESAN VOUCHER -->
+                    <small
+                        id="voucherMessage"
+                        class="voucher-message"
+                    ></small>
+
                 </div>
+
             </div>
         </section>
+
 
         <section class="payment-section">
             <div class="payment-title">
@@ -512,105 +548,375 @@
                     </label>
             </div>
         </section>
-        </div>
 
-        <aside class="right-content">
-            <section class="transaction-detail">
-                <div class="transaction-header">
-                    <img src="img/infinity.png" class="transaction-logo" alt="Infinity Shop">
-                    <div class="transaction-product-name">
-                        <h2>WUTHERING WAVES</h2>
-                        <h3 id="detailItem">Belum memilih item</h3>
-                    </div>
+        <!-- ==================================
+             DETAIL TRANSAKSI
+        =================================== -->
+
+        <section class="transaction-detail">
+
+
+            <!-- HEADER DETAIL -->
+            <div class="transaction-header">
+
+                <img
+                    src="img/infinity.png"
+                    class="transaction-logo"
+                    alt="Infinity Shop"
+                >
+
+
+                <div class="transaction-product-name">
+
+                    <h2>
+                        GENSHIN IMPACT
+                    </h2>
+
+                    <h3 id="detailItem">
+                        Belum memilih item
+                    </h3>
+
                 </div>
 
-                <div class="detail-row">
-                    <span>ID</span>
-                    <strong id="detailUserId">-</strong>
-                </div>
+            </div>
 
-                <div class="detail-row">
-                    <span>Server</span>
-                    <strong id="detailServer">-</strong>
-                </div>
 
-                <div class="detail-row">
-                    <span>Metode Pembayaran</span>
-                    <strong id="detailPayment">-</strong>
-                </div>
 
-                <div class="detail-row">
-                    <span>Harga</span>
-                    <strong id="detailPrice">Rp0</strong>
-                </div>
+            <!-- ID USER -->
+            <div class="detail-row">
 
-                <div class="detail-row">
-                    <span>Biaya</span>
-                    <strong id="detailFee">Rp0</strong>
-                </div>
+                <span>
+                    ID
+                </span>
 
-                <div class="detail-line"></div>
+                <strong id="detailUserId">
+                    -
+                </strong>
 
-                <div class="detail-row total-row">
-                    <span>Total</span>
-                    <strong id="detailTotal">Rp0</strong>
-                </div>
+            </div>
 
-                <div class="point-earned">
-                    <i class="bx bx-coin-stack"></i>
-                    <span id="detailPoint">+0 Poin</span>
-                </div>
 
-                <button type="button" class="pay-button" id="payButton">Bayar Sekarang</button>
-            </section>
-        </aside>
+
+            <!-- SERVER -->
+            <div class="detail-row">
+
+                <span>
+                    Server
+                </span>
+
+                <strong id="detailServer">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <!-- METODE PEMBAYARAN -->
+            <div class="detail-row">
+
+                <span>
+                    Metode Pembayaran
+                </span>
+
+                <strong id="detailPayment">
+                    -
+                </strong>
+
+            </div>
+
+
+
+            <!-- HARGA -->
+            <div class="detail-row">
+
+                <span>
+                    Harga
+                </span>
+
+                <strong id="detailPrice">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- BIAYA ADMIN -->
+            <div class="detail-row">
+
+                <span>
+                    Biaya
+                </span>
+
+                <strong id="detailFee">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 POTONGAN VOUCHER
+                 AWALNYA DISEMBUNYIKAN
+            =================================== -->
+
+            <div
+                class="detail-row"
+                id="detailDiscountRow"
+                style="display: none;"
+            >
+
+                <span>
+                    Potongan Voucher
+                </span>
+
+                <strong id="detailDiscount">
+                    -Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- GARIS -->
+            <div class="detail-line"></div>
+
+
+
+            <!-- TOTAL -->
+            <div class="detail-row total-row">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="detailTotal">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- POIN -->
+            <div class="point-earned">
+
+                <i class="bx bx-coin-stack"></i>
+
+                <span id="detailPoint">
+                    +0 Poin
+                </span>
+
+            </div>
+
+
+
+            <!-- BUTTON BAYAR -->
+            <button
+                type="button"
+                class="pay-button"
+                id="payButton"
+            >
+                Bayar Sekarang
+            </button>
+
+        </section>
 
     </main>
 
-    <div class="modal-overlay" id="paymentModal">
-        <div class="confirm-modal">
-            <div class="confirm-modal-header">Rincian Transaksi</div>
-            <p class="confirm-question">Cek terlebih dahulu apakah ini memang akun kamu?</p>
-            <div class="confirm-info-box">
-                <div class="confirm-row">
-                    <span>User ID</span>
-                    <strong id="confirmUserId">-</strong>
-                </div>
-                <div class="confirm-row">
-                    <span>Produk</span>
-                    <strong id="confirmProduct">-</strong>
-                </div>
-                <div class="confirm-row">
-                    <span>Harga</span>
-                    <strong id="confirmPrice">Rp0</strong>
-                </div>
-                <div class="confirm-row">
-                    <span>Biaya Transaksi</span>
-                    <strong id="confirmFee">Rp0</strong>
-                </div>
-                <div class="confirm-row">
-                    <span>Metode Pembayaran</span>
-                    <strong id="confirmPayment">-</strong>
-                </div>
-            </div>
-            <div class="confirm-line"></div>
-            <div class="confirm-total">
-                <span>Total Harga</span>
-                <strong id="confirmTotal">Rp0</strong>
-            </div>
-            <div class="confirm-point">
-                <i class="bx bx-coin-stack"></i>
-                <span id="confirmPoint">+0 Poin</span>
-            </div>
-            <div class="confirm-buttons">
-                <button type="button" class="btn-close-modal" id="closeModalButton">Tutup</button>
-                <button type="button" class="btn-continue-payment" id="continuePaymentButton">Lanjutkan</button>
-            </div>
-        </div>
-    </div>
 
+
+    <!-- ==================================
+         MODAL KONFIRMASI PEMBAYARAN
+    =================================== -->
+
+    <div
+        class="modal-overlay"
+        id="paymentModal"
+    >
+
+        <div class="confirm-modal">
+
+
+            <!-- HEADER -->
+            <div class="confirm-modal-header">
+                Rincian Transaksi
+            </div>
+
+
+            <!-- PERTANYAAN -->
+            <p class="confirm-question">
+                Cek terlebih dahulu apakah ini memang akun kamu?
+            </p>
+
+
+            <!-- BOX RINCIAN -->
+            <div class="confirm-info-box">
+
+
+                <!-- USER ID -->
+                <div class="confirm-row">
+
+                    <span>
+                        User ID
+                    </span>
+
+                    <strong id="confirmUserId">
+                        -
+                    </strong>
+
+                </div>
+
+
+
+                <!-- PRODUK -->
+                <div class="confirm-row">
+
+                    <span>
+                        Produk
+                    </span>
+
+                    <strong id="confirmProduct">
+                        -
+                    </strong>
+
+                </div>
+
+
+
+                <!-- HARGA -->
+                <div class="confirm-row">
+
+                    <span>
+                        Harga
+                    </span>
+
+                    <strong id="confirmPrice">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- BIAYA TRANSAKSI -->
+                <div class="confirm-row">
+
+                    <span>
+                        Biaya Transaksi
+                    </span>
+
+                    <strong id="confirmFee">
+                        Rp0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- ==================================
+                     POTONGAN VOUCHER
+                     AWALNYA DISEMBUNYIKAN
+                =================================== -->
+
+                <div
+                    class="confirm-row"
+                    id="confirmDiscountRow"
+                    style="display: none;"
+                >
+
+                    <span>
+                        Potongan Voucher
+                    </span>
+
+                    <strong id="confirmDiscount">
+                        -Rp0
+                    </strong>
+
+                </div>
+
+
+
+                <!-- METODE PEMBAYARAN -->
+                <div class="confirm-row">
+
+                    <span>
+                        Metode Pembayaran
+                    </span>
+
+                    <strong id="confirmPayment">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- GARIS -->
+            <div class="confirm-line"></div>
+
+
+
+            <!-- TOTAL -->
+            <div class="confirm-total">
+
+                <span>
+                    Total Harga
+                </span>
+
+                <strong id="confirmTotal">
+                    Rp0
+                </strong>
+
+            </div>
+
+
+
+            <!-- POINT -->
+            <div class="confirm-point">
+
+                <i class="bx bx-coin-stack"></i>
+
+                <span id="confirmPoint">
+                    +0 Poin
+                </span>
+
+            </div>
+
+
+
+            <!-- BUTTON -->
+            <div class="confirm-buttons">
+
+                <button
+                    type="button"
+                    class="btn-close-modal"
+                    id="closeModalButton"
+                >
+                    Tutup
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn-continue-payment"
+                    id="continuePaymentButton"
+                >
+                    Lanjutkan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
     <script src="game-topup.js"></script>
     <script src="script.js"></script>
+    <script src="auth.js"></script>
 </body>
 
 </html>
