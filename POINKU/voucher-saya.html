@@ -11,24 +11,23 @@
     >
 
     <title>Voucher Saya</title>
-
+    
+    <!-- CSS -->
     <link
         rel="stylesheet"
         href="voucher-saya.css"
     >
-
     <link
         rel="stylesheet"
         href="/auth.css"
     >
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <!-- BOXICON & FONT -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
         href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
         rel="stylesheet"
     >
-
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet"
@@ -39,96 +38,65 @@
 
 <body>
 
-      <!-- ================= SIDEBAR ================= -->
-
+      <!-- SIDEBAR -->
     <aside class="sidebar">
-
-        <!-- bagian atas sidebar -->
         <div class="sidebar-header">
-
             <button class="close-sidebar">
                 <i class='bx bx-x'></i>
             </button>
-
             <img href="HOME.html" src="/img/LOGO1.png"
                  class="sidebar-logo"
                  alt="Infinity Shop">
-
         </div>
 
-
-        <!-- menu sidebar -->
+        <!-- MENU SIDEBAR -->
         <div class="sidebar-menu">
-
             <a href="/HOME.HTML"
                class="sidebar-link">
-
                 <i class='bx bx-home-alt-2'></i>
-
                 <span>HOME</span>
-
             </a>
-
 
             <a href="/TRANSAKSI/daftar-transaksi.html"
                class="sidebar-link">
-
                 <i class='bx bx-receipt'></i>
-
                 <span>TRANSAKSI</span>
-
             </a>
 
 
             <a href="/PROMO/PROMO.html"
                class="sidebar-link">
-
                 <i class='bx bx-badge-check'></i>
-
                 <span>PROMO</span>
-
             </a>
 
 
             <a href="/POINKU/poinku.html"
                class="sidebar-link active">
-
                 <i class='bx bx-coin-stack'></i>
-
                 <span>POINKU</span>
-
             </a>
-
         </div>
-
     </aside>
 
 
-
-    <!-- ================= OVERLAY ================= -->
-
+    <!-- OVERLAY -->
     <div class="sidebar-overlay"></div>
 
-
-
+    <!-- NAVBAR -->
     <nav class="navbar">
-
         <div class="left-navbar">
-
             <button class="menu-btn">
                 <i class="bx bx-menu"></i>
             </button>
-
             <img
                 src="../img/LOGO1.png"
                 class="logo"
                 alt="Infinity Shop"
             >
-
         </div>
 
       <div class="nav-button" id="navbarUser">
-
             <a href="/REGISTER.html">
             <button class="btn-register">
                 Daftar
@@ -140,34 +108,27 @@
                 Masuk
             </button>
             </a>
-
         </div>
-
-
     </nav>
 
     
 
-
+    <!-- VOUCHER SAYA -->
     <main class="voucher-page">
-
          <div class="nav-back-container">
             <a href="poinku.html" class="back-icon" aria-label="Kembali ke Beranda">
                 <i class="fa-solid fa-arrow-left"></i> Kembali
             </a>
         </div>
 
-
         <h1>
             VOUCHER SAYA
         </h1>
-
 
         <div
             class="my-voucher-grid"
             id="myVoucherGrid"
         ></div>
-
 
         <div
             class="empty-voucher"
@@ -177,10 +138,9 @@
             Belum ada voucher.
 
         </div>
-
     </main>
 
-
+    <!-- JAVA SCRIPT -->
     <script src="voucher-saya.js"></script>
     <script src="/script.js"></script>
     <script src="/auth.js"></script>

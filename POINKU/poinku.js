@@ -1,23 +1,9 @@
-// ==========================================
-// POINKU.JS
-// SISTEM POIN + PENUKARAN VOUCHER
-// KOMPATIBEL DENGAN GAME-TOPUP.JS
-// ==========================================
-
-
-// ==========================================
-// 1. DATA AWAL
-// ==========================================
-
+/* DATA AWAL */
 let selectedVoucher = null;
 
 let exchangeProcessing = false;
 
-
-// ==========================================
-// 2. ELEMENT HTML
-// ==========================================
-
+/* ELEMENT HTML */
 const pointBalance =
     document.getElementById(
         "pointBalance"
@@ -66,9 +52,7 @@ const closeSuccess =
     );
 
 
-// ==========================================
-// 3. AMBIL SALDO POIN
-// ==========================================
+/* AMBIL SALDO POIN */
 
 function getPointBalance() {
 
@@ -78,25 +62,20 @@ function getPointBalance() {
         );
 
 
-    // Jika belum ada poin
+    /* JIKA BELUM ADA POIN */
     if (savedPoint === null) {
-
         return 0;
-
     }
 
 
     const point =
         Number(savedPoint);
 
-
-    // Cegah NaN
+    /* CEGAH NAN */
     if (isNaN(point)) {
-
         return 0;
 
     }
-
 
     return Math.max(
         0,
@@ -106,52 +85,33 @@ function getPointBalance() {
 }
 
 
-// ==========================================
-// 4. SIMPAN SALDO POIN
-// ==========================================
-
+/* SIMPAN SALDO POIN */
 function savePointBalance(point) {
-
     let safePoint =
         Number(point);
 
-
-    // Cegah NaN
+    /* CEGAH NAN */
     if (isNaN(safePoint)) {
-
         safePoint = 0;
-
     }
 
-
-    // Poin tidak boleh minus
+    /* CEGAH POIN MINUS */
     safePoint =
         Math.max(
             0,
             safePoint
         );
-
-
     localStorage.setItem(
         "infinityPoint",
         String(safePoint)
     );
-
 }
 
-
-// ==========================================
-// 5. UPDATE TAMPILAN POIN
-// ==========================================
-
+/* UPDATE TAMPILAN POIN */
 function updatePointDisplay() {
-
     if (!pointBalance) {
-
         return;
-
     }
-
 
     pointBalance.textContent =
         getPointBalance()
@@ -159,24 +119,17 @@ function updatePointDisplay() {
                 "id-ID"
             ) +
         " Poin";
-
 }
 
 
-// ==========================================
-// 6. NORMALISASI KODE GAME
-// ==========================================
-
+/* NORMALISASI KODE GAME */
 function normalizeGameCode(value) {
-
     const code =
         String(value || "")
             .trim()
             .toUpperCase();
 
-
     const aliases = {
-
         // Mobile Legends
         "ML": "ML",
         "MLBB": "ML",
@@ -213,26 +166,18 @@ function normalizeGameCode(value) {
         // Zenless Zone Zero
         "ZZZ": "ZZZ",
         "ZENLESS ZONE ZERO": "ZZZ"
-
     };
-
-
     return aliases[code] || code;
-
 }
 
 
-// ==========================================
-// 7. AMBIL NAMA GAME
-// ==========================================
+/* AMBIL NAMA GAME */
 
 function getGameName(gameCode) {
-
     const normalizedCode =
         normalizeGameCode(
             gameCode
         );
-
 
     const gameNames = {
 
@@ -261,8 +206,6 @@ function getGameName(gameCode) {
             "Zenless Zone Zero"
 
     };
-
-
     return (
         gameNames[normalizedCode] ||
         gameCode ||
@@ -272,9 +215,7 @@ function getGameName(gameCode) {
 }
 
 
-// ==========================================
-// 8. GENERATE KODE VOUCHER
-// ==========================================
+/* GENERATE KODE VOUCHER */
 
 function generateVoucherCode(
     gameCode = "V"
@@ -286,14 +227,14 @@ function generateVoucherCode(
         );
 
 
-    // Ambil waktu sekarang
+    /* AMBIL TIMESTAMP */
     const timestamp =
         Date.now()
             .toString()
             .slice(-5);
 
 
-    // Random 5 digit
+    /* KODE VOUCHER RANDOM 5 DIGIT */
     const randomNumber =
         Math.floor(
             10000 +
@@ -301,10 +242,6 @@ function generateVoucherCode(
             90000
         );
 
-
-    // Contoh:
-    // ML-1234512345
-    // GI-9876543210
     return (
         normalizedGame +
         "-" +
@@ -314,102 +251,68 @@ function generateVoucherCode(
 
 }
 
-
-// ==========================================
-// 9. AMBIL VOUCHER SAYA
-// ==========================================
-
+/* AMBIL VOUCHER SAYA */
 function getMyVouchers() {
-
     try {
-
         const savedData =
             localStorage.getItem(
                 "myVouchers"
             );
 
-
-        // Belum ada voucher
+        /* JIKA BELUM ADA VOUCHER */
         if (!savedData) {
-
             return [];
 
         }
-
 
         const vouchers =
             JSON.parse(
                 savedData
             );
 
-
         return Array.isArray(vouchers)
             ? vouchers
             : [];
 
     } catch (error) {
-
         console.error(
             "Gagal membaca voucher:",
             error
         );
-
-
         return [];
-
     }
-
 }
 
 
-// ==========================================
-// 10. SIMPAN VOUCHER SAYA
-// ==========================================
-
+/* SIMPAN VOUCHER SAYA */
 function saveMyVouchers(vouchers) {
-
     if (!Array.isArray(vouchers)) {
-
         console.error(
             "Data voucher harus berupa array!"
         );
-
         return false;
-
     }
 
-
     try {
-
         localStorage.setItem(
             "myVouchers",
             JSON.stringify(
                 vouchers
             )
         );
-
-
         return true;
 
     } catch (error) {
-
         console.error(
             "Gagal menyimpan voucher:",
             error
         );
-
-
         return false;
-
     }
-
 }
 
 
-// ==========================================
-// 11. BUAT ID VOUCHER UNIK
-// ==========================================
-
+/* BUAT ID VOUCHER UNIK */
 function generateVoucherId() {
 
     const randomPart =
@@ -429,22 +332,17 @@ function generateVoucherId() {
 }
 
 
-// ==========================================
-// 12. CEK KODE VOUCHER SUDAH ADA
-// ==========================================
+/* CEK KODE VOUCHER SUDAH ADA */
 
 function isVoucherCodeExists(code) {
-
     const vouchers =
         getMyVouchers();
-
 
     const normalizedCode =
         String(code || "")
             .trim()
             .toUpperCase();
-
-
+        
     return vouchers.some(
         function(voucher) {
 
@@ -457,34 +355,23 @@ function isVoucherCodeExists(code) {
                 ===
                 normalizedCode
             );
-
         }
     );
-
 }
 
 
-// ==========================================
-// 13. BUAT KODE VOUCHER UNIK
-// ==========================================
-
+/* BUAT KODE VOUCHER UNIK */
 function createUniqueVoucherCode(
     gameCode
 ) {
-
     let voucherCode;
-
     let attempt = 0;
 
-
     do {
-
         voucherCode =
             generateVoucherCode(
                 gameCode
             );
-
-
         attempt++;
 
     } while (
@@ -493,21 +380,13 @@ function createUniqueVoucherCode(
         ) &&
         attempt < 20
     );
-
-
     return voucherCode;
-
 }
 
 
-// ==========================================
-// 14. VALIDASI DATA VOUCHER CARD
-// ==========================================
-
+/* VALIDASI DATA VOUCHER */
 function validateVoucherData(voucher) {
-
     if (!voucher) {
-
         return {
             valid: false,
             message:
@@ -516,8 +395,7 @@ function validateVoucherData(voucher) {
 
     }
 
-
-    // Game kosong
+    /* GAME KOSONG */
     if (!voucher.game) {
 
         return {
@@ -529,7 +407,7 @@ function validateVoucherData(voucher) {
     }
 
 
-    // Nilai diskon
+    /* NILAI DISKON */
     if (
         isNaN(voucher.value) ||
         voucher.value <= 0
@@ -544,64 +422,46 @@ function validateVoucherData(voucher) {
     }
 
 
-    // Harga poin
+    /* HARGA POIN */
     if (
         isNaN(voucher.point) ||
         voucher.point <= 0
     ) {
-
         return {
             valid: false,
             message:
                 "Harga poin voucher tidak valid."
         };
-
     }
-
-
     return {
         valid: true,
         message: ""
     };
-
 }
 
 
-// ==========================================
-// 15. EVENT TOMBOL TUKAR
-// ==========================================
-
+/* EVENT TOMBOL TUKAR */
 voucherCards.forEach(
     function(card) {
-
         const exchangeButton =
             card.querySelector(
                 ".exchange-button"
             );
 
-
-        // Tombol tidak ditemukan
+        /* TOMBOL TIDAK DITEMUKAN */
         if (!exchangeButton) {
-
             return;
-
         }
-
 
         exchangeButton.addEventListener(
             "click",
             function(event) {
-
-                // Cegah default
+                /* CEGAH DEFAULT */
                 event.preventDefault();
 
 
-                // ==================================
-                // AMBIL DATA DARI CARD
-                // ==================================
-
+               /* AMBIL DATA DARI CARD */
                 selectedVoucher = {
-
                     id:
                         card.dataset.id ||
                         "",
@@ -626,38 +486,26 @@ voucherCards.forEach(
                     image:
                         card.dataset.image ||
                         ""
-
                 };
 
 
-                // ==================================
-                // VALIDASI DATA
-                // ==================================
+                /* VALIDASI DATA */
 
                 const validation =
                     validateVoucherData(
                         selectedVoucher
                     );
 
-
                 if (!validation.valid) {
-
                     alert(
                         validation.message
                     );
-
-
                     selectedVoucher = null;
-
                     return;
-
                 }
 
 
-                // ==================================
-                // ISI MODAL POIN
-                // ==================================
-
+                /* ISI MODAL POIN */
                 if (modalPoint) {
 
                     modalPoint.textContent =
@@ -670,16 +518,12 @@ voucherCards.forEach(
                 }
 
 
-                // ==================================
-                // BUKA MODAL
-                // ==================================
+                /* BUKA MODAL */
 
                 if (exchangeModal) {
-
                     exchangeModal.classList.add(
                         "active"
                     );
-
                 }
 
 
@@ -687,183 +531,112 @@ voucherCards.forEach(
                     "Voucher dipilih:",
                     selectedVoucher
                 );
-
             }
         );
-
     }
 );
 
 
-// ==========================================
-// 16. TUTUP MODAL KONFIRMASI
-// ==========================================
-
+/* TUTUP MODAL KONFIRMASI */
 if (closeExchangeModal) {
-
     closeExchangeModal.addEventListener(
         "click",
         function() {
-
             if (exchangeModal) {
-
                 exchangeModal.classList.remove(
                     "active"
                 );
-
             }
-
         }
     );
-
 }
 
 
-// ==========================================
-// 17. LANJUTKAN PENUKARAN
-// ==========================================
-
+/* LANJUTKAN PENUKARAN VOUCHER */
 if (continueExchange) {
-
     continueExchange.addEventListener(
         "click",
         function() {
 
-            // ==================================
-            // CEGAH DOUBLE CLICK
-            // ==================================
-
+          /* CEGAH DOUBLE CLICK */
             if (exchangeProcessing) {
-
                 return;
-
             }
 
-
-            // ==================================
-            // CEK VOUCHER DIPILIH
-            // ==================================
-
+            
+            /* CEK VOUCHER DIPILIH */
             if (!selectedVoucher) {
-
                 alert(
                     "Pilih voucher terlebih dahulu!"
                 );
-
                 return;
-
             }
 
 
-            // ==================================
-            // VALIDASI ULANG
-            // ==================================
-
+           /* VALIDASI ULANG */
             const validation =
                 validateVoucherData(
                     selectedVoucher
                 );
 
-
             if (!validation.valid) {
-
                 alert(
                     validation.message
                 );
-
                 return;
-
             }
 
 
-            // ==================================
-            // AMBIL POIN SEKARANG
-            // ==================================
-
+           /* AMBIL POIN SEKARANG */
             const currentPoint =
                 getPointBalance();
 
 
-            // ==================================
-            // CEK POIN MENCUKUPI
-            // ==================================
-
+           /* CEK POIN MENCUKUPI */
             if (
                 currentPoint <
                 selectedVoucher.point
             ) {
-
                 alert(
                     "Poin kamu tidak mencukupi!"
                 );
-
                 return;
-
             }
 
-
-            // ==================================
-            // MULAI PROSES
-            // ==================================
-
+            /* MULAI PROSES */
             exchangeProcessing = true;
-
-
             continueExchange.disabled =
                 true;
 
 
-            // ==================================
-            // HITUNG SISA POIN
-            // ==================================
-
+           /* HITUNG SISA POIN */
             const remainingPoint =
                 currentPoint -
                 selectedVoucher.point;
 
-
-            // ==================================
-            // NORMALISASI GAME
-            // ==================================
-
+          /* NORMALISASIKAN GAME */
             const gameCode =
                 normalizeGameCode(
                     selectedVoucher.game
                 );
 
 
-            // ==================================
-            // BUAT KODE VOUCHER UNIK
-            // ==================================
-
+            /* BUAT KODE VOUCHER UNIK */
             const voucherCode =
                 createUniqueVoucherCode(
                     gameCode
                 );
 
 
-            // ==================================
-            // BUAT DATA VOUCHER
-            // KOMPATIBEL GAME-TOPUP.JS
-            // ==================================
-
+          /* BUAT DATA VOUCHER KOMPATIBEL DENGAN GAME-TOPUP.JS */
             const newVoucher = {
-
-                // ------------------------------
-                // IDENTITAS
-                // ------------------------------
-
+               /* IDENTITAS */
                 id:
                     generateVoucherId(),
-
                 voucherType:
                     selectedVoucher.id,
 
-
-                // ------------------------------
-                // GAME
-                // ------------------------------
-
+                /* GAME */
                 game:
                     gameCode,
 
@@ -882,10 +655,7 @@ if (continueExchange) {
                     gameCode,
 
 
-                // ------------------------------
-                // DISKON
-                // ------------------------------
-
+               /* DISKON */
                 discount:
                     Number(
                         selectedVoucher.value
@@ -912,28 +682,19 @@ if (continueExchange) {
                     ),
 
 
-                // ------------------------------
-                // BIAYA PENUKARAN
-                // ------------------------------
-
+                /* BIAYA PENUKARAN VOUCHER */
                 pointCost:
                     Number(
                         selectedVoucher.point
                     ),
 
 
-                // ------------------------------
-                // GAMBAR
-                // ------------------------------
-
+                /* GAMBAR */
                 image:
                     selectedVoucher.image,
 
 
-                // ------------------------------
-                // KODE VOUCHER
-                // ------------------------------
-
+               /* KODE VOUCHER */
                 code:
                     voucherCode,
 
@@ -947,10 +708,7 @@ if (continueExchange) {
                     voucherCode,
 
 
-                // ------------------------------
-                // STATUS
-                // ------------------------------
-
+               /* STATUS */
                 status:
                     "active",
 
@@ -961,274 +719,174 @@ if (continueExchange) {
                     false,
 
 
-                // ------------------------------
-                // WAKTU
-                // ------------------------------
-
+                /* WAKTU */
                 createdAt:
                     new Date()
                         .toISOString(),
 
                 usedAt:
                     null
-
             };
 
 
-            // ==================================
-            // AMBIL VOUCHER LAMA
-            // ==================================
-
+            /* AMBIL VOUCHER LAMA */
             const myVouchers =
                 getMyVouchers();
 
 
-            // ==================================
-            // TAMBAHKAN VOUCHER BARU
-            // ==================================
-
+            /* TAMBAH VOUCHER BARU */
             myVouchers.unshift(
                 newVoucher
             );
 
 
-            // ==================================
-            // SIMPAN VOUCHER DULU
-            // ==================================
-
+            /* SIMPAN VOUCHER DULU */
             const voucherSaved =
                 saveMyVouchers(
                     myVouchers
                 );
 
 
-            // Jika gagal simpan voucher
+            /* JIKA GAGAL SIMPAN VOUCHER */
             if (!voucherSaved) {
-
                 exchangeProcessing =
                     false;
-
-
                 continueExchange.disabled =
                     false;
-
-
                 alert(
                     "Voucher gagal disimpan. Silakan coba lagi!"
                 );
-
-
                 return;
-
             }
 
-
-            // ==================================
-            // POTONG POIN
-            // SETELAH VOUCHER BERHASIL DISIMPAN
-            // ==================================
-
+           /* POTONG POIN SETELAH BERHASIL DISIMPAN */
             savePointBalance(
                 remainingPoint
             );
 
-
-            // ==================================
-            // UPDATE TAMPILAN POIN
-            // ==================================
-
+            /* UPDATE TAMPILAN POIN */
             updatePointDisplay();
 
 
-            // ==================================
-            // TUTUP MODAL KONFIRMASI
-            // ==================================
-
+           /* TUTUP MODAL KONFIRMASI */
             if (exchangeModal) {
-
                 exchangeModal.classList.remove(
                     "active"
                 );
-
             }
 
 
-            // ==================================
-            // TAMPILKAN SUCCESS MODAL
-            // ==================================
-
+            /* TAMPILKAN SUKSES MODAL */
             if (successModal) {
-
                 successModal.classList.add(
                     "active"
                 );
-
             }
 
 
-            // ==================================
-            // RESET PROSES
-            // ==================================
-
+           /* RESET PROSES */
             exchangeProcessing =
                 false;
-
 
             continueExchange.disabled =
                 false;
 
-
-            // ==================================
-            // RESET VOUCHER PILIHAN
-            // ==================================
-
+            /* RESET VOUCHER PILIHAN */
             selectedVoucher =
                 null;
 
 
-            // ==================================
-            // DEBUG
-            // ==================================
-
+            /* DEBUG */
             console.log(
                 "Voucher berhasil ditukar:",
                 newVoucher
             );
-
 
             console.log(
                 "Kode voucher:",
                 voucherCode
             );
 
-
             console.log(
                 "Sisa poin:",
                 remainingPoint
             );
 
-
             console.log(
                 "Semua voucher:",
                 getMyVouchers()
             );
-
         }
     );
-
 }
 
-
-// ==========================================
-// 18. TUTUP SUCCESS MODAL
-// ==========================================
-
+/* TUTUP SUKSES MODAL */
 if (closeSuccess) {
-
     closeSuccess.addEventListener(
         "click",
         function() {
-
             if (successModal) {
-
                 successModal.classList.remove(
                     "active"
                 );
-
             }
-
         }
     );
-
 }
 
-
-// ==========================================
-// 19. KLIK OVERLAY KONFIRMASI
-// ==========================================
-
+/* KLIK OVERLAY KONFIRMASI */
 if (exchangeModal) {
-
     exchangeModal.addEventListener(
         "click",
         function(event) {
-
             if (
                 event.target ===
                 exchangeModal
             ) {
-
                 exchangeModal.classList.remove(
                     "active"
                 );
-
             }
-
         }
     );
-
 }
 
-
-// ==========================================
-// 20. KLIK OVERLAY SUCCESS
-// ==========================================
-
+/* KLIK OVERLAY SUKSES */
 if (successModal) {
-
     successModal.addEventListener(
         "click",
         function(event) {
-
             if (
                 event.target ===
                 successModal
             ) {
-
                 successModal.classList.remove(
                     "active"
                 );
-
             }
-
         }
     );
-
 }
 
 
-// ==========================================
-// 21. UPDATE JIKA STORAGE BERUBAH
-// ==========================================
-
+/* UPDATE JIKA STORAGE BERUBAH */
 window.addEventListener(
     "storage",
     function(event) {
-
         if (
             event.key ===
             "infinityPoint"
         ) {
-
             updatePointDisplay();
-
         }
-
     }
 );
 
 
-// ==========================================
-// 22. INISIALISASI HALAMAN
-// ==========================================
-
+/* INISIALISASI HALAMAN */
 updatePointDisplay();
 
-
-// ==========================================
-// 23. DEBUG
-// ==========================================
-
+/* DEBUG */
 console.log(
     "=================================="
 );

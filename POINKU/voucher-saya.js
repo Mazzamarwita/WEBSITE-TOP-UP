@@ -1,7 +1,4 @@
-// ==========================================
-// 1. ELEMENT HTML
-// ==========================================
-
+/* Element HTML */
 const myVoucherGrid =
     document.getElementById("myVoucherGrid");
 
@@ -9,12 +6,8 @@ const emptyVoucher =
     document.getElementById("emptyVoucher");
 
 
-// ==========================================
-// 2. AMBIL VOUCHER DARI LOCALSTORAGE
-// ==========================================
-
+/* Mengambil data voucher dari Local Storage */
 function getMyVouchers() {
-
     try {
 
         const vouchers = JSON.parse(
@@ -39,38 +32,25 @@ function getMyVouchers() {
 }
 
 
-// ==========================================
-// 3. TENTUKAN PATH GAMBAR VOUCHER
-// ==========================================
-
+/* Menentukan gambar voucher */
 function getVoucherImage(voucher) {
 
-    // Kalau tidak ada data voucher
     if (!voucher) {
         return "/IMG/ML20K.png";
     }
 
-
-    // ======================================
-    // PRIORITAS BERDASARKAN VOUCHER TYPE
-    // ======================================
-
     const voucherImages = {
 
-        // MOBILE LEGENDS
         ML20: "/IMG/ML20K.png",
         ML40: "/IMG/ML40K.png",
         ML60: "/IMG/ML60K.png",
 
-        // GENSHIN IMPACT
         GI20: "/IMG/GI20K.png",
         GI40: "/IMG/GI40K.png",
         GI60: "/IMG/GI60K.png"
 
     };
 
-
-    // Cek voucherType
     if (
         voucher.voucherType &&
         voucherImages[voucher.voucherType]
@@ -82,11 +62,6 @@ function getVoucherImage(voucher) {
 
     }
 
-
-    // ======================================
-    // FALLBACK BERDASARKAN GAME + VALUE
-    // ======================================
-
     const game =
         String(voucher.game || "")
             .toLowerCase()
@@ -95,8 +70,6 @@ function getVoucherImage(voucher) {
     const value =
         Number(voucher.value || 0);
 
-
-    // MOBILE LEGENDS
     if (
         game.includes("mobile legends") ||
         game === "ml"
@@ -116,8 +89,6 @@ function getVoucherImage(voucher) {
 
     }
 
-
-    // GENSHIN IMPACT
     if (
         game.includes("genshin impact") ||
         game.includes("genshin") ||
@@ -138,42 +109,26 @@ function getVoucherImage(voucher) {
 
     }
 
-
-    // ======================================
-    // FALLBACK DARI voucher.image
-    // ======================================
-
     if (voucher.image) {
 
-        // Kalau sudah path absolut
         if (voucher.image.startsWith("/")) {
-
             return voucher.image;
-
         }
 
-
-        // Kalau hanya nama file
         return "/IMG/" + voucher.image;
 
     }
 
-
-    // Default
     return "/IMG/ML20K.png";
 
 }
 
 
-// ==========================================
-// 4. TAMPILKAN VOUCHER
-// ==========================================
-
+/* Menampilkan daftar voucher */
 function displayMyVouchers() {
 
     const vouchers =
         getMyVouchers();
-
 
     if (!myVoucherGrid) {
 
@@ -185,48 +140,24 @@ function displayMyVouchers() {
 
     }
 
-
-    // Kosongkan grid
     myVoucherGrid.innerHTML = "";
-
-
-    // ======================================
-    // JIKA TIDAK ADA VOUCHER
-    // ======================================
 
     if (vouchers.length === 0) {
 
         if (emptyVoucher) {
-
-            emptyVoucher.style.display =
-                "block";
-
+            emptyVoucher.style.display = "block";
         }
 
         return;
 
     }
 
-
-    // Sembunyikan pesan kosong
     if (emptyVoucher) {
-
-        emptyVoucher.style.display =
-            "none";
-
+        emptyVoucher.style.display = "none";
     }
-
-
-    // ======================================
-    // LOOP SEMUA VOUCHER
-    // ======================================
 
     vouchers.forEach(
         function(voucher) {
-
-            // ----------------------------------
-            // CARD
-            // ----------------------------------
 
             const card =
                 document.createElement(
@@ -236,37 +167,22 @@ function displayMyVouchers() {
             card.className =
                 "my-voucher-card";
 
-
-            // Kalau sudah digunakan
             if (voucher.status === "used") {
-
                 card.classList.add("used");
-
             }
-
-
-            // ----------------------------------
-            // GAMBAR
-            // ----------------------------------
 
             const image =
                 document.createElement("img");
 
-
             const imagePath =
                 getVoucherImage(voucher);
 
-
-            image.src =
-                imagePath;
-
+            image.src = imagePath;
 
             image.alt =
                 voucher.game ||
                 "Voucher";
 
-
-            // Debug
             console.log(
                 "Voucher:",
                 voucher
@@ -277,8 +193,6 @@ function displayMyVouchers() {
                 imagePath
             );
 
-
-            // Jika gambar gagal
             image.onerror =
                 function() {
 
@@ -294,11 +208,6 @@ function displayMyVouchers() {
 
                 };
 
-
-            // ----------------------------------
-            // KODE VOUCHER
-            // ----------------------------------
-
             const code =
                 document.createElement(
                     "span"
@@ -310,11 +219,6 @@ function displayMyVouchers() {
             code.textContent =
                 voucher.code || "-";
 
-
-            // ----------------------------------
-            // STATUS VOUCHER
-            // ----------------------------------
-
             const status =
                 document.createElement(
                     "span"
@@ -322,7 +226,6 @@ function displayMyVouchers() {
 
             status.className =
                 "voucher-status";
-
 
             if (voucher.status === "used") {
 
@@ -344,21 +247,9 @@ function displayMyVouchers() {
 
             }
 
-
-            // ----------------------------------
-            // MASUKKAN KE CARD
-            // ----------------------------------
-
             card.appendChild(image);
-
             card.appendChild(code);
-
             card.appendChild(status);
-
-
-            // ----------------------------------
-            // MASUKKAN KE GRID
-            // ----------------------------------
 
             myVoucherGrid.appendChild(
                 card
@@ -370,24 +261,16 @@ function displayMyVouchers() {
 }
 
 
-// ==========================================
-// 5. JALANKAN SETELAH HTML SIAP
-// ==========================================
-
+/* Menjalankan fungsi saat halaman selesai dimuat */
 document.addEventListener(
     "DOMContentLoaded",
     function() {
-
         displayMyVouchers();
-
     }
 );
 
 
-// ==========================================
-// 6. DEBUG
-// ==========================================
-
+/* Debug */
 console.log(
     "Daftar voucher:",
     getMyVouchers()

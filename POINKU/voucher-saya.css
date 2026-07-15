@@ -7,7 +7,6 @@
 
 body{
     min-height:100vh;
-
     background:linear-gradient(
         180deg,
         #41025a 0%,
@@ -17,20 +16,15 @@ body{
 }
 
 
-/* NAVBAR */
-
+/* Navbar */
 .navbar{
     width:100%;
     height:60px;
-
     background:#070707;
-
     display:flex;
     justify-content:space-between;
     align-items:center;
-
     padding:0 12px;
-
     border-bottom:2px solid #a100ff;
 }
 
@@ -43,14 +37,10 @@ body{
 .menu-btn{
     width:45px;
     height:45px;
-
     background:none;
     border:none;
-
     color:white;
-
     font-size:35px;
-
     cursor:pointer;
 }
 
@@ -62,107 +52,96 @@ body{
     display:flex;
     align-items:center;
     gap:8px;
-
     color:white;
 }
 
 .user-avatar{
     width:42px;
     height:42px;
-
     border-radius:50%;
-
     background:#43bd6d;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:25px;
 }
 
 
-/* PAGE */
-
+/* Halaman Voucher */
 .voucher-page{
     width:90%;
-
     margin:30px auto;
 }
 
 .voucher-page h1{
     color:white;
-
     font-size:28px;
-
     margin-bottom:25px;
 }
 
 
-/* GRID */
-
+/* Daftar Voucher */
 .my-voucher-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
+    grid-template-columns:repeat(3,1fr);
     gap:25px;
 }
 
 
-/* CARD */
-
+/* Kartu Voucher */
 .my-voucher-card{
     background:#050505;
-
     border:2px solid #d000ff;
-
     border-radius:12px;
-
     overflow:hidden;
 }
 
 .my-voucher-card img{
     width:100%;
     height:150px;
-
     object-fit:cover;
-
     display:block;
 }
 
 .voucher-code{
     display:block;
-
     padding:8px;
-
     color:white;
-
     text-align:center;
-
     font-size:17px;
 }
 
 
-/* EMPTY */
-
+/* Data Kosong */
 .empty-voucher{
     display:none;
-
     color:white;
-
     font-size:18px;
 }
 
 
-/* RESPONSIVE */
+/* Tombol Kembali */
+.back-icon{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+    background:none;
+    border:none;
+    width:auto;
+    height:auto;
+    border-radius:0;
+    transform:translateY(-8px);
+}
 
+
+/* Responsive */
 @media(max-width:800px){
 
     .my-voucher-grid{
-        grid-template-columns:
-            repeat(2,1fr);
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
@@ -175,172 +154,95 @@ body{
 
 }
 
-.back-icon {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-    background: none;
-    border: none;
-    width: auto;
-    height: auto;
-    border-radius: 0;
-    transform: translateY(-8px);
-}
 
-/* =========================
-   SIDEBAR
-========================= */
-
+/* Sidebar */
 .sidebar{
     position:fixed;
     top:0;
     left:-300px;
-
     width:280px;
     height:100vh;
-
     background:#070707;
-
     padding:15px;
-
     z-index:1001;
-
-    transition:0.3s ease;
+    transition:.3s ease;
 }
-
-/* SIDEBAR SAAT AKTIF */
 
 .sidebar.active{
     left:0;
 }
 
-
-/* HEADER SIDEBAR */
-
 .sidebar-header{
     height:90px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     position:relative;
 }
-
-
-/* LOGO SIDEBAR */
 
 .sidebar-logo{
     width:170px;
 }
 
-
-/* TOMBOL CLOSE */
-
 .close-sidebar{
     position:absolute;
-
     top:5px;
     left:5px;
-
     width:40px;
     height:40px;
-
     background:none;
     border:none;
-
     color:white;
-
     font-size:32px;
-
     cursor:pointer;
 }
-
-
-/* MENU SIDEBAR */
 
 .sidebar-menu{
     display:flex;
     flex-direction:column;
-
     gap:10px;
-
     margin-top:15px;
 }
-
-
-/* LINK MENU */
 
 .sidebar-link{
     display:flex;
     align-items:center;
-
     gap:15px;
-
     padding:13px 15px;
-
     color:white;
-
     text-decoration:none;
-
     border-radius:10px;
-
     font-size:16px;
     font-weight:600;
-
-    transition:0.3s;
+    transition:.3s;
 }
-
-
-/* ICON */
 
 .sidebar-link i{
     font-size:25px;
 }
 
-
-/* HOVER */
-
 .sidebar-link:hover{
     background:#5b137d;
 }
-
-
-/* MENU ACTIVE */
 
 .sidebar-link.active{
     background:#7d00a8;
 }
 
 
-/* =========================
-   OVERLAY
-========================= */
-
+/* Overlay Sidebar */
 .sidebar-overlay{
     position:fixed;
-
     top:0;
     left:0;
-
     width:100%;
     height:100%;
-
-    background:rgba(0,0,0,0.55);
-
+    background:rgba(0,0,0,.55);
     z-index:1000;
-
     opacity:0;
     visibility:hidden;
-
-    transition:0.3s;
+    transition:.3s;
 }
-
-
-/* OVERLAY AKTIF */
 
 .sidebar-overlay.active{
     opacity:1;
