@@ -1,15 +1,10 @@
-// ==========================================
 // 1. AMBIL DATA TRANSAKSI
-// ==========================================
 
 const transactionData = JSON.parse(
     localStorage.getItem("currentTransaction")
 );
 
-
-// ==========================================
 // 2. CEK DATA TRANSAKSI
-// ==========================================
 
 if (!transactionData) {
 
@@ -24,9 +19,7 @@ if (!transactionData) {
 }
 
 
-// ==========================================
 // 3. FORMAT RUPIAH
-// ==========================================
 
 function formatRupiah(number) {
 
@@ -36,9 +29,7 @@ function formatRupiah(number) {
 }
 
 
-// ==========================================
 // 4. FORMAT WAKTU TRANSAKSI
-// ==========================================
 
 function formatTransactionTime(dateString) {
 
@@ -109,9 +100,7 @@ function formatTransactionTime(dateString) {
 }
 
 
-// ==========================================
 // 5. FUNGSI AMAN MENGISI TEXT
-// ==========================================
 
 function setText(id, value) {
 
@@ -129,9 +118,7 @@ function setText(id, value) {
 }
 
 
-// ==========================================
 // 6. NORMALISASI KODE GAME
-// ==========================================
 
 function normalizeGameCode(gameCode) {
 
@@ -144,17 +131,13 @@ function normalizeGameCode(gameCode) {
 }
 
 
-// ==========================================
 // 7. ICON GAME DINAMIS
 //    UNTUK 8 GAME
-// ==========================================
 
 function getPaymentGameIcon(transaction) {
 
-    // ======================================
     // PRIORITAS 1
     // Gunakan gameIcon dari transaksi
-    // ======================================
 
     if (
         transaction.gameIcon &&
@@ -168,10 +151,8 @@ function getPaymentGameIcon(transaction) {
     }
 
 
-    // ======================================
     // PRIORITAS 2
     // Berdasarkan gameCode
-    // ======================================
 
     const gameCode =
         normalizeGameCode(
@@ -230,9 +211,7 @@ function getPaymentGameIcon(transaction) {
 }
 
 
-// ==========================================
 // 8. INISIALISASI HALAMAN
-// ==========================================
 
 function initializePaymentPage() {
 
@@ -250,22 +229,16 @@ function initializePaymentPage() {
 }
 
 
-// ==========================================
 // 9. TAMPILKAN DATA TRANSAKSI
-// ==========================================
 
 function displayTransactionData() {
-// ======================================
 // NAMA GAME DINAMIS DI SUMMARY
-// ======================================
 
 setText(
     "summaryGameName",
     transactionData.game || "Game"
 );
-    // ======================================
     // ICON GAME DINAMIS
-    // ======================================
 
     const summaryGameIcon =
         document.getElementById(
@@ -299,10 +272,7 @@ setText(
 
     }
 
-
-    // ======================================
     // SUMMARY PRODUK
-    // ======================================
 
     setText(
         "summaryProduct",
@@ -310,10 +280,7 @@ setText(
     );
 
 
-    // ======================================
     // TOTAL PEMBAYARAN
-    // ======================================
-
     setText(
         "summaryTotal",
         formatRupiah(
@@ -322,9 +289,7 @@ setText(
     );
 
 
-    // ======================================
     // METODE PEMBAYARAN SUMMARY
-    // ======================================
 
     setText(
         "summaryPayment",
@@ -332,9 +297,7 @@ setText(
     );
 
 
-    // ======================================
     // NOMOR TRANSAKSI
-    // ======================================
 
     setText(
         "transactionNumber",
@@ -342,9 +305,7 @@ setText(
     );
 
 
-    // ======================================
     // WAKTU TRANSAKSI
-    // ======================================
 
     setText(
         "transactionTime",
@@ -354,9 +315,7 @@ setText(
     );
 
 
-    // ======================================
     // DETAIL GAME
-    // ======================================
 
     setText(
         "detailGame",
@@ -364,19 +323,14 @@ setText(
     );
 
 
-    // ======================================
     // DETAIL PRODUK
-    // ======================================
 
     setText(
         "detailProduct",
         transactionData.product || "-"
     );
 
-
-    // ======================================
     // DETAIL USER ID + SERVER
-    // ======================================
 
     let fullUserId = "-";
 
@@ -418,19 +372,14 @@ setText(
     );
 
 
-    // ======================================
     // JUMLAH
-    // ======================================
 
     setText(
         "detailQuantity",
         transactionData.jumlah || 1
     );
 
-
-    // ======================================
     // HARGA
-    // ======================================
 
     setText(
         "detailPrice",
@@ -440,9 +389,7 @@ setText(
     );
 
 
-    // ======================================
     // METODE PEMBAYARAN DETAIL
-    // ======================================
 
     setText(
         "detailPayment",
@@ -450,9 +397,7 @@ setText(
     );
 
 
-    // ======================================
     // POINT
-    // ======================================
 
     setText(
         "pointValue",
@@ -464,9 +409,7 @@ setText(
 }
 
 
-// ==========================================
 // 10. TOMBOL COPY NOMOR TRANSAKSI
-// ==========================================
 
 function initializeCopyButton() {
 
@@ -533,9 +476,7 @@ function initializeCopyButton() {
 }
 
 
-// ==========================================
 // 11. TEXT TERSALIN
-// ==========================================
 
 function showCopiedText(button) {
 
@@ -553,9 +494,7 @@ function showCopiedText(button) {
 }
 
 
-// ==========================================
 // 12. FALLBACK COPY
-// ==========================================
 
 function fallbackCopy(text, button) {
 
@@ -599,9 +538,7 @@ function fallbackCopy(text, button) {
 }
 
 
-// ==========================================
 // 13. SIMPAN / UPDATE RIWAYAT TRANSAKSI
-// ==========================================
 
 function saveTransactionToHistory() {
 
@@ -654,16 +591,11 @@ function saveTransactionToHistory() {
 
 }
 
-
-// ==========================================
 // 14. CEK STATUS TRANSAKSI
-// ==========================================
 
 function checkTransactionStatus() {
 
-    // ======================================
     // JIKA SUDAH SELESAI
-    // ======================================
 
     if (
         transactionData.status ===
@@ -679,9 +611,7 @@ function checkTransactionStatus() {
     }
 
 
-    // ======================================
     // JIKA MASIH DIPROSES
-    // ======================================
 
     showProcessingStatus();
 
@@ -738,15 +668,11 @@ function checkTransactionStatus() {
 }
 
 
-// ==========================================
 // 15. STATUS SEDANG DIPROSES
-// ==========================================
 
 function showProcessingStatus() {
 
-    // ======================================
     // STEP DIPROSES
-    // ======================================
 
     const processStep =
         document.getElementById(
@@ -768,9 +694,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // IKON DIPROSES
-    // ======================================
 
     const processIcon =
         document.getElementById(
@@ -786,9 +710,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // STEP SELESAI
-    // ======================================
 
     const finishStep =
         document.getElementById(
@@ -805,9 +727,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // GARIS KE SELESAI
-    // ======================================
 
     const lineTwo =
         document.getElementById(
@@ -824,9 +744,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // PESAN PROSES
-    // ======================================
 
     const processMessage =
         document.getElementById(
@@ -843,9 +761,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // IKON PESAN
-    // ======================================
 
     const messageIcon =
         document.getElementById(
@@ -861,9 +777,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // JUDUL PESAN
-    // ======================================
 
     setText(
         "messageTitle",
@@ -871,9 +785,7 @@ function showProcessingStatus() {
     );
 
 
-    // ======================================
     // SUBTITLE
-    // ======================================
 
     const messageSubtitle =
         document.getElementById(
@@ -894,9 +806,7 @@ function showProcessingStatus() {
     }
 
 
-    // ======================================
     // BADGE STATUS
-    // ======================================
 
     const statusBadge =
         document.getElementById(
@@ -924,9 +834,7 @@ function showProcessingStatus() {
 }
 
 
-// ==========================================
 // 16. SELESAIKAN TRANSAKSI
-// ==========================================
 
 function finishTransaction() {
 
@@ -953,9 +861,7 @@ function finishTransaction() {
     // Simpan waktu selesai
     transactionData.finishedTime =
         new Date().toISOString();
-// ======================================
 // TAMBAHKAN POIN KE SALDO POIN
-// ======================================
 
 if (!transactionData.pointClaimed) {
 
@@ -1020,15 +926,11 @@ if (!transactionData.pointClaimed) {
 }
 
 
-// ==========================================
 // 17. STATUS TRANSAKSI SELESAI
-// ==========================================
 
 function showFinishedStatus() {
 
-    // ======================================
     // DIPROSES JADI HIJAU
-    // ======================================
 
     const processStep =
         document.getElementById(
@@ -1050,10 +952,7 @@ function showFinishedStatus() {
     }
 
 
-    // ======================================
     // IKON DIPROSES
-    // ======================================
-
     const processIcon =
         document.getElementById(
             "processIcon"
@@ -1067,10 +966,7 @@ function showFinishedStatus() {
 
     }
 
-
-    // ======================================
     // GARIS KE SELESAI HIJAU
-    // ======================================
 
     const lineTwo =
         document.getElementById(
@@ -1086,10 +982,8 @@ function showFinishedStatus() {
 
     }
 
-
-    // ======================================
     // STEP SELESAI HIJAU
-    // ======================================
+
 
     const finishStep =
         document.getElementById(
@@ -1105,10 +999,7 @@ function showFinishedStatus() {
 
     }
 
-
-    // ======================================
     // PESAN BERHASIL
-    // ======================================
 
     const processMessage =
         document.getElementById(
@@ -1125,9 +1016,7 @@ function showFinishedStatus() {
     }
 
 
-    // ======================================
     // IKON CENTANG
-    // ======================================
 
     const messageIcon =
         document.getElementById(
@@ -1143,9 +1032,7 @@ function showFinishedStatus() {
     }
 
 
-    // ======================================
     // JUDUL BERHASIL
-    // ======================================
 
     setText(
         "messageTitle",
@@ -1153,9 +1040,7 @@ function showFinishedStatus() {
     );
 
 
-    // ======================================
     // SUBTITLE BERHASIL
-    // ======================================
 
     const messageSubtitle =
         document.getElementById(
@@ -1176,9 +1061,7 @@ function showFinishedStatus() {
     }
 
 
-    // ======================================
     // BADGE STATUS
-    // ======================================
 
     const statusBadge =
         document.getElementById(
