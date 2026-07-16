@@ -1,6 +1,4 @@
-// ======================================
 // AUTH USER
-// ======================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
